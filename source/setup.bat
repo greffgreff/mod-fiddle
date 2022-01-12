@@ -1,0 +1,1 @@
+sudo ./gradlew genIntellijRuns --refresh-dependencies
