@@ -1,6 +1,7 @@
 package com.greffgreff.modfiddle.init;
 
 import com.greffgreff.modfiddle.ModFiddle;
+import com.greffgreff.modfiddle._structures.TotemStructure;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraftforge.fml.RegistryObject;
@@ -16,5 +17,5 @@ public class StructureInit {
     }
 
     // Structures
-    public static final RegistryObject<Structure<NoFeatureConfig>> RUN_DOWN_HOUSE = STRUCTURE_FEATURES.register("totem", () -> new RunDownHouseStructure(NoFeatureConfig.CODEC));
+    public static final RegistryObject<Structure<NoFeatureConfig>> TOTEM_STRUCTURE = STRUCTURE_FEATURES.register("totem", () -> new TotemStructure());
 }
