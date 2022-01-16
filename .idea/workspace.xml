@@ -4,16 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="setup IDE">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/modfiddle/models/block/my_block.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/modfiddle/models/item/my_block.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/modfiddle/models/item/my_item.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="added custom item and block">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/modfiddle/blockstates/my_block.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/ModFiddle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/ModFiddle.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/core/init/BlockInit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/core/init/BlockInit.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/core/init/ItemInit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/core/init/ItemInit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/modfiddle/lang/en_us.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/modfiddle/lang/en_us.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,7 +129,14 @@
       <option name="project" value="LOCAL" />
       <updated>1641995833694</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="added custom item and block">
+      <created>1642299905213</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1642299905213</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -151,6 +153,7 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="setup IDE" />
-    <option name="LAST_COMMIT_MESSAGE" value="setup IDE" />
+    <MESSAGE value="added custom item and block" />
+    <option name="LAST_COMMIT_MESSAGE" value="added custom item and block" />
   </component>
 </project>
