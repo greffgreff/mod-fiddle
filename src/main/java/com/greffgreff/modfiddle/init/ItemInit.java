@@ -1,4 +1,4 @@
-package com.greffgreff.modfiddle.core.init;
+package com.greffgreff.modfiddle.init;
 
 import com.greffgreff.modfiddle.ModFiddle;
 import com.greffgreff.modfiddle._items.MyItem;
@@ -12,12 +12,17 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class ItemInit
 {
+    // Setup
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, ModFiddle.MOD_ID);
 
-    public static final RegistryObject<Item> MYITEM = ITEMS.register("my_item",
-            () -> new MyItem(new Item.Properties().group(ItemGroup.MISC)));
+    public static RegistryObject<Item> registerItem(String itemName, Item item) {
+        return ItemInit.ITEMS.register(itemName, () -> item);
+    }
 
     public static void registerBlockItem(String blockName, Block block) {
         ItemInit.ITEMS.register(blockName, () -> new BlockItem(block, new Item.Properties().group(ItemGroup.MISC)));
     }
+
+    // Items
+    public static final RegistryObject<Item> MYITEM = registerItem("my_item", new MyItem(new Item.Properties().group(ItemGroup.MISC)));
 }
