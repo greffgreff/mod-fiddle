@@ -1,5 +1,6 @@
 package com.greffgreff.modfiddle;
 
+import com.greffgreff.modfiddle.core.init.BlockInit;
 import com.greffgreff.modfiddle.core.init.ItemInit;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -12,7 +13,7 @@ import org.apache.logging.log4j.Logger;
 @Mod(ModFiddle.MOD_ID)
 public class ModFiddle
 {
-    public static final String MOD_ID = "assets/modfiddle";
+    public static final String MOD_ID = "modfiddle";
     private static final Logger LOGGER = LogManager.getLogger();
 
     public ModFiddle() {
@@ -20,6 +21,7 @@ public class ModFiddle
         bus.addListener(this::setup);
 
         ItemInit.ITEMS.register(bus);
+        BlockInit.BLOCKS.register(bus);
 
         MinecraftForge.EVENT_BUS.register(this);
     }
