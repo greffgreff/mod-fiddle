@@ -1,7 +1,8 @@
 package com.greffgreff.modfiddle;
 
-import com.greffgreff.modfiddle.core.init.BlockInit;
-import com.greffgreff.modfiddle.core.init.ItemInit;
+import com.greffgreff.modfiddle.init.BlockInit;
+import com.greffgreff.modfiddle.init.ItemInit;
+import com.greffgreff.modfiddle.init.StructureInit;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -22,6 +23,7 @@ public class ModFiddle
 
         ItemInit.ITEMS.register(bus);
         BlockInit.BLOCKS.register(bus);
+        StructureInit.STRUCTURE_FEATURES.register(bus);
 
         MinecraftForge.EVENT_BUS.register(this);
     }

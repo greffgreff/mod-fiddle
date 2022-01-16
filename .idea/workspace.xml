@@ -4,16 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="changed myblock item to blockitem">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/_blocks/MyBlock.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/_items/MyItem.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/events/DoSomethingOnClick.java" afterDir="false" />
+    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="cleaned class">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/_structures/TotemStructure.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/ModFiddle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/ModFiddle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/core/init/BlockInit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/core/init/BlockInit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/core/init/ContainerInit.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/core/init/EntityTypeInit.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/core/init/ItemInit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/core/init/ItemInit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/init/StructureInit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/init/StructureInit.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,6 +87,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/data/modfiddle/structures" />
       <recent name="$PROJECT_DIR$/src/main/resources/assets/modfiddle/textures" />
       <recent name="$PROJECT_DIR$/src/main/resources/assets/modfiddle/models" />
       <recent name="$PROJECT_DIR$/src/main/resources/assets/modfiddle" />
@@ -155,7 +151,56 @@
       <option name="project" value="LOCAL" />
       <updated>1642303090556</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="dump">
+      <created>1642355552115</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1642355552115</updated>
+    </task>
+    <task id="LOCAL-00005" summary="added register method">
+      <created>1642367163872</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1642367163872</updated>
+    </task>
+    <task id="LOCAL-00006" summary="added structure class and register method">
+      <created>1642367265033</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1642367265033</updated>
+    </task>
+    <task id="LOCAL-00007" summary="cleaned myblock class">
+      <created>1642367318032</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1642367318032</updated>
+    </task>
+    <task id="LOCAL-00008" summary="removed unnecessary stuff">
+      <created>1642367358628</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1642367358628</updated>
+    </task>
+    <task id="LOCAL-00009" summary="cleaned imports on block init">
+      <created>1642367379829</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1642367379829</updated>
+    </task>
+    <task id="LOCAL-00010" summary="cleaned class">
+      <created>1642367421238</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1642367421238</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -174,6 +219,13 @@
     <MESSAGE value="setup IDE" />
     <MESSAGE value="added custom item and block" />
     <MESSAGE value="changed myblock item to blockitem" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed myblock item to blockitem" />
+    <MESSAGE value="dump" />
+    <MESSAGE value="added register method" />
+    <MESSAGE value="added structure class and register method" />
+    <MESSAGE value="cleaned myblock class" />
+    <MESSAGE value="removed unnecessary stuff" />
+    <MESSAGE value="cleaned imports on block init" />
+    <MESSAGE value="cleaned class" />
+    <option name="LAST_COMMIT_MESSAGE" value="cleaned class" />
   </component>
 </project>
