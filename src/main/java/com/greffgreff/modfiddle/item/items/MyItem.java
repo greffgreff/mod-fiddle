@@ -1,4 +1,4 @@
-package com.greffgreff.modfiddle._items;
+package com.greffgreff.modfiddle.item.items;
 
 import net.minecraft.item.Item;
 

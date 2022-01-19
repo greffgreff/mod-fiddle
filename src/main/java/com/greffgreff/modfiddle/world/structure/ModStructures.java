@@ -1,9 +1,9 @@
-package com.greffgreff.modfiddle.init;
+package com.greffgreff.modfiddle.world.structure;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.greffgreff.modfiddle.ModFiddle;
-import com.greffgreff.modfiddle.world.structure.TotemStructure;
+import com.greffgreff.modfiddle.world.structure.structures.TotemStructure;
 import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.structure.Structure;
@@ -16,7 +16,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import java.util.HashMap;
 import java.util.Map;
 
-public class StructureInit {
+public class ModStructures {
     // Setup
     public static final DeferredRegister<Structure<?>> STRUCTURES = DeferredRegister.create(ForgeRegistries.STRUCTURE_FEATURES, ModFiddle.MOD_ID);
 
@@ -85,7 +85,7 @@ public class StructureInit {
         // p_i232019_1_ = avg dist apart between attempts
         // p_i232019_2_ = minimum distance apart in chunks between spawn attempts (< avg dist)
         // p_i232019_3_ = unique seed to avoid two structures overlapping
-        StructureSeparationSettings settings =  new StructureSeparationSettings(2, 1 , 1234563890 );
+        StructureSeparationSettings settings =  new StructureSeparationSettings(2, 1 , 1234563890);
         setupMapSpacingAndLand(TOTEM_STRUCTURE.get(), settings, true);
 
         // Add more structures here and so on

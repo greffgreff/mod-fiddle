@@ -1,7 +1,7 @@
-package com.greffgreff.modfiddle._blocks;
+package com.greffgreff.modfiddle.block.blocks;
 
 
-import com.greffgreff.modfiddle._items.MyItem;
+import com.greffgreff.modfiddle.item.items.MyItem;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

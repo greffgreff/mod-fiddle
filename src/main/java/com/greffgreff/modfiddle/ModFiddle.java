@@ -1,8 +1,8 @@
 package com.greffgreff.modfiddle;
 
-import com.greffgreff.modfiddle.init.BlockInit;
-import com.greffgreff.modfiddle.init.ItemInit;
-import com.greffgreff.modfiddle.init.StructureInit;
+import com.greffgreff.modfiddle.block.ModBlocks;
+import com.greffgreff.modfiddle.item.ModItems;
+import com.greffgreff.modfiddle.world.structure.ModStructures;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -20,9 +20,9 @@ public class ModFiddle {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         bus.addListener(this::setup);
 
-        ItemInit.ITEMS.register(bus);
-        BlockInit.BLOCKS.register(bus);
-        StructureInit.STRUCTURES.register(bus);
+        ModItems.ITEMS.register(bus);
+        ModBlocks.BLOCKS.register(bus);
+        ModStructures.STRUCTURES.register(bus);
 
         MinecraftForge.EVENT_BUS.register(this);
     }

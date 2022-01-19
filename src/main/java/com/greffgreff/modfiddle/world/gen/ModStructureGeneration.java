@@ -1,6 +1,6 @@
 package com.greffgreff.modfiddle.world.gen;
 
-import com.greffgreff.modfiddle.init.StructureInit;
+import com.greffgreff.modfiddle.world.structure.ModStructures;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
@@ -23,7 +23,7 @@ public class ModStructureGeneration {
         if (types.contains(BiomeDictionary.Type.PLAINS)) {
             // add structure if PLAINS
             List<Supplier<StructureFeature<?, ?>>> structures = event.getGeneration().getStructures();
-            structures.add(() -> StructureInit.TOTEM_STRUCTURE.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
+            structures.add(() -> ModStructures.TOTEM_STRUCTURE.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
         }
     }
 }

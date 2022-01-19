@@ -1,4 +1,4 @@
-package com.greffgreff.modfiddle.world.structure;
+package com.greffgreff.modfiddle.world.structure.structures;
 
 import com.greffgreff.modfiddle.ModFiddle;
 import net.minecraft.util.ResourceLocation;

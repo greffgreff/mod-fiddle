@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="removed previous totem strcut class">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/ModWorldEvent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/gen/ModStructureGeneration.java" afterDir="false" />
+    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="import refactorying">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/ModFiddle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/ModFiddle.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/init/StructureInit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/init/StructureInit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/TotemStructure.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/TotemStructure.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -259,7 +255,35 @@
       <option name="project" value="LOCAL" />
       <updated>1642556726911</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="made logger public">
+      <created>1642564703303</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1642564703303</updated>
+    </task>
+    <task id="LOCAL-00021" summary="added structure generation class">
+      <created>1642564726525</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1642564726525</updated>
+    </task>
+    <task id="LOCAL-00022" summary="added world event class">
+      <created>1642564742884</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1642564742884</updated>
+    </task>
+    <task id="LOCAL-00023" summary="import refactorying">
+      <created>1642564772875</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1642564772875</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -294,6 +318,10 @@
     <MESSAGE value="added access transformers" />
     <MESSAGE value="added rarity and spacing of structure as method" />
     <MESSAGE value="removed previous totem strcut class" />
-    <option name="LAST_COMMIT_MESSAGE" value="removed previous totem strcut class" />
+    <MESSAGE value="made logger public" />
+    <MESSAGE value="added structure generation class" />
+    <MESSAGE value="added world event class" />
+    <MESSAGE value="import refactorying" />
+    <option name="LAST_COMMIT_MESSAGE" value="import refactorying" />
   </component>
 </project>
