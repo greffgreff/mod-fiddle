@@ -4,11 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="cleaned class">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/_structures/TotemStructure.java" afterDir="false" />
+    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="removed previous totem strcut class">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/ModWorldEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/gen/ModStructureGeneration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/ModFiddle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/ModFiddle.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/init/StructureInit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/init/StructureInit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/TotemStructure.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/TotemStructure.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,17 +34,6 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="mod-fiddle" type="f1a62948:ProjectNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="mod-fiddle" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="mod-fiddle" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="fg_runs" type="c8890929:TasksNode$1" />
               </path>
             </expand>
             <select />
@@ -99,6 +90,11 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="Application" factoryName="Application">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="source [runClient]" type="GradleRunConfiguration" factoryName="Gradle" nameIsGenerated="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -200,7 +196,70 @@
       <option name="project" value="LOCAL" />
       <updated>1642367421238</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="changed TOTEM struct to new TotemStructure">
+      <created>1642367831482</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1642367831482</updated>
+    </task>
+    <task id="LOCAL-00012" summary="added TotemStructure class">
+      <created>1642367858540</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1642367858540</updated>
+    </task>
+    <task id="LOCAL-00013" summary="added structure to bus listener">
+      <created>1642367884752</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1642367884752</updated>
+    </task>
+    <task id="LOCAL-00014" summary="added totem structure class">
+      <created>1642553554246</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1642553554246</updated>
+    </task>
+    <task id="LOCAL-00015" summary="added structure init class">
+      <created>1642553569096</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1642553569096</updated>
+    </task>
+    <task id="LOCAL-00016" summary="added totem strat pool json in resources">
+      <created>1642553587300</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1642553587300</updated>
+    </task>
+    <task id="LOCAL-00017" summary="added access transformers">
+      <created>1642555742560</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1642555742561</updated>
+    </task>
+    <task id="LOCAL-00018" summary="added rarity and spacing of structure as method">
+      <created>1642556677277</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1642556677277</updated>
+    </task>
+    <task id="LOCAL-00019" summary="removed previous totem strcut class">
+      <created>1642556726911</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1642556726911</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -226,6 +285,15 @@
     <MESSAGE value="removed unnecessary stuff" />
     <MESSAGE value="cleaned imports on block init" />
     <MESSAGE value="cleaned class" />
-    <option name="LAST_COMMIT_MESSAGE" value="cleaned class" />
+    <MESSAGE value="changed TOTEM struct to new TotemStructure" />
+    <MESSAGE value="added TotemStructure class" />
+    <MESSAGE value="added structure to bus listener" />
+    <MESSAGE value="added totem structure class" />
+    <MESSAGE value="added structure init class" />
+    <MESSAGE value="added totem strat pool json in resources" />
+    <MESSAGE value="added access transformers" />
+    <MESSAGE value="added rarity and spacing of structure as method" />
+    <MESSAGE value="removed previous totem strcut class" />
+    <option name="LAST_COMMIT_MESSAGE" value="removed previous totem strcut class" />
   </component>
 </project>

@@ -12,10 +12,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 @Mod(ModFiddle.MOD_ID)
-public class ModFiddle
-{
+public class ModFiddle {
     public static final String MOD_ID = "modfiddle";
-    private static final Logger LOGGER = LogManager.getLogger();
+    public static final Logger LOGGER = LogManager.getLogger();
 
     public ModFiddle() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -23,7 +22,7 @@ public class ModFiddle
 
         ItemInit.ITEMS.register(bus);
         BlockInit.BLOCKS.register(bus);
-        StructureInit.STRUCTURE_FEATURES.register(bus);
+        StructureInit.STRUCTURES.register(bus);
 
         MinecraftForge.EVENT_BUS.register(this);
     }
