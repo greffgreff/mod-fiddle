@@ -3,7 +3,7 @@ package com.greffgreff.modfiddle.init;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.greffgreff.modfiddle.ModFiddle;
-import com.greffgreff.modfiddle.world.structure.structures.TotemStructure;
+import com.greffgreff.modfiddle.world.structure.TotemStructure;
 import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.structure.Structure;

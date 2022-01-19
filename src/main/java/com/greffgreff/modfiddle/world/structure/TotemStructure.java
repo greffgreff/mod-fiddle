@@ -1,4 +1,4 @@
-package com.greffgreff.modfiddle.world.structure.structures;
+package com.greffgreff.modfiddle.world.structure;
 
 import com.greffgreff.modfiddle.ModFiddle;
 import net.minecraft.util.ResourceLocation;
@@ -6,7 +6,6 @@ import net.minecraft.util.SharedSeedRandom;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MutableBoundingBox;
-import net.minecraft.util.math.vector.Vector3i;
 import net.minecraft.util.registry.DynamicRegistries;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
