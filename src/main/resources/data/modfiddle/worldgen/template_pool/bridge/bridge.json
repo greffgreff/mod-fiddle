@@ -1,11 +1,29 @@
 {
-  "name": "mod:bridge",
+  "name": "modfiddle:bridge/bridge",
   "fallback": "minecraft:empty",
   "elements": [
     {
       "weight": 100,
       "element": {
-        "location": "minecraft:walk1",
+        "location": "modfiddle:pillarhead1",
+        "processors": "minecraft:empty",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 100,
+      "element": {
+        "location": "modfiddle:pillarspine1",
+        "processors": "minecraft:empty",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 100,
+      "element": {
+        "location": "modfiddle:walk1",
         "processors": "minecraft:empty",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
@@ -14,7 +32,7 @@
     {
       "weight": 50,
       "element": {
-        "location": "minecraft:walk2",
+        "location": "modfiddle:walk2",
         "processors": "minecraft:empty",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
@@ -23,7 +41,7 @@
     {
       "weight": 30,
       "element": {
-        "location": "minecraft:walk3",
+        "location": "modfiddle:walk3",
         "processors": "minecraft:empty",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
@@ -32,7 +50,7 @@
     {
       "weight": 10,
       "element": {
-        "location": "minecraft:walk4",
+        "location": "modfiddle:walk4",
         "processors": "minecraft:empty",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
@@ -41,25 +59,7 @@
     {
       "weight": 10,
       "element": {
-        "location": "minecraft:walk5",
-        "processors": "minecraft:empty",
-        "projection": "rigid",
-        "element_type": "minecraft:single_pool_element"
-      }
-    },
-    {
-      "weight": 100,
-      "element": {
-        "location": "minecraft:pillarhead1",
-        "processors": "minecraft:empty",
-        "projection": "rigid",
-        "element_type": "minecraft:single_pool_element"
-      }
-    },
-    {
-      "weight": 100,
-      "element": {
-        "location": "minecraft:pillarspine1",
+        "location": "modfiddle:walk5",
         "processors": "minecraft:empty",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
