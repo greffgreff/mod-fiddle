@@ -1,5 +1,5 @@
 {
-  "name": "modfiddle:totem/start_pool",
+  "name": "modfiddle:totem/totem",
   "fallback": "minecraft:empty",
   "elements": [
     {

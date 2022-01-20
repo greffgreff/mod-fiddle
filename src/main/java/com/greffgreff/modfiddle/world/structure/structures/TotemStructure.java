@@ -69,8 +69,8 @@ public class TotemStructure extends Structure<NoFeatureConfig> {
                     true);
 
             int heightOffset = (int) (Math.random() * 5);
-            ModFiddle.LOGGER.debug(heightOffset);
-            this.components.forEach(piece -> piece.offset(0, heightOffset, 0));
+            // ModFiddle.LOGGER.debug(heightOffset);
+            this.components.forEach(piece -> piece.offset(0, 0, 0));
 
             this.recalculateStructureSize();
 
