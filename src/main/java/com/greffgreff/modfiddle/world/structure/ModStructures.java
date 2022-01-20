@@ -3,6 +3,7 @@ package com.greffgreff.modfiddle.world.structure;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.greffgreff.modfiddle.ModFiddle;
+import com.greffgreff.modfiddle.world.structure.structures.BridgeStructure;
 import com.greffgreff.modfiddle.world.structure.structures.TotemStructure;
 import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
@@ -80,13 +81,13 @@ public class ModStructures {
 
     // Structures
     public static final RegistryObject<Structure<NoFeatureConfig>> TOTEM_STRUCTURE = STRUCTURES.register("totem", TotemStructure::new);
-    public static final RegistryObject<Structure<NoFeatureConfig>> BRIDGE_STRUCTURE = STRUCTURES.register("bridge", TotemStructure::new);
+    public static final RegistryObject<Structure<NoFeatureConfig>> BRIDGE_STRUCTURE = STRUCTURES.register("bridge", BridgeStructure::new);
 
     public static void setupStructures() {
         // p_i232019_1_ = avg dist apart between attempts
         // p_i232019_2_ = minimum distance apart in chunks between spawn attempts (< avg dist)
         // p_i232019_3_ = unique seed to avoid two structures overlapping
-        setupMapSpacingAndLand(TOTEM_STRUCTURE.get(), new StructureSeparationSettings(2, 1, 1234563890), false);
-        setupMapSpacingAndLand(BRIDGE_STRUCTURE.get(), new StructureSeparationSettings(10, 5, 1432563890), true);
+        setupMapSpacingAndLand(TOTEM_STRUCTURE.get(), new StructureSeparationSettings(2, 1, 1234563890), true);
+        setupMapSpacingAndLand(BRIDGE_STRUCTURE.get(), new StructureSeparationSettings(10, 5, 1432563890), false);
     }
 }
