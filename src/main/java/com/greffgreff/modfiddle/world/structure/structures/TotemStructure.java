@@ -68,15 +68,16 @@ public class TotemStructure extends Structure<NoFeatureConfig> {
                     false,
                     true);
 
-            int heightOffset = (int) (Math.random() * (5 - 3));
+            int heightOffset = (int) (Math.random() * 5);
+            ModFiddle.LOGGER.debug(heightOffset);
             this.components.forEach(piece -> piece.offset(0, heightOffset, 0));
 
             this.recalculateStructureSize();
 
-            ModFiddle.LOGGER.log(Level.DEBUG, "Rundown House at " +
-                    this.components.get(0).getBoundingBox().minX + " " +
-                    this.components.get(0).getBoundingBox().minY + " " +
-                    this.components.get(0).getBoundingBox().minZ);
+//            ModFiddle.LOGGER.log(Level.DEBUG, "Generated one at " +
+//                    this.components.get(0).getBoundingBox().minX + " " +
+//                    this.components.get(0).getBoundingBox().minY + " " +
+//                    this.components.get(0).getBoundingBox().minZ);
         }
     }
 }
