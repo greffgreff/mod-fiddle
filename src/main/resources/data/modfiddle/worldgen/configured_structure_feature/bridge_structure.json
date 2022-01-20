@@ -1,0 +1,7 @@
+{
+  "config": {
+    "start_pool": "modfiddle/bridge/bridge_start",
+    "size": 7
+  },
+  "type": "minecraft:village"
+}
