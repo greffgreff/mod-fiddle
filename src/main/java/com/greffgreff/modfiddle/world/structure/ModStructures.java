@@ -80,14 +80,13 @@ public class ModStructures {
 
     // Structures
     public static final RegistryObject<Structure<NoFeatureConfig>> TOTEM_STRUCTURE = STRUCTURES.register("totem", TotemStructure::new);
+    public static final RegistryObject<Structure<NoFeatureConfig>> BRIDGE_STRUCTURE = STRUCTURES.register("bridge", TotemStructure::new);
 
     public static void setupStructures() {
         // p_i232019_1_ = avg dist apart between attempts
         // p_i232019_2_ = minimum distance apart in chunks between spawn attempts (< avg dist)
         // p_i232019_3_ = unique seed to avoid two structures overlapping
-        StructureSeparationSettings settings =  new StructureSeparationSettings(2, 1 , 1234563890);
-        setupMapSpacingAndLand(TOTEM_STRUCTURE.get(), settings, true);
-
-        // Add more structures here and so on
+        setupMapSpacingAndLand(TOTEM_STRUCTURE.get(), new StructureSeparationSettings(2, 1, 1234563890), false);
+        setupMapSpacingAndLand(BRIDGE_STRUCTURE.get(), new StructureSeparationSettings(10, 5, 1432563890), true);
     }
 }

@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="import refactorying">
+    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="moved file">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/BridgeStructure.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/init/StructureInit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/init/StructureInit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/gen/ModStructureGeneration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/gen/ModStructureGeneration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/ModStructures.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/ModStructures.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/TotemStructure.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/TotemStructure.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,27 +73,28 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/data/modfiddle/structures" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/data/modfiddle/structures" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/data/modfiddle/worldgen/template_pool/bridge" />
       <recent name="$PROJECT_DIR$/src/main/resources/data/modfiddle/structures" />
       <recent name="$PROJECT_DIR$/src/main/resources/assets/modfiddle/textures" />
       <recent name="$PROJECT_DIR$/src/main/resources/assets/modfiddle/models" />
       <recent name="$PROJECT_DIR$/src/main/resources/assets/modfiddle" />
-      <recent name="$PROJECT_DIR$/src/main/resources/assets" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.greffgreff" />
       <recent name="com.modfiddle" />
     </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.greffgreff.modfiddle.world.structure.structures" />
+    </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="Application" factoryName="Application">
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="source [runClient]" type="GradleRunConfiguration" factoryName="Gradle" nameIsGenerated="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -111,6 +115,11 @@
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
+    </configuration>
+    <configuration default="true" type="NimRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="nim.task.build.to.cache" enabled="true" />
+      </method>
     </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -283,7 +292,49 @@
       <option name="project" value="LOCAL" />
       <updated>1642564772875</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="project reorganized">
+      <created>1642565066953</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1642565066953</updated>
+    </task>
+    <task id="LOCAL-00025" summary="called setupStructures in FML event">
+      <created>1642565581403</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1642565581403</updated>
+    </task>
+    <task id="LOCAL-00026" summary="added bridge nbt files">
+      <created>1642701266045</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1642701266045</updated>
+    </task>
+    <task id="LOCAL-00027" summary="added bridge json pool file">
+      <created>1642701336878</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1642701336878</updated>
+    </task>
+    <task id="LOCAL-00028" summary="changed json file name to &quot;totem&quot;">
+      <created>1642701372582</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1642701372582</updated>
+    </task>
+    <task id="LOCAL-00029" summary="moved file">
+      <created>1642701482857</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1642701482857</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -299,10 +350,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="setup IDE" />
-    <MESSAGE value="added custom item and block" />
-    <MESSAGE value="changed myblock item to blockitem" />
-    <MESSAGE value="dump" />
     <MESSAGE value="added register method" />
     <MESSAGE value="added structure class and register method" />
     <MESSAGE value="cleaned myblock class" />
@@ -322,6 +369,12 @@
     <MESSAGE value="added structure generation class" />
     <MESSAGE value="added world event class" />
     <MESSAGE value="import refactorying" />
-    <option name="LAST_COMMIT_MESSAGE" value="import refactorying" />
+    <MESSAGE value="project reorganized" />
+    <MESSAGE value="called setupStructures in FML event" />
+    <MESSAGE value="added bridge nbt files" />
+    <MESSAGE value="added bridge json pool file" />
+    <MESSAGE value="changed json file name to &quot;totem&quot;" />
+    <MESSAGE value="moved file" />
+    <option name="LAST_COMMIT_MESSAGE" value="moved file" />
   </component>
 </project>

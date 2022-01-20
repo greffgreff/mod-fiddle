@@ -20,10 +20,15 @@ public class ModStructureGeneration {
         // getting biome types as set from event
         Set<BiomeDictionary.Type> types = BiomeDictionary.getTypes(key);
 
+        List<Supplier<StructureFeature<?, ?>>> structures = event.getGeneration().getStructures();
+
         if (types.contains(BiomeDictionary.Type.PLAINS)) {
             // add structure if PLAINS
-            List<Supplier<StructureFeature<?, ?>>> structures = event.getGeneration().getStructures();
             structures.add(() -> ModStructures.TOTEM_STRUCTURE.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
+        }
+
+        if (types.contains(BiomeDictionary.Type.OCEAN)) {
+            structures.add(() -> ModStructures.BRIDGE_STRUCTURE.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
         }
     }
 }

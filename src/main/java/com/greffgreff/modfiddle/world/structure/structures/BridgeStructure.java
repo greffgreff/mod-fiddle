@@ -19,16 +19,15 @@ import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.feature.structure.StructureStart;
 import net.minecraft.world.gen.feature.structure.VillageConfig;
 import net.minecraft.world.gen.feature.template.TemplateManager;
-import org.apache.logging.log4j.Level;
 
-public class TotemStructure extends Structure<NoFeatureConfig> {
-    public TotemStructure() {
+public class BridgeStructure extends Structure<NoFeatureConfig> {
+    public BridgeStructure() {
         super(NoFeatureConfig.field_236558_a_);
     }
 
     @Override
     public IStartFactory<NoFeatureConfig> getStartFactory() {
-        return TotemStructure.Start::new;
+        return BridgeStructure.Start::new;
     }
 
     @Override
@@ -58,7 +57,7 @@ public class TotemStructure extends Structure<NoFeatureConfig> {
             // addPieces
             JigsawManager.func_242837_a(
                     dynamicRegistries,
-                    new VillageConfig(() -> dynamicRegistries.getRegistry(Registry.JIGSAW_POOL_KEY).getOrDefault(new ResourceLocation(ModFiddle.MOD_ID, "totem/totem")), 10),
+                    new VillageConfig(() -> dynamicRegistries.getRegistry(Registry.JIGSAW_POOL_KEY).getOrDefault(new ResourceLocation(ModFiddle.MOD_ID, "bridge/bridge")), 10),
                     AbstractVillagePiece::new,
                     chunkGenerator,
                     templateManager,
@@ -73,11 +72,6 @@ public class TotemStructure extends Structure<NoFeatureConfig> {
             this.components.forEach(piece -> piece.offset(0, heightOffset, 0));
 
             this.recalculateStructureSize();
-
-//            ModFiddle.LOGGER.log(Level.DEBUG, "Generated one at " +
-//                    this.components.get(0).getBoundingBox().minX + " " +
-//                    this.components.get(0).getBoundingBox().minY + " " +
-//                    this.components.get(0).getBoundingBox().minZ);
         }
     }
 }
