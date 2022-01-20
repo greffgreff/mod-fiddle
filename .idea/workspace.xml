@@ -4,22 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="fixed replacement block spelling">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/data/modfiddle/worldgen/configured_structure_feature/bridge_structure.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/data/modfiddle/worldgen/template_pool/bridge/bridge_start.json" afterDir="false" />
+    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="added height off set to bridge pillar">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/ModStructures.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/ModStructures.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/BridgeStructure.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/BridgeStructure.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/TotemStructure.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/TotemStructure.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/modfiddle/structures/pillarhead1.nbt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/modfiddle/structures/pillarhead1.nbt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/modfiddle/structures/pillarspine1.nbt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/modfiddle/structures/pillarspine1.nbt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/modfiddle/structures/walk1.nbt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/modfiddle/structures/walk1.nbt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/modfiddle/structures/walk2.nbt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/modfiddle/structures/walk2.nbt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/modfiddle/structures/walk3.nbt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/modfiddle/structures/walk3.nbt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/modfiddle/structures/walk4.nbt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/modfiddle/structures/walk4.nbt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/modfiddle/structures/walk5.nbt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/modfiddle/structures/walk5.nbt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/modfiddle/worldgen/template_pool/bridge/bridge.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/modfiddle/worldgen/template_pool/bridge/bridge.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/modfiddle/worldgen/template_pool/totem/totem.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/modfiddle/worldgen/template_pool/totem/totem.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -360,7 +346,56 @@
       <option name="project" value="LOCAL" />
       <updated>1642711820808</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="fixed jigsaw target pool">
+      <created>1642712394659</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1642712394659</updated>
+    </task>
+    <task id="LOCAL-00033" summary="added bridge structure entry pool">
+      <created>1642712416791</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1642712416791</updated>
+    </task>
+    <task id="LOCAL-00034" summary="added bridge structure entry pool">
+      <created>1642712432709</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1642712432709</updated>
+    </task>
+    <task id="LOCAL-00035" summary="fixed target pool">
+      <created>1642712450536</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1642712450536</updated>
+    </task>
+    <task id="LOCAL-00036" summary="fixed structure init">
+      <created>1642712481279</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1642712481279</updated>
+    </task>
+    <task id="LOCAL-00037" summary="code refactored">
+      <created>1642712504513</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1642712504513</updated>
+    </task>
+    <task id="LOCAL-00038" summary="added height off set to bridge pillar">
+      <created>1642712972454</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1642712972454</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -376,12 +411,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="cleaned myblock class" />
-    <MESSAGE value="removed unnecessary stuff" />
-    <MESSAGE value="cleaned imports on block init" />
-    <MESSAGE value="cleaned class" />
-    <MESSAGE value="changed TOTEM struct to new TotemStructure" />
-    <MESSAGE value="added TotemStructure class" />
     <MESSAGE value="added structure to bus listener" />
     <MESSAGE value="added totem structure class" />
     <MESSAGE value="added structure init class" />
@@ -401,6 +430,12 @@
     <MESSAGE value="moved file" />
     <MESSAGE value="added bridge structure to registry and gen" />
     <MESSAGE value="fixed replacement block spelling" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed replacement block spelling" />
+    <MESSAGE value="fixed jigsaw target pool" />
+    <MESSAGE value="added bridge structure entry pool" />
+    <MESSAGE value="fixed target pool" />
+    <MESSAGE value="fixed structure init" />
+    <MESSAGE value="code refactored" />
+    <MESSAGE value="added height off set to bridge pillar" />
+    <option name="LAST_COMMIT_MESSAGE" value="added height off set to bridge pillar" />
   </component>
 </project>
