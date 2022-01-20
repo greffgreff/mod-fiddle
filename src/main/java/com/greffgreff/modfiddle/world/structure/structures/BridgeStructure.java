@@ -57,7 +57,7 @@ public class BridgeStructure extends Structure<NoFeatureConfig> {
             // addPieces
             JigsawManager.func_242837_a(
                     dynamicRegistries,
-                    new VillageConfig(() -> dynamicRegistries.getRegistry(Registry.JIGSAW_POOL_KEY).getOrDefault(new ResourceLocation(ModFiddle.MOD_ID, "bridge/bridge")), 10),
+                    new VillageConfig(() -> dynamicRegistries.getRegistry(Registry.JIGSAW_POOL_KEY).getOrDefault(new ResourceLocation(ModFiddle.MOD_ID, "bridge/bridge_start")), 10),
                     AbstractVillagePiece::new,
                     chunkGenerator,
                     templateManager,
@@ -69,7 +69,7 @@ public class BridgeStructure extends Structure<NoFeatureConfig> {
 
             int heightOffset = (int) (Math.random() * 5);
             ModFiddle.LOGGER.debug(heightOffset);
-            this.components.forEach(piece -> piece.offset(0, heightOffset, 0));
+            this.components.forEach(piece -> piece.offset(0, 0, 0));
 
             this.recalculateStructureSize();
         }
