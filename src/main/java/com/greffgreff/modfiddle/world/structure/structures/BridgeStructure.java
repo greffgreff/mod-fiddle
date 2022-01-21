@@ -1,6 +1,7 @@
 package com.greffgreff.modfiddle.world.structure.structures;
 
 import com.greffgreff.modfiddle.ModFiddle;
+import com.greffgreff.modfiddle.world.util.AltJigsawManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SharedSeedRandom;
 import net.minecraft.util.math.BlockPos;
@@ -13,11 +14,7 @@ import net.minecraft.world.biome.provider.BiomeProvider;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
-import net.minecraft.world.gen.feature.jigsaw.JigsawManager;
-import net.minecraft.world.gen.feature.structure.AbstractVillagePiece;
-import net.minecraft.world.gen.feature.structure.Structure;
-import net.minecraft.world.gen.feature.structure.StructureStart;
-import net.minecraft.world.gen.feature.structure.VillageConfig;
+import net.minecraft.world.gen.feature.structure.*;
 import net.minecraft.world.gen.feature.template.TemplateManager;
 
 public class BridgeStructure extends Structure<NoFeatureConfig> {
@@ -55,7 +52,7 @@ public class BridgeStructure extends Structure<NoFeatureConfig> {
             BlockPos centerPos = new BlockPos(x, 0, z);
 
             // addPieces
-            JigsawManager.func_242837_a(
+            AltJigsawManager.func_242837_a(
                     dynamicRegistries,
                     new VillageConfig(() -> dynamicRegistries.getRegistry(Registry.JIGSAW_POOL_KEY).getOrDefault(new ResourceLocation(ModFiddle.MOD_ID, "bridge/bridge_start")), 10),
                     AbstractVillagePiece::new,
@@ -67,8 +64,9 @@ public class BridgeStructure extends Structure<NoFeatureConfig> {
                     false,
                     true);
 
-            this.components.forEach(piece -> piece.offset(0, -6, 0));
 
+            int submergedBaseOffset = -6;
+            this.components.forEach(piece -> piece.offset(0, submergedBaseOffset, 0));
             this.recalculateStructureSize();
         }
     }
