@@ -43,6 +43,8 @@ public class JigsawManager {
 
         // Get starting piece bounding box
         MutableBoundingBox pieceBoundingBox = piece.getBoundingBox();
+
+        /// Unknown
         int i = (pieceBoundingBox.maxX + pieceBoundingBox.minX) / 2;
         int j = (pieceBoundingBox.maxZ + pieceBoundingBox.minZ) / 2;
         int k = useHeightMap ? blockPos.getY() + chunkGenerator.getNoiseHeight(i, j, Heightmap.Type.WORLD_SURFACE_WG) : blockPos.getY();
@@ -128,29 +130,23 @@ public class JigsawManager {
                         int k = -1; // offset by 1 to account for parent jigsaw block
                         // Check if jigsaw block is within original jigsaw piece
                         boolean isVecInside = pieceBoundingBox.isVecInside(adjustedJigsawBlockPos);
-
-                        /// UNKNOWN ///
+                        // If inside then use parent piece bounding box, else use
                         MutableObject<VoxelShape> childPieceVoxel;
-                        int l;
-
+                        int childTopBounds;
                         if (isVecInside) {
                             childPieceVoxel = pieceVoxel;
-                            l = i;
-
+                            childTopBounds = i;
                             if (pieceVoxel.getValue() == null)
                                 pieceVoxel.setValue(VoxelShapes.create(AxisAlignedBB.toImmutable(pieceBoundingBox)));
                         }
                         else {
                             childPieceVoxel = voxel;
-                            l = depth;
+                            childTopBounds = depth;
                         }
-                        ///////////////
-
                         // Check whether the max depth of has been reached
                         List<JigsawPiece> list = Lists.newArrayList();
                         if (boundsTop != this.maxDepth)
                             list.addAll(jigsawPoolPattern.get().getShuffledPieces(this.rand));
-
                         // Add fallback pieces regardless
                         list.addAll(fallBackPoolPattern.get().getShuffledPieces(this.rand));
 
@@ -163,96 +159,95 @@ public class JigsawManager {
                                 // Get all jigsaw blocks
                                 List<Template.BlockInfo> childPieceJigsawBlocks = childJigsawPiece.getJigsawBlocks(this.structureManager, BlockPos.ZERO, childJigsawPieceRotation, this.rand);
 
-                                /// Boundry Adjustements? ////
-                                int i1 = 0;
-
                                 for (Template.BlockInfo childJigsawBlock : childPieceJigsawBlocks) {
                                     if (JigsawBlock.hasJigsawMatch(jigsawBlock, childJigsawBlock)) {
                                         // Get child jigsaw block pos and adjust it to parent jigsaw
                                         BlockPos childJigsawBlockPos = childJigsawBlock.pos;
                                         BlockPos adjustedChildJigsawBlockPos = new BlockPos(adjustedJigsawBlockPos.getX() - childJigsawBlockPos.getX(), adjustedJigsawBlockPos.getY() - childJigsawBlockPos.getY(), adjustedJigsawBlockPos.getZ() - childJigsawBlockPos.getZ());
-
                                         // Get child piece bounding box
                                         MutableBoundingBox childPieceBoundingBox = childJigsawPiece.getBoundingBox(this.structureManager, adjustedChildJigsawBlockPos, childJigsawPieceRotation);
-
                                         // Get child piece placement behavior
                                         JigsawPattern.PlacementBehaviour childPiecePlacementBehavior = childJigsawPiece.getPlacementBehaviour();
                                         boolean isChildRigid = childPiecePlacementBehavior == JigsawPattern.PlacementBehaviour.RIGID;
 
                                         // Get starting Y position
-                                        // (for ???)
+                                        /// Unknown ///
                                         int j1 = childPieceBoundingBox.minY;
-
-                                        /// UNKNOWN ///
+                                        int i1 = 0;
                                         int k1 = childJigsawBlockPos.getY();
                                         int l1 = j - k1 + JigsawBlock.getConnectingDirection(jigsawBlock.state).getYOffset();
                                         int i2;
 
                                         if (isRigid && isChildRigid) {
                                             i2 = i + l1;
-                                        } else {
+                                        }
+                                        else {
                                             if (k == -1)
                                                 k = this.chunkGenerator.getNoiseHeight(jigsawBlockPos.getX(), jigsawBlockPos.getZ(), Heightmap.Type.WORLD_SURFACE_WG);
 
                                             i2 = k - k1;
                                         }
                                         int j2 = i2 - j1;
-                                        ///////////////
 
-                                        // ".move()"
-                                        MutableBoundingBox newChildPieceBoundingBox = childPieceBoundingBox.func_215127_b(0, j2, 0); // was .moved()
+                                        // .move() adjust piece bounding box relative to the parent
+                                        MutableBoundingBox newChildPieceBoundingBox = childPieceBoundingBox.func_215127_b(0, j2, 0);
                                         BlockPos newAdjustedChildJigsawBlockPos = adjustedChildJigsawBlockPos.add(0, j2, 0);
-                                        if (i1 > 0) {
-                                            int k2 = Math.max(i1 + 1, newChildPieceBoundingBox.maxY - newChildPieceBoundingBox.minY);
-                                            newChildPieceBoundingBox.maxY = newChildPieceBoundingBox.minY + k2;
-                                        }
 
-                                        // joinIsNotEmpty = compare
-                                        // joinUnoptimized = combine
                                         if (!VoxelShapes.compare(childPieceVoxel.getValue(), VoxelShapes.create(AxisAlignedBB.toImmutable(newChildPieceBoundingBox).shrink(0.25D)), IBooleanFunction.ONLY_SECOND)) {
+                                            // If [something] then set childpiece to [something]
                                             childPieceVoxel.setValue(VoxelShapes.combine(childPieceVoxel.getValue(), VoxelShapes.create(AxisAlignedBB.toImmutable(newChildPieceBoundingBox)), IBooleanFunction.ONLY_FIRST));
+
+                                            /// Unknown ///
                                             int j3 = piece.getGroundLevelDelta();
                                             int l2;
-                                            if (isChildRigid) {
+                                            if (isChildRigid)
                                                 l2 = j3 - l1;
-                                            } else {
+                                            else
                                                 l2 = childJigsawPiece.getGroundLevelDelta();
-                                            }
 
+                                            // If something valid, then create child piece abstract village from jigsaw piece
                                             AbstractVillagePiece pieceChild = new AbstractVillagePiece(this.structureManager, childJigsawPiece, newAdjustedChildJigsawBlockPos, l2, childJigsawPieceRotation, newChildPieceBoundingBox);
+
+                                            /// Unknown ///
                                             int i3;
-                                            if (isRigid) {
+                                            if (isRigid)
                                                 i3 = i + j;
-                                            } else if (isChildRigid) {
+                                            else if (isChildRigid)
                                                 i3 = i2 + k1;
-                                            } else {
-                                                if (k == -1) {
+                                            else {
+                                                if (k == -1)
                                                     k = this.chunkGenerator.getNoiseHeight(jigsawBlockPos.getX(), jigsawBlockPos.getZ(), Heightmap.Type.WORLD_SURFACE_WG);
-                                                }
 
                                                 i3 = k + l1 / 2;
                                             }
 
+                                            // Occupy jigsaw block on child piece, connection to parent piece?
+                                            /// Unknown
                                             pieceChild.addJunction(new JigsawJunction(adjustedJigsawBlockPos.getX(), i3 - j + j3, adjustedJigsawBlockPos.getZ(), l1, childPiecePlacementBehavior));
                                             pieceChild.addJunction(new JigsawJunction(jigsawBlockPos.getX(), i3 - k1 + l2, jigsawBlockPos.getZ(), -l1, piecePlacementBehavior));
+
+                                            // Add piece to componenets
                                             this.pieces.add(pieceChild);
-                                            if (boundsTop + 1 <= this.maxDepth) {
-                                                this.availablePieces.addLast(new Entry(pieceChild, childPieceVoxel, l, boundsTop + 1)); // was pieces (from availablePieces)
-                                            }
+
+                                            // Check if max tree depth has been reached
+                                            if (boundsTop + 1 <= this.maxDepth)
+                                                this.availablePieces.addLast(new Entry(pieceChild, childPieceVoxel, childTopBounds, boundsTop + 1));
+
                                             continue findMatch;
                                         }
                                     }
                                 }
                             }
                         }
-                    } else {
+                    }
+                    else {
                         ModFiddle.LOGGER.warn("Empty or none existent fallback pool: {}", (Object)fallBackPool);
                     }
-                } else {
+                }
+                else {
                     ModFiddle.LOGGER.warn("Empty or none existent pool: {}", (Object)resourcelocation);
                 }
             }
-
         }
     }
 
@@ -265,8 +260,8 @@ public class JigsawManager {
         private Entry(AbstractVillagePiece piece, MutableObject<VoxelShape> voxel, int boundsTop, int depth) {
             this.piece = piece;
             this.voxel = voxel;
-            this.boundsTop = boundsTop;
-            this.depth = depth;
+            this.boundsTop = boundsTop; // ??
+            this.depth = depth; // refers to max tree depth
         }
     }
 }
@@ -300,6 +295,11 @@ if (doBoundryAdjustmentsMAYBE && childPieceBoundingBox.getYSize() <= 16) {
 }
 else {
     i1 = 0;
+}
+
+if (i1 > 0) {
+    int k2 = Math.max(i1 + 1, newChildPieceBoundingBox.maxY - newChildPieceBoundingBox.minY);
+    newChildPieceBoundingBox.maxY = newChildPieceBoundingBox.minY + k2;
 }
 ////////////////////////////////////////
  */
