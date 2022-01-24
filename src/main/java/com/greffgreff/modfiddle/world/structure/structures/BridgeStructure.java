@@ -25,7 +25,6 @@ import java.util.List;
 import java.util.Random;
 
 public class BridgeStructure extends Structure<NoFeatureConfig> {
-    public static final ResourceLocation startingPoolLocation = new ResourceLocation(ModFiddle.MOD_ID, "bridge_start");
 
     public BridgeStructure() {
         super(NoFeatureConfig.field_236558_a_);
@@ -59,7 +58,6 @@ public class BridgeStructure extends Structure<NoFeatureConfig> {
             BlockPos centerPos = new BlockPos(x, 0, z);
             Rotation rotation = Rotation.randomRotation(rand);
 
-            // addPieces
             JigsawManager.addPieces(
                     dynamicRegistries,
                     new VillageConfig(() -> dynamicRegistries.getRegistry(Registry.JIGSAW_POOL_KEY).getOrDefault(new ResourceLocation(ModFiddle.MOD_ID, "bridge/bridge_start")), 10),
@@ -69,7 +67,8 @@ public class BridgeStructure extends Structure<NoFeatureConfig> {
                     this.components,
                     this.rand,
                     false,
-                    true);
+                    true
+            );
 
             int submergedBaseOffset = -6;
             this.components.forEach(piece -> piece.offset(0, submergedBaseOffset, 0));
