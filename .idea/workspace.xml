@@ -4,14 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="ignored workspace">
+    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="simplified JigsawManager implementation">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/util/JigsawGeneration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/modfiddle/structures/pillarhead1.nbt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/modfiddle/structures/pillarhead1.nbt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/modfiddle/structures/walk1.nbt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/modfiddle/structures/walk1.nbt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/modfiddle/structures/walk2.nbt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/modfiddle/structures/walk2.nbt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/modfiddle/structures/walk3.nbt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/modfiddle/structures/walk3.nbt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/modfiddle/structures/walk4.nbt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/modfiddle/structures/walk4.nbt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/modfiddle/structures/walk5.nbt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/modfiddle/structures/walk5.nbt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/BridgeStructure.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/BridgeStructure.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/util/JigsawManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/util/JigsawManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,6 +58,10 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/BridgeStructure.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/util/JigsawManager.java" root0="SKIP_INSPECTION" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -75,7 +76,10 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/data/modfiddle/worldgen/configured_structure_feature" />
+    <property name="ToolWindowRun.ShowToolbar" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.ide.settings.file-colors" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -91,25 +95,22 @@
       <recent name="$PROJECT_DIR$/src/main/resources/assets/modfiddle" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.greffgreff.modfiddle.world.structure" />
       <recent name="com.greffgreff" />
       <recent name="com.modfiddle" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.greffgreff.modfiddle.world.structure" />
       <recent name="com.greffgreff.modfiddle.world.structure.structures" />
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="Application" factoryName="Application">
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="source [runClient]" type="GradleRunConfiguration" factoryName="Gradle" nameIsGenerated="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
+        <option name="scriptParameters" value="--stacktrace" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -124,6 +125,11 @@
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
+    </configuration>
+    <configuration default="true" type="NimRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="nim.task.build.to.cache" enabled="true" />
+      </method>
     </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -408,7 +414,63 @@
       <option name="project" value="LOCAL" />
       <updated>1642713100842</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="fixed target pool">
+      <created>1642713794131</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1642713794132</updated>
+    </task>
+    <task id="LOCAL-00041" summary="added custom jigsawmanager class">
+      <created>1642770066154</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1642770066154</updated>
+    </task>
+    <task id="LOCAL-00042" summary="added updated to use custom jigsawmanager class">
+      <created>1642770126884</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1642770126884</updated>
+    </task>
+    <task id="LOCAL-00043" summary="remapped and refactored jigsaw class from 1.16.5">
+      <created>1642781098747</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1642781098747</updated>
+    </task>
+    <task id="LOCAL-00044" summary="increased max depth size to 10">
+      <created>1642997817344</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1642997817345</updated>
+    </task>
+    <task id="LOCAL-00045" summary="added custom jigsaw config class">
+      <created>1642997840701</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1642997840701</updated>
+    </task>
+    <task id="LOCAL-00046" summary="started structure config class for configs files">
+      <created>1642997873613</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1642997873613</updated>
+    </task>
+    <task id="LOCAL-00047" summary="simplified JigsawManager implementation">
+      <created>1642997910182</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1642997910182</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -424,13 +486,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="added totem structure class" />
-    <MESSAGE value="added structure init class" />
-    <MESSAGE value="added totem strat pool json in resources" />
-    <MESSAGE value="added access transformers" />
-    <MESSAGE value="added rarity and spacing of structure as method" />
-    <MESSAGE value="removed previous totem strcut class" />
-    <MESSAGE value="made logger public" />
     <MESSAGE value="added structure generation class" />
     <MESSAGE value="added world event class" />
     <MESSAGE value="import refactorying" />
@@ -444,11 +499,18 @@
     <MESSAGE value="fixed replacement block spelling" />
     <MESSAGE value="fixed jigsaw target pool" />
     <MESSAGE value="added bridge structure entry pool" />
-    <MESSAGE value="fixed target pool" />
     <MESSAGE value="fixed structure init" />
     <MESSAGE value="code refactored" />
     <MESSAGE value="added height off set to bridge pillar" />
     <MESSAGE value="ignored workspace" />
-    <option name="LAST_COMMIT_MESSAGE" value="ignored workspace" />
+    <MESSAGE value="fixed target pool" />
+    <MESSAGE value="added custom jigsawmanager class" />
+    <MESSAGE value="added updated to use custom jigsawmanager class" />
+    <MESSAGE value="remapped and refactored jigsaw class from 1.16.5" />
+    <MESSAGE value="increased max depth size to 10" />
+    <MESSAGE value="added custom jigsaw config class" />
+    <MESSAGE value="started structure config class for configs files" />
+    <MESSAGE value="simplified JigsawManager implementation" />
+    <option name="LAST_COMMIT_MESSAGE" value="simplified JigsawManager implementation" />
   </component>
 </project>
