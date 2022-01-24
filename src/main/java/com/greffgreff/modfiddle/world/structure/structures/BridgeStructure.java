@@ -1,8 +1,12 @@
 package com.greffgreff.modfiddle.world.structure.structures;
 
 import com.greffgreff.modfiddle.ModFiddle;
-import com.greffgreff.modfiddle.world.util.AltJigsawManager;
+import com.greffgreff.modfiddle.world.structure.StructureConfigs;
+import com.greffgreff.modfiddle.world.util.JigsawConfig;
+import com.greffgreff.modfiddle.world.util.JigsawGeneration;
+import com.greffgreff.modfiddle.world.util.JigsawManager;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.SharedSeedRandom;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
@@ -17,14 +21,19 @@ import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.structure.*;
 import net.minecraft.world.gen.feature.template.TemplateManager;
 
+import java.util.List;
+import java.util.Random;
+
 public class BridgeStructure extends Structure<NoFeatureConfig> {
+    public static final ResourceLocation startingPoolLocation = new ResourceLocation(ModFiddle.MOD_ID, "bridge_start");
+
     public BridgeStructure() {
         super(NoFeatureConfig.field_236558_a_);
     }
 
     @Override
     public IStartFactory<NoFeatureConfig> getStartFactory() {
-        return BridgeStructure.Start::new;
+        return Start::new;
     }
 
     @Override
@@ -38,24 +47,24 @@ public class BridgeStructure extends Structure<NoFeatureConfig> {
     }
 
     public static class Start extends StructureStart<NoFeatureConfig> {
-        // structureIn     chunkX         chunkZ         mutableBoundingBox     referenceIn    seedIn
-        // p_i225876_1_    p_i225876_2_   p_i225876_3_   p_i225876_4_           p_i225876_5_   p_i225876_6_
 
         public Start(Structure<NoFeatureConfig> structureIn, int chunkX, int chunkZ, MutableBoundingBox mutableBoundingBox, int referenceIn, long seedIn) {
             super(structureIn, chunkX, chunkZ, mutableBoundingBox, referenceIn, seedIn);
         }
 
-        @Override // generatePieces
+        @Override // generatePieces from super
         public void func_230364_a_(DynamicRegistries dynamicRegistries, ChunkGenerator chunkGenerator, TemplateManager templateManager, int chunkX, int chunkZ, Biome biome, NoFeatureConfig noFeatureConfig) {
             int x = chunkX * 16;
             int z = chunkZ * 16;
             BlockPos centerPos = new BlockPos(x, 0, z);
+            Rotation rotation = Rotation.randomRotation(rand);
+
+            JigsawConfig jigsawConfig = new JigsawConfig(() -> dynamicRegistries.getRegistry(Registry.JIGSAW_POOL_KEY).getOrDefault(startingPoolLocation), StructureConfigs.maxBridgeSize.get(), startingPoolLocation);
 
             // addPieces
-            AltJigsawManager.func_242837_a(
+            JigsawManager.addPieces(
                     dynamicRegistries,
-                    new VillageConfig(() -> dynamicRegistries.getRegistry(Registry.JIGSAW_POOL_KEY).getOrDefault(new ResourceLocation(ModFiddle.MOD_ID, "bridge/bridge_start")), 10),
-                    AbstractVillagePiece::new,
+                    jigsawConfig,
                     chunkGenerator,
                     templateManager,
                     centerPos,
@@ -63,7 +72,6 @@ public class BridgeStructure extends Structure<NoFeatureConfig> {
                     this.rand,
                     false,
                     true);
-
 
             int submergedBaseOffset = -6;
             this.components.forEach(piece -> piece.offset(0, submergedBaseOffset, 0));
