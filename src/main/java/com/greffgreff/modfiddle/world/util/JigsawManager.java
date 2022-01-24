@@ -36,45 +36,46 @@ import net.minecraftforge.fml.common.Mod;
 import org.apache.commons.lang3.mutable.MutableObject;
 
 public class JigsawManager {
-    public static void addPieces(DynamicRegistries dynamicregistries, JigsawConfig jigsawConfig, ChunkGenerator chunkgenerator, TemplateManager templatemanager, BlockPos blockpos, List<? super AbstractVillagePiece> structurepieces, Random rand, boolean villagepiece, boolean p_242837_9_) {
-        MutableRegistry<JigsawPattern> mutableregistry = dynamicregistries.getRegistry(Registry.JIGSAW_POOL_KEY);
+    public static void addPieces(DynamicRegistries dynamicregistries, VillageConfig villageConfig, ChunkGenerator chunkgenerator, TemplateManager templatemanager, BlockPos blockpos, List<? super AbstractVillagePiece> structurepieces, Random rand, boolean villagepiece, boolean useHeightMap) {
         Rotation rotation = Rotation.randomRotation(rand);
-        JigsawPattern jigsawpattern = jigsawConfig.getStartPoolSupplier().get();
+
+        MutableRegistry<JigsawPattern> mutableregistry = dynamicregistries.getRegistry(Registry.JIGSAW_POOL_KEY);
+        JigsawPattern jigsawpattern = (JigsawPattern)villageConfig.func_242810_c().get();
+
         JigsawPiece jigsawpiece = jigsawpattern.getRandomPiece(rand);
         AbstractVillagePiece piece =  new AbstractVillagePiece(templatemanager, jigsawpiece, blockpos, jigsawpiece.getGroundLevelDelta(), rotation, jigsawpiece.getBoundingBox(templatemanager, blockpos, rotation));
+
         MutableBoundingBox mutableboundingbox = piece.getBoundingBox();
         int i = (mutableboundingbox.maxX + mutableboundingbox.minX) / 2;
         int j = (mutableboundingbox.maxZ + mutableboundingbox.minZ) / 2;
-        int k;
-        if (p_242837_9_) {
-            k = blockpos.getY() + chunkgenerator.getNoiseHeight(i, j, Heightmap.Type.WORLD_SURFACE_WG);
-        } else {
-            k = blockpos.getY();
-        }
+        int k = useHeightMap ? blockpos.getY() + chunkgenerator.getNoiseHeight(i, j, Heightmap.Type.WORLD_SURFACE_WG) : blockpos.getY();
 
         int l = mutableboundingbox.minY + piece.getGroundLevelDelta();
         piece.offset(0, k - l, 0);
-        structurepieces.add(piece);
-        if (jigsawConfig.getMaxChainPieceLength() > 0) {
-            AxisAlignedBB axisalignedbb = new AxisAlignedBB((double)(i - 80), (double)(k - 80), (double)(j - 80), (double)(i + 80 + 1), (double)(k + 80 + 1), (double)(j + 80 + 1));
-            JigsawManager.Assembler jigsawmanager$assembler = new JigsawManager.Assembler(mutableregistry, jigsawConfig.getMaxChainPieceLength(), chunkgenerator, templatemanager, structurepieces, rand);
-            jigsawmanager$assembler.availablePieces.addLast(new JigsawManager.Entry(piece, new MutableObject(VoxelShapes.combineAndSimplify(VoxelShapes.create(axisalignedbb), VoxelShapes.create(AxisAlignedBB.toImmutable(mutableboundingbox)), IBooleanFunction.ONLY_FIRST)), k + 80, 0));
 
-            while(!jigsawmanager$assembler.availablePieces.isEmpty()) {
-                JigsawManager.Entry jigsawmanager$entry = (JigsawManager.Entry)jigsawmanager$assembler.availablePieces.removeFirst();
-                jigsawmanager$assembler.tryPlacingChildren(jigsawmanager$entry.piece, jigsawmanager$entry.free, jigsawmanager$entry.boundstop, jigsawmanager$entry.depth, villagepiece);
+        structurepieces.add(piece);
+
+        if (villageConfig.func_236534_a_() > 0) {
+            AxisAlignedBB axisalignedbb = new AxisAlignedBB((double)(i - 80), (double)(k - 80), (double)(j - 80), (double)(i + 80 + 1), (double)(k + 80 + 1), (double)(j + 80 + 1));
+
+            Assembler assembler = new Assembler(mutableregistry, villageConfig.func_236534_a_(), chunkgenerator, templatemanager, structurepieces, rand);
+            assembler.availablePieces.addLast(new Entry(piece, new MutableObject(VoxelShapes.combineAndSimplify(VoxelShapes.create(axisalignedbb), VoxelShapes.create(AxisAlignedBB.toImmutable(mutableboundingbox)), IBooleanFunction.ONLY_FIRST)), k + 80, 0));
+
+            while(!assembler.availablePieces.isEmpty()) {
+                Entry jigsawmanager$entry = (Entry)assembler.availablePieces.removeFirst();
+                assembler.tryPlacingChildren(jigsawmanager$entry.piece, jigsawmanager$entry.free, jigsawmanager$entry.boundstop, jigsawmanager$entry.depth, villagepiece);
             }
         }
     }
 
     public static void addPieces(DynamicRegistries dynamicregistries, AbstractVillagePiece villagepiece, int maxdepth, ChunkGenerator chunkgenerator, TemplateManager templatemanager, List<? super AbstractVillagePiece> structurepieces, Random rand) {
         MutableRegistry<JigsawPattern> availablepieces = dynamicregistries.getRegistry(Registry.JIGSAW_POOL_KEY);
-        JigsawManager.Assembler jigsawmanager$assembler = new JigsawManager.Assembler(availablepieces, maxdepth, chunkgenerator, templatemanager, structurepieces, rand);
-        jigsawmanager$assembler.availablePieces.addLast(new JigsawManager.Entry(villagepiece, new MutableObject(VoxelShapes.INFINITY), 0, 0));
+        Assembler assembler = new Assembler(availablepieces, maxdepth, chunkgenerator, templatemanager, structurepieces, rand);
+        assembler.availablePieces.addLast(new Entry(villagepiece, new MutableObject(VoxelShapes.INFINITY), 0, 0));
 
-        while(!jigsawmanager$assembler.availablePieces.isEmpty()) {
-            JigsawManager.Entry mutableregistry = (JigsawManager.Entry)jigsawmanager$assembler.availablePieces.removeFirst();
-            jigsawmanager$assembler.tryPlacingChildren(mutableregistry.piece, mutableregistry.free, mutableregistry.boundstop, mutableregistry.depth, false);
+        while(!assembler.availablePieces.isEmpty()) {
+            Entry mutableregistry = (Entry)assembler.availablePieces.removeFirst();
+            assembler.tryPlacingChildren(mutableregistry.piece, mutableregistry.free, mutableregistry.boundstop, mutableregistry.depth, false);
         }
     }
 
@@ -85,7 +86,7 @@ public class JigsawManager {
         private final TemplateManager structureManager;
         private final List<? super AbstractVillagePiece> pieces;
         private final Random rand;
-        private final Deque<JigsawManager.Entry> availablePieces;
+        private final Deque<Entry> availablePieces;
 
         private Assembler(Registry<JigsawPattern> pools, int maxdepth, ChunkGenerator chunkgenerator, TemplateManager templatemanager, List<? super AbstractVillagePiece> pieces, Random rand) {
             this.availablePieces = Queues.newArrayDeque();
@@ -233,7 +234,7 @@ public class JigsawManager {
                                             abstractvillagepiece.addJunction(new JigsawJunction(blockpos1.getX(), i3 - k1 + l2, blockpos1.getZ(), -l1, jigsawpattern$placementbehaviour));
                                             this.pieces.add(abstractvillagepiece);
                                             if (p_236831_4_ + 1 <= this.maxDepth) {
-                                                this.availablePieces.addLast(new JigsawManager.Entry(abstractvillagepiece, mutableobject1, l, p_236831_4_ + 1)); // was pieces (from availablePieces)
+                                                this.availablePieces.addLast(new Entry(abstractvillagepiece, mutableobject1, l, p_236831_4_ + 1)); // was pieces (from availablePieces)
                                             }
                                             continue label139;
                                         }

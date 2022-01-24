@@ -59,12 +59,10 @@ public class BridgeStructure extends Structure<NoFeatureConfig> {
             BlockPos centerPos = new BlockPos(x, 0, z);
             Rotation rotation = Rotation.randomRotation(rand);
 
-            JigsawConfig jigsawConfig = new JigsawConfig(() -> dynamicRegistries.getRegistry(Registry.JIGSAW_POOL_KEY).getOrDefault(startingPoolLocation), StructureConfigs.maxBridgeSize.get(), startingPoolLocation);
-
             // addPieces
             JigsawManager.addPieces(
                     dynamicRegistries,
-                    jigsawConfig,
+                    new VillageConfig(() -> dynamicRegistries.getRegistry(Registry.JIGSAW_POOL_KEY).getOrDefault(new ResourceLocation(ModFiddle.MOD_ID, "bridge/bridge_start")), 10),
                     chunkGenerator,
                     templateManager,
                     centerPos,
