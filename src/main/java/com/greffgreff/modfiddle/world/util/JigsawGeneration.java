@@ -20,21 +20,11 @@ import java.util.List;
 import java.util.Random;
 
 public class JigsawGeneration {
-    public final ResourceLocation resourceLocation;
-    public final DynamicRegistries dynamicRegistries;
-    public final VillageConfig config;
-
-    public JigsawGeneration(ResourceLocation resourceLocation, DynamicRegistries dynamicRegistries) {
-        this.dynamicRegistries = dynamicRegistries;
-        this.resourceLocation = resourceLocation;
-        this.config =  new VillageConfig(() -> dynamicRegistries.getRegistry(Registry.JIGSAW_POOL_KEY).getOrDefault(resourceLocation), 10);
-    }
-
-    public void addPieces(ResourceLocation resourceLocation, TemplateManager templateManager, ChunkGenerator chunkGenerator, BlockPos startPos, Rotation rotation, List<StructurePiece> pieces, Random random) {
+    public static void addPieces(ResourceLocation resourceLocation, TemplateManager templateManager, ChunkGenerator chunkGenerator, BlockPos startPos, Rotation rotation, List<StructurePiece> pieces, Random random) {
         ModFiddle.LOGGER.debug("addPiece");
         Structure.init();
 
-        Piece startPiece = new Piece(templateManager, this.resourceLocation, rotation);
+        Piece startPiece = new Piece(templateManager, resourceLocation, rotation);
 
         MutableBoundingBox pieceBoundingBox = startPiece.getBoundingBox();
         int pieceCenterX = (pieceBoundingBox.maxX + pieceBoundingBox.minX) / 2;
@@ -50,7 +40,7 @@ public class JigsawGeneration {
         pieces.add(startPiece);
     }
 
-    public class Piece extends TemplateStructurePiece {
+    static class Piece extends TemplateStructurePiece {
         private final ResourceLocation templateLocation;
         private final Rotation rotation;
 
