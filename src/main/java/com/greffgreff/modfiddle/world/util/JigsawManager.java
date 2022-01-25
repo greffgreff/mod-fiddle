@@ -32,7 +32,7 @@ import net.minecraftforge.fml.common.Mod;
 import org.apache.commons.lang3.mutable.MutableObject;
 
 public class JigsawManager {
-    public static void addPieces(DynamicRegistries dynamicRegistries, VillageConfig villageConfig, ChunkGenerator chunkGenerator, TemplateManager templateManager, BlockPos blockPos, List<? super AbstractVillagePiece> structurePieces, Random rand, boolean doBoundaryAdjustments, boolean useHeightMap) {
+    public static void addPieces(DynamicRegistries dynamicRegistries, VillageConfig villageConfig, ChunkGenerator chunkGenerator, TemplateManager templateManager, BlockPos blockPos, List<? super AbstractVillagePiece> structurePieces, Random rand, boolean useHeightMap) {
         Rotation rotation = Rotation.randomRotation(rand);
 
         MutableRegistry<JigsawPattern> mutableregistry = dynamicRegistries.getRegistry(Registry.JIGSAW_POOL_KEY);
@@ -63,7 +63,7 @@ public class JigsawManager {
 
             while(!assembler.availablePieces.isEmpty()) {
                 Entry entry = assembler.availablePieces.removeFirst();
-                assembler.tryPlacingChildren(entry.piece, entry.voxel, entry.boundsTop, entry.depth, doBoundaryAdjustments);
+                assembler.tryPlacingChildren(entry.piece, entry.voxel, entry.boundsTop, entry.depth);
             }
         }
     }
@@ -77,17 +77,17 @@ public class JigsawManager {
         private final Random rand;
         private final Deque<Entry> availablePieces;
 
-        private Assembler(Registry<JigsawPattern> pools, int maxdepth, ChunkGenerator chunkGenerator, TemplateManager templateManager, List<? super AbstractVillagePiece> pieces, Random rand) {
+        private Assembler(Registry<JigsawPattern> pools, int maxDepth, ChunkGenerator chunkGenerator, TemplateManager templateManager, List<? super AbstractVillagePiece> pieces, Random rand) {
             this.availablePieces = Queues.newArrayDeque();
             this.pools = pools;
-            this.maxDepth = maxdepth; // refers to structure generation tree depth
+            this.maxDepth = maxDepth; // refers to structure generation tree boundsTop
             this.chunkGenerator = chunkGenerator;
             this.structureManager = templateManager;
             this.pieces = pieces;
             this.rand = rand;
         }
 
-        private void tryPlacingChildren(AbstractVillagePiece piece, MutableObject<VoxelShape> voxel, int depth, int boundsTop, boolean doBoundryAdjustmentsMAYBE) {
+        private void tryPlacingChildren(AbstractVillagePiece piece, MutableObject<VoxelShape> voxel, int boundsTop, int depth) {
             // Get jigsaw piece
             JigsawPiece jigsawpiece = piece.getJigsawPiece();
             // Get piece position
@@ -141,11 +141,11 @@ public class JigsawManager {
                         }
                         else {
                             childPieceVoxel = voxel;
-                            childTopBounds = depth;
+                            childTopBounds = boundsTop;
                         }
-                        // Check whether the max depth of has been reached
+                        // Check whether the max boundsTop of has been reached
                         List<JigsawPiece> list = Lists.newArrayList();
-                        if (boundsTop != this.maxDepth)
+                        if (depth != this.maxDepth)
                             list.addAll(jigsawPoolPattern.get().getShuffledPieces(this.rand));
                         // Add fallback pieces regardless
                         list.addAll(fallBackPoolPattern.get().getShuffledPieces(this.rand));
@@ -229,9 +229,11 @@ public class JigsawManager {
                                             // Add piece to componenets
                                             this.pieces.add(pieceChild);
 
+                                            ModFiddle.LOGGER.debug("Max depth: " + maxDepth + " Depth: " + depth + " Top bounds: " + boundsTop);
+
                                             // Check if max tree depth has been reached
-                                            if (boundsTop + 1 <= this.maxDepth)
-                                                this.availablePieces.addLast(new Entry(pieceChild, childPieceVoxel, childTopBounds, boundsTop + 1));
+                                            if (depth + 1 <= this.maxDepth)
+                                                this.availablePieces.addLast(new Entry(pieceChild, childPieceVoxel, childTopBounds, depth + 1));
 
                                             continue findMatch;
                                         }
@@ -254,14 +256,14 @@ public class JigsawManager {
     static final class Entry {
         private final AbstractVillagePiece piece;
         private final MutableObject<VoxelShape> voxel;
-        private final int boundsTop;
+        private final int boundsTop; // refers to the top y boundry
         private final int depth;
 
         private Entry(AbstractVillagePiece piece, MutableObject<VoxelShape> voxel, int boundsTop, int depth) {
             this.piece = piece;
             this.voxel = voxel;
-            this.boundsTop = boundsTop; // ??
-            this.depth = depth; // refers to max tree depth
+            this.boundsTop = boundsTop;
+            this.depth = depth;
         }
     }
 }
