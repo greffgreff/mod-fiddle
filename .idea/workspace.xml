@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="removed boundry adjustment code from JigsawManager class">
+    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="added codec sample code">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/ModStructures.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/ModStructures.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/util/JigsawManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/util/JigsawManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -139,34 +138,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1641992804058</updated>
-    </task>
-    <task id="LOCAL-00006" summary="added structure class and register method">
-      <created>1642367265033</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1642367265033</updated>
-    </task>
-    <task id="LOCAL-00007" summary="cleaned myblock class">
-      <created>1642367318032</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1642367318032</updated>
-    </task>
-    <task id="LOCAL-00008" summary="removed unnecessary stuff">
-      <created>1642367358628</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1642367358628</updated>
-    </task>
-    <task id="LOCAL-00009" summary="cleaned imports on block init">
-      <created>1642367379829</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1642367379829</updated>
     </task>
     <task id="LOCAL-00010" summary="cleaned class">
       <created>1642367421238</created>
@@ -483,7 +454,35 @@
       <option name="project" value="LOCAL" />
       <updated>1643087380496</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="increased structure scarcity">
+      <created>1643088865753</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1643088865753</updated>
+    </task>
+    <task id="LOCAL-00056" summary="completed annotation on JigsawManager class">
+      <created>1643088886760</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1643088886760</updated>
+    </task>
+    <task id="LOCAL-00057" summary="removed JigsawGeneration class in favor of JigsawManager">
+      <created>1643092362648</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1643092362648</updated>
+    </task>
+    <task id="LOCAL-00058" summary="added codec sample code">
+      <created>1643092378814</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1643092378814</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -499,11 +498,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="changed json file name to &quot;totem&quot;" />
-    <MESSAGE value="moved file" />
-    <MESSAGE value="added bridge structure to registry and gen" />
-    <MESSAGE value="fixed replacement block spelling" />
-    <MESSAGE value="fixed jigsaw target pool" />
     <MESSAGE value="added bridge structure entry pool" />
     <MESSAGE value="fixed structure init" />
     <MESSAGE value="code refactored" />
@@ -524,6 +518,11 @@
     <MESSAGE value="removed no boundry adjustements variable" />
     <MESSAGE value="fixed variable name issues" />
     <MESSAGE value="removed boundry adjustment code from JigsawManager class" />
-    <option name="LAST_COMMIT_MESSAGE" value="removed boundry adjustment code from JigsawManager class" />
+    <MESSAGE value="changed spawn rarity of structures" />
+    <MESSAGE value="increased structure scarcity" />
+    <MESSAGE value="completed annotation on JigsawManager class" />
+    <MESSAGE value="removed JigsawGeneration class in favor of JigsawManager" />
+    <MESSAGE value="added codec sample code" />
+    <option name="LAST_COMMIT_MESSAGE" value="added codec sample code" />
   </component>
 </project>

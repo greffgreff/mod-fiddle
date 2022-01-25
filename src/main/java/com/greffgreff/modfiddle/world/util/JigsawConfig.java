@@ -28,6 +28,13 @@ public class JigsawConfig implements IFeatureConfig {
             BlockState.CODEC.fieldOf("blockstate_example").forGetter((Foobar o) -> o.blockState)
         ).apply(instance, (fooC, barC, blockStateC) -> new Foobar(fooC, barC, blockStateC))
     );
+
+    public static final Codec<SomeJavaClass> = RecordCodecBuilder.create(instance -> instance.group(
+		someFieldCodecA.fieldOf("field_name_a").forGetter(SomeJavaClass::getFieldA),
+		someFieldCodecB.fieldOf("field_name_b").forGetter(SomeJavaClass::getFieldB),
+		someFieldCodecC.fieldOf("field_name_c").forGetter(SomeJavaClass::getFieldC),
+		// up to 16 fields can be declared here
+	).apply(instance, SomeJavaClass::new));
      */
     private ResourceLocation resourceLocation = null;
     private Supplier<JigsawPattern> startPoolSupplier = null;
