@@ -8,55 +8,41 @@ import net.minecraft.world.gen.feature.jigsaw.JigsawPattern;
 
 import java.util.function.Supplier;
 
-public class JigsawConfig implements IFeatureConfig {
-    public static final Codec<JigsawConfig> CODEC = RecordCodecBuilder.create((codecBuilder) -> codecBuilder
-        .group(
-                JigsawPattern.field_244392_b_.fieldOf("start_pool").forGetter(JigsawConfig::getStartPoolSupplier),
-                Codec.intRange(0, 10).fieldOf("size").forGetter(JigsawConfig::getMaxChainPieceLength))
-        .apply(
-                codecBuilder,
-                JigsawConfig::new
-        ));
+public class JigsawConfig  {
+    private final JigsawConfigCodec Config;
+    private final ResourceLocation resourceLocation;
 
-    /* CODEC SAMPLE JSON TO CLASS
-    Codec<Foobar> CODEC = RecordCodecBuilder.create(
-        instance -> instance.group(
-            Codec.BOOL.fieldOf("foo").forGetter((Foobar o) -> o.foo), // Basic boolean Codec
-            // Codec for building a list
-            Codec.INT.listOf().fieldOf("bar").forGetter((Foobar o) -> o.bar),
-            // Example usage of using a different class's Codec
-            BlockState.CODEC.fieldOf("blockstate_example").forGetter((Foobar o) -> o.blockState)
-        ).apply(instance, (fooC, barC, blockStateC) -> new Foobar(fooC, barC, blockStateC))
-    );
-
-    public static final Codec<SomeJavaClass> = RecordCodecBuilder.create(instance -> instance.group(
-		someFieldCodecA.fieldOf("field_name_a").forGetter(SomeJavaClass::getFieldA),
-		someFieldCodecB.fieldOf("field_name_b").forGetter(SomeJavaClass::getFieldB),
-		someFieldCodecC.fieldOf("field_name_c").forGetter(SomeJavaClass::getFieldC),
-		// up to 16 fields can be declared here
-	).apply(instance, SomeJavaClass::new));
-     */
-    private ResourceLocation resourceLocation = null;
-    private Supplier<JigsawPattern> startPoolSupplier = null;
-    private int size = 0;
-
-    public JigsawConfig(Supplier<JigsawPattern> startPoolSupplier, int size, ResourceLocation resourceLocation) {
-        new JigsawConfig(startPoolSupplier, size);
+    public JigsawConfig(ResourceLocation resourceLocation, Supplier<JigsawPattern> startPool, int size) {
         this.resourceLocation = resourceLocation;
+        this.Config = new JigsawConfigCodec(startPool, size);
     }
 
-    public JigsawConfig(Supplier<JigsawPattern> startPoolSupplier, int size) {
-        this.startPoolSupplier = startPoolSupplier;
-        this.size = size;
+    public ResourceLocation getResourceLocation() {
+        return resourceLocation;
     }
 
-    public int getMaxChainPieceLength() {
-        return this.size;
-    }
+    public static class JigsawConfigCodec implements  IFeatureConfig{
+        public static final Codec<JigsawConfigCodec> JIGSAW_CONFIG_CODEC = RecordCodecBuilder.create(instance ->  {
+            return instance.group(
+                    JigsawPattern.field_244392_b_.fieldOf("start_pool").forGetter(JigsawConfigCodec::getStartPool),
+                    Codec.intRange(1,10).fieldOf("size").forGetter(JigsawConfigCodec::getMaxBoundSize)
+            ).apply(instance, JigsawConfigCodec::new);
+        });
 
-    public Supplier<JigsawPattern> getStartPoolSupplier() {
-        return this.startPoolSupplier;
-    }
+        private final Supplier<JigsawPattern> startPool;
+        private final int size;
 
-    public ResourceLocation getResourceLocation() { return this.resourceLocation; }
+        public JigsawConfigCodec(Supplier<JigsawPattern> startPool, int size) {
+            this.startPool = startPool;
+            this.size = size;
+        }
+
+        public Supplier<JigsawPattern> getStartPool() {
+            return this.startPool;
+        }
+
+        public int getMaxBoundSize() {
+            return this.size;
+        }
+    }
 }

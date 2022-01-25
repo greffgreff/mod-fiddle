@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="added codec sample code">
+    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="added more sample code in JigsawConfig">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/BridgeStructure.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/BridgeStructure.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/util/JigsawConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/util/JigsawConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/util/JigsawManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/util/JigsawManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -138,13 +140,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1641992804058</updated>
-    </task>
-    <task id="LOCAL-00010" summary="cleaned class">
-      <created>1642367421238</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1642367421238</updated>
     </task>
     <task id="LOCAL-00011" summary="changed TOTEM struct to new TotemStructure">
       <created>1642367831482</created>
@@ -482,7 +477,14 @@
       <option name="project" value="LOCAL" />
       <updated>1643092378814</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="added more sample code in JigsawConfig">
+      <created>1643092960015</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1643092960015</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -498,7 +500,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="added bridge structure entry pool" />
     <MESSAGE value="fixed structure init" />
     <MESSAGE value="code refactored" />
     <MESSAGE value="added height off set to bridge pillar" />
@@ -523,6 +524,7 @@
     <MESSAGE value="completed annotation on JigsawManager class" />
     <MESSAGE value="removed JigsawGeneration class in favor of JigsawManager" />
     <MESSAGE value="added codec sample code" />
-    <option name="LAST_COMMIT_MESSAGE" value="added codec sample code" />
+    <MESSAGE value="added more sample code in JigsawConfig" />
+    <option name="LAST_COMMIT_MESSAGE" value="added more sample code in JigsawConfig" />
   </component>
 </project>
