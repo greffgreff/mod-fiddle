@@ -66,7 +66,6 @@ public class BridgeStructure extends Structure<NoFeatureConfig> {
                     centerPos,
                     this.components,
                     this.rand,
-                    false,
                     true
             );
 
