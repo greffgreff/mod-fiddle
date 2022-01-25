@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="worked on JigsawConfig class">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/BridgeStructure.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/BridgeStructure.java" afterDir="false" />
+    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="added bridge terminators to pools">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/util/StructurePieceReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/ModStructures.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/ModStructures.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/util/JigsawManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/util/JigsawManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/accesstransformer.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/accesstransformer.cfg" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,27 +141,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1641992804058</updated>
-    </task>
-    <task id="LOCAL-00012" summary="added TotemStructure class">
-      <created>1642367858540</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1642367858540</updated>
-    </task>
-    <task id="LOCAL-00013" summary="added structure to bus listener">
-      <created>1642367884752</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1642367884752</updated>
-    </task>
-    <task id="LOCAL-00014" summary="added totem structure class">
-      <created>1642553554246</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1642553554246</updated>
     </task>
     <task id="LOCAL-00015" summary="added structure init class">
       <created>1642553569096</created>
@@ -482,7 +464,28 @@
       <option name="project" value="LOCAL" />
       <updated>1643096514858</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="removed unnecessary imports">
+      <created>1643096575931</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1643096575931</updated>
+    </task>
+    <task id="LOCAL-00062" summary="added bridge terminator pool">
+      <created>1643102127470</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1643102127470</updated>
+    </task>
+    <task id="LOCAL-00063" summary="added bridge terminators to pools">
+      <created>1643103499609</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1643103499609</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -498,9 +501,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="code refactored" />
-    <MESSAGE value="added height off set to bridge pillar" />
-    <MESSAGE value="ignored workspace" />
     <MESSAGE value="fixed target pool" />
     <MESSAGE value="added custom jigsawmanager class" />
     <MESSAGE value="added updated to use custom jigsawmanager class" />
@@ -523,6 +523,9 @@
     <MESSAGE value="added codec sample code" />
     <MESSAGE value="added more sample code in JigsawConfig" />
     <MESSAGE value="worked on JigsawConfig class" />
-    <option name="LAST_COMMIT_MESSAGE" value="worked on JigsawConfig class" />
+    <MESSAGE value="removed unnecessary imports" />
+    <MESSAGE value="added bridge terminator pool" />
+    <MESSAGE value="added bridge terminators to pools" />
+    <option name="LAST_COMMIT_MESSAGE" value="added bridge terminators to pools" />
   </component>
 </project>
