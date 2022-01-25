@@ -1,5 +1,5 @@
 {
-  "name": "modfiddle:bridge/bridge_caps",
+  "name": "modfiddle:bridge/bridge_end",
   "fallback": "minecraft:empty",
   "elements": [
     {

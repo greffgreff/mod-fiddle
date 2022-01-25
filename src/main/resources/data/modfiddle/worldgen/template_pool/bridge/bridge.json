@@ -1,6 +1,6 @@
 {
   "name": "modfiddle:bridge/bridge",
-  "fallback": "minecraft:empty",
+  "fallback": "modfiddle:bridge/bridge_end",
   "elements": [
     {
       "weight": 100,
