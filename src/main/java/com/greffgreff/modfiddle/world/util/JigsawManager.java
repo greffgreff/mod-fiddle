@@ -54,33 +54,37 @@ public class JigsawManager {
 
         structurePieces.add(piece);
 
+        ModFiddle.LOGGER.debug("////// Starting Generation //////");
+
         if (villageConfig.func_236534_a_() > 0) {
             // Get non-expanded bounding box of starting piece
             AxisAlignedBB axisalignedbb = new AxisAlignedBB(i - 80, k - 80, j - 80, i + 80 + 1, k + 80 + 1, j + 80 + 1);
 
             Assembler assembler = new Assembler(mutableregistry, villageConfig.func_236534_a_(), chunkGenerator, templateManager, structurePieces, rand);
-            assembler.availablePieces.addLast(new Entry(piece, new MutableObject(VoxelShapes.combineAndSimplify(VoxelShapes.create(axisalignedbb), VoxelShapes.create(AxisAlignedBB.toImmutable(pieceBoundingBox)), IBooleanFunction.ONLY_FIRST)), k + 80, 0));
+            assembler.totalStructurePieces.addLast(new Entry(piece, new MutableObject(VoxelShapes.combineAndSimplify(VoxelShapes.create(axisalignedbb), VoxelShapes.create(AxisAlignedBB.toImmutable(pieceBoundingBox)), IBooleanFunction.ONLY_FIRST)), k + 80, 0));
 
-            while(!assembler.availablePieces.isEmpty()) {
-                Entry entry = assembler.availablePieces.removeFirst();
+            while(!assembler.totalStructurePieces.isEmpty()) {
+                Entry entry = assembler.totalStructurePieces.removeFirst();
                 assembler.tryPlacingChildren(entry.piece, entry.voxel, entry.boundsTop, entry.depth);
             }
         }
+
+        ModFiddle.LOGGER.debug("////// Generation Complete //////");
     }
 
     static final class Assembler {
         private final Registry<JigsawPattern> pools;
-        private final int maxDepth;
+        private final int maxDepth; // refers to structure generation tree boundsTop
         private final ChunkGenerator chunkGenerator;
         private final TemplateManager structureManager;
         private final List<? super AbstractVillagePiece> pieces;
         private final Random rand;
-        private final Deque<Entry> availablePieces;
+        private final Deque<Entry> totalStructurePieces;
 
         private Assembler(Registry<JigsawPattern> pools, int maxDepth, ChunkGenerator chunkGenerator, TemplateManager templateManager, List<? super AbstractVillagePiece> pieces, Random rand) {
-            this.availablePieces = Queues.newArrayDeque();
+            this.totalStructurePieces = Queues.newArrayDeque();
             this.pools = pools;
-            this.maxDepth = maxDepth; // refers to structure generation tree boundsTop
+            this.maxDepth = maxDepth;
             this.chunkGenerator = chunkGenerator;
             this.structureManager = templateManager;
             this.pieces = pieces;
@@ -143,10 +147,12 @@ public class JigsawManager {
                             childPieceVoxel = voxel;
                             childTopBounds = boundsTop;
                         }
-                        // Check whether the max boundsTop of has been reached
+
+                        // Check whether the max depth has been reached
                         List<JigsawPiece> list = Lists.newArrayList();
                         if (depth != this.maxDepth)
                             list.addAll(jigsawPoolPattern.get().getShuffledPieces(this.rand));
+
                         // Add fallback pieces regardless
                         list.addAll(fallBackPoolPattern.get().getShuffledPieces(this.rand));
 
@@ -185,6 +191,8 @@ public class JigsawManager {
                                             if (k == -1)
                                                 k = this.chunkGenerator.getNoiseHeight(jigsawBlockPos.getX(), jigsawBlockPos.getZ(), Heightmap.Type.WORLD_SURFACE_WG);
 
+                                            // k = (k == -1) ? this.chunkGenerator.getNoiseHeight(jigsawBlockPos.getX(), jigsawBlockPos.getZ(), Heightmap.Type.WORLD_SURFACE_WG) : k;
+
                                             i2 = k - k1;
                                         }
                                         int j2 = i2 - j1;
@@ -222,18 +230,21 @@ public class JigsawManager {
                                             }
 
                                             // Occupy jigsaw block on child piece, connection to parent piece?
-                                            /// Unknown
                                             pieceChild.addJunction(new JigsawJunction(adjustedJigsawBlockPos.getX(), i3 - j + j3, adjustedJigsawBlockPos.getZ(), l1, childPiecePlacementBehavior));
                                             pieceChild.addJunction(new JigsawJunction(jigsawBlockPos.getX(), i3 - k1 + l2, jigsawBlockPos.getZ(), -l1, piecePlacementBehavior));
 
                                             // Add piece to componenets
                                             this.pieces.add(pieceChild);
 
-                                            ModFiddle.LOGGER.debug("Max depth: " + maxDepth + " Depth: " + depth + " Top bounds: " + boundsTop);
+                                            ModFiddle.LOGGER.debug("Max depth: " + maxDepth + " Depth: " + depth);
 
                                             // Check if max tree depth has been reached
                                             if (depth + 1 <= this.maxDepth)
-                                                this.availablePieces.addLast(new Entry(pieceChild, childPieceVoxel, childTopBounds, depth + 1));
+                                                // Add new entry to available pieces
+                                                /// Unknown
+                                                this.totalStructurePieces.addLast(new Entry(pieceChild, childPieceVoxel, childTopBounds, depth + 1));
+
+                                            ModFiddle.LOGGER.debug("Total pieces: "+ totalStructurePieces.size());
 
                                             continue findMatch;
                                         }
@@ -243,11 +254,11 @@ public class JigsawManager {
                         }
                     }
                     else {
-                        ModFiddle.LOGGER.warn("Empty or none existent fallback pool: {}", (Object)fallBackPool);
+                        ModFiddle.LOGGER.warn("Empty or none existent fallback pool: {}", fallBackPool);
                     }
                 }
                 else {
-                    ModFiddle.LOGGER.warn("Empty or none existent pool: {}", (Object)resourcelocation);
+                    ModFiddle.LOGGER.warn("Empty or none existent pool: {}", resourcelocation);
                 }
             }
         }
