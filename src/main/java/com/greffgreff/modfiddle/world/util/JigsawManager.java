@@ -25,6 +25,7 @@ import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.feature.jigsaw.*;
 import net.minecraft.world.gen.feature.structure.AbstractVillagePiece;
 import net.minecraft.world.gen.feature.structure.Structure;
+import net.minecraft.world.gen.feature.structure.StructureManager;
 import net.minecraft.world.gen.feature.structure.VillageConfig;
 import net.minecraft.world.gen.feature.template.Template;
 import net.minecraft.world.gen.feature.template.TemplateManager;
@@ -61,10 +62,10 @@ public class JigsawManager {
             AxisAlignedBB axisalignedbb = new AxisAlignedBB(i - 80, k - 80, j - 80, i + 80 + 1, k + 80 + 1, j + 80 + 1);
 
             Assembler assembler = new Assembler(mutableregistry, villageConfig.func_236534_a_(), chunkGenerator, templateManager, structurePieces, rand);
-            assembler.totalStructurePieces.addLast(new Entry(piece, new MutableObject(VoxelShapes.combineAndSimplify(VoxelShapes.create(axisalignedbb), VoxelShapes.create(AxisAlignedBB.toImmutable(pieceBoundingBox)), IBooleanFunction.ONLY_FIRST)), k + 80, 0));
+            assembler.availablePieces.addLast(new Entry(piece, new MutableObject(VoxelShapes.combineAndSimplify(VoxelShapes.create(axisalignedbb), VoxelShapes.create(AxisAlignedBB.toImmutable(pieceBoundingBox)), IBooleanFunction.ONLY_FIRST)), k + 80, 0));
 
-            while(!assembler.totalStructurePieces.isEmpty()) {
-                Entry entry = assembler.totalStructurePieces.removeFirst();
+            while(!assembler.availablePieces.isEmpty()) {
+                Entry entry = assembler.availablePieces.removeFirst();
                 assembler.tryPlacingChildren(entry.piece, entry.voxel, entry.boundsTop, entry.depth);
             }
         }
@@ -73,20 +74,20 @@ public class JigsawManager {
     }
 
     static final class Assembler {
-        private final Registry<JigsawPattern> pools;
+        private final Registry<JigsawPattern> poolConfigs;
         private final int maxDepth; // refers to structure generation tree boundsTop
         private final ChunkGenerator chunkGenerator;
-        private final TemplateManager structureManager;
+        private final TemplateManager templateManager;
         private final List<? super AbstractVillagePiece> pieces;
         private final Random rand;
-        private final Deque<Entry> totalStructurePieces;
+        private final Deque<Entry> availablePieces;
 
-        private Assembler(Registry<JigsawPattern> pools, int maxDepth, ChunkGenerator chunkGenerator, TemplateManager templateManager, List<? super AbstractVillagePiece> pieces, Random rand) {
-            this.totalStructurePieces = Queues.newArrayDeque();
-            this.pools = pools;
+        private Assembler(Registry<JigsawPattern> poolConfigs, int maxDepth, ChunkGenerator chunkGenerator, TemplateManager templateManager, List<? super AbstractVillagePiece> pieces, Random rand) {
+            this.availablePieces = Queues.newArrayDeque();
+            this.poolConfigs = poolConfigs;
             this.maxDepth = maxDepth;
             this.chunkGenerator = chunkGenerator;
-            this.structureManager = templateManager;
+            this.templateManager = templateManager;
             this.pieces = pieces;
             this.rand = rand;
         }
@@ -107,7 +108,7 @@ public class JigsawManager {
             // Instanciate voxel shape for later use
             MutableObject<VoxelShape> pieceVoxel = new MutableObject<>();
             // Get all jigsaw blocks in piece
-            List<Template.BlockInfo> jigsawBlocks = jigsawpiece.getJigsawBlocks(this.structureManager, blockPos, rotation, this.rand);
+            List<Template.BlockInfo> jigsawBlocks = jigsawpiece.getJigsawBlocks(this.templateManager, blockPos, rotation, this.rand);
 
             findMatch:
             for (Template.BlockInfo jigsawBlock : jigsawBlocks) {
@@ -119,13 +120,13 @@ public class JigsawManager {
                 // Get target pool from jigsaw block
                 ResourceLocation resourcelocation = new ResourceLocation(jigsawBlock.nbt.getString("pool"));
                 // Get target pool as usable JigsawPattern class
-                Optional<JigsawPattern> jigsawPoolPattern = this.pools.getOptional(resourcelocation);
+                Optional<JigsawPattern> jigsawPoolPattern = this.poolConfigs.getOptional(resourcelocation);
 
                 if (jigsawPoolPattern.isPresent() && (jigsawPoolPattern.get().getNumberOfPieces() != 0 || Objects.equals(resourcelocation, JigsawPatternRegistry.field_244091_a.getLocation()))) {
                     // Get fallback pool
                     ResourceLocation fallBackPool = jigsawPoolPattern.get().getFallback();
                     // Get fallback pool as JigsawPattern
-                    Optional<JigsawPattern> fallBackPoolPattern = this.pools.getOptional(fallBackPool);
+                    Optional<JigsawPattern> fallBackPoolPattern = this.poolConfigs.getOptional(fallBackPool);
 
                     if (fallBackPoolPattern.isPresent() && (fallBackPoolPattern.get().getNumberOfPieces() != 0 || Objects.equals(fallBackPool, JigsawPatternRegistry.field_244091_a.getLocation()))) {
                         // Get candidate position for child piece relative to parent
@@ -148,35 +149,41 @@ public class JigsawManager {
                             childTopBounds = boundsTop;
                         }
 
-                        // Check whether the max depth has been reached
-                        List<JigsawPiece> list = Lists.newArrayList();
+                        // Create new list of jigsaw pieces
+                        List<JigsawPiece> jigsawPoolPieces = Lists.newArrayList();
+
+                        // Check whether iterations has been reached
                         if (depth != this.maxDepth)
-                            list.addAll(jigsawPoolPattern.get().getShuffledPieces(this.rand));
+                            jigsawPoolPieces.addAll(jigsawPoolPattern.get().getShuffledPieces(this.rand));
+                        else
+                            ModFiddle.LOGGER.debug("Should be using fallback pieces");
 
-                        // Add fallback pieces regardless
-                        list.addAll(fallBackPoolPattern.get().getShuffledPieces(this.rand));
+                        // Add fallback pieces regardless, when structures end
+                        jigsawPoolPieces.addAll(fallBackPoolPattern.get().getShuffledPieces(this.rand));
 
-                        for (JigsawPiece childJigsawPiece : list) {
+                        for (JigsawPiece childJigsawPiece : jigsawPoolPieces) {
+                            // Break if no pieces present, is the case when no fallback is present
                             if (childJigsawPiece == EmptyJigsawPiece.INSTANCE)
                                 break;
 
                             // Maybe use first suitable rotation as candidate child jigsaw piece
                             for (Rotation childJigsawPieceRotation : Rotation.shuffledRotations(this.rand)) {
                                 // Get all jigsaw blocks
-                                List<Template.BlockInfo> childPieceJigsawBlocks = childJigsawPiece.getJigsawBlocks(this.structureManager, BlockPos.ZERO, childJigsawPieceRotation, this.rand);
+                                List<Template.BlockInfo> childPieceJigsawBlocks = childJigsawPiece.getJigsawBlocks(this.templateManager, BlockPos.ZERO, childJigsawPieceRotation, this.rand);
 
                                 for (Template.BlockInfo childJigsawBlock : childPieceJigsawBlocks) {
+
                                     if (JigsawBlock.hasJigsawMatch(jigsawBlock, childJigsawBlock)) {
+
                                         // Get child jigsaw block pos and adjust it to parent jigsaw
                                         BlockPos childJigsawBlockPos = childJigsawBlock.pos;
                                         BlockPos adjustedChildJigsawBlockPos = new BlockPos(adjustedJigsawBlockPos.getX() - childJigsawBlockPos.getX(), adjustedJigsawBlockPos.getY() - childJigsawBlockPos.getY(), adjustedJigsawBlockPos.getZ() - childJigsawBlockPos.getZ());
                                         // Get child piece bounding box
-                                        MutableBoundingBox childPieceBoundingBox = childJigsawPiece.getBoundingBox(this.structureManager, adjustedChildJigsawBlockPos, childJigsawPieceRotation);
+                                        MutableBoundingBox childPieceBoundingBox = childJigsawPiece.getBoundingBox(this.templateManager, adjustedChildJigsawBlockPos, childJigsawPieceRotation);
                                         // Get child piece placement behavior
                                         JigsawPattern.PlacementBehaviour childPiecePlacementBehavior = childJigsawPiece.getPlacementBehaviour();
                                         boolean isChildRigid = childPiecePlacementBehavior == JigsawPattern.PlacementBehaviour.RIGID;
 
-                                        // Get starting Y position
                                         /// Unknown ///
                                         int j1 = childPieceBoundingBox.minY;
                                         int i1 = 0;
@@ -202,6 +209,8 @@ public class JigsawManager {
                                         BlockPos newAdjustedChildJigsawBlockPos = adjustedChildJigsawBlockPos.add(0, j2, 0);
 
                                         if (!VoxelShapes.compare(childPieceVoxel.getValue(), VoxelShapes.create(AxisAlignedBB.toImmutable(newChildPieceBoundingBox).shrink(0.25D)), IBooleanFunction.ONLY_SECOND)) {
+                                            ModFiddle.LOGGER.debug("Piece name: " + childJigsawPiece.getType().codec());
+
                                             // If [something] then set childpiece to [something]
                                             childPieceVoxel.setValue(VoxelShapes.combine(childPieceVoxel.getValue(), VoxelShapes.create(AxisAlignedBB.toImmutable(newChildPieceBoundingBox)), IBooleanFunction.ONLY_FIRST));
 
@@ -212,9 +221,10 @@ public class JigsawManager {
                                                 l2 = j3 - l1;
                                             else
                                                 l2 = childJigsawPiece.getGroundLevelDelta();
+                                            // int l2 = isChildRigid ? j3 - l1 : childJigsawPiece.getGroundLevelDelta();
 
                                             // If something valid, then create child piece abstract village from jigsaw piece
-                                            AbstractVillagePiece pieceChild = new AbstractVillagePiece(this.structureManager, childJigsawPiece, newAdjustedChildJigsawBlockPos, l2, childJigsawPieceRotation, newChildPieceBoundingBox);
+                                            AbstractVillagePiece pieceChild = new AbstractVillagePiece(this.templateManager, childJigsawPiece, newAdjustedChildJigsawBlockPos, l2, childJigsawPieceRotation, newChildPieceBoundingBox);
 
                                             /// Unknown ///
                                             int i3;
@@ -236,15 +246,16 @@ public class JigsawManager {
                                             // Add piece to componenets
                                             this.pieces.add(pieceChild);
 
-                                            ModFiddle.LOGGER.debug("Max depth: " + maxDepth + " Depth: " + depth);
-
                                             // Check if max tree depth has been reached
                                             if (depth + 1 <= this.maxDepth)
                                                 // Add new entry to available pieces
                                                 /// Unknown
-                                                this.totalStructurePieces.addLast(new Entry(pieceChild, childPieceVoxel, childTopBounds, depth + 1));
+                                                this.availablePieces.addLast(new Entry(pieceChild, childPieceVoxel, childTopBounds, depth + 1));
 
-                                            ModFiddle.LOGGER.debug("Total pieces: "+ totalStructurePieces.size());
+//                                            this.availablePieces.addLast(new Entry(pieceChild, childPieceVoxel, childTopBounds, depth + 1));
+
+                                            ModFiddle.LOGGER.debug("Max depth: " + maxDepth + " Depth: " + depth);
+                                            ModFiddle.LOGGER.debug("Total pieces: "+ availablePieces.size());
 
                                             continue findMatch;
                                         }
