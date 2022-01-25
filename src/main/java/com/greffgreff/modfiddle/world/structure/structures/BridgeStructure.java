@@ -3,7 +3,6 @@ package com.greffgreff.modfiddle.world.structure.structures;
 import com.greffgreff.modfiddle.ModFiddle;
 import com.greffgreff.modfiddle.world.structure.StructureConfigs;
 import com.greffgreff.modfiddle.world.util.JigsawConfig;
-import com.greffgreff.modfiddle.world.util.JigsawGeneration;
 import com.greffgreff.modfiddle.world.util.JigsawManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
