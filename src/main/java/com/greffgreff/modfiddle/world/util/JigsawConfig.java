@@ -18,6 +18,17 @@ public class JigsawConfig implements IFeatureConfig {
                 JigsawConfig::new
         ));
 
+    /* CODEC SAMPLE JSON TO CLASS
+    Codec<Foobar> CODEC = RecordCodecBuilder.create(
+        instance -> instance.group(
+            Codec.BOOL.fieldOf("foo").forGetter((Foobar o) -> o.foo), // Basic boolean Codec
+            // Codec for building a list
+            Codec.INT.listOf().fieldOf("bar").forGetter((Foobar o) -> o.bar),
+            // Example usage of using a different class's Codec
+            BlockState.CODEC.fieldOf("blockstate_example").forGetter((Foobar o) -> o.blockState)
+        ).apply(instance, (fooC, barC, blockStateC) -> new Foobar(fooC, barC, blockStateC))
+    );
+     */
     private ResourceLocation resourceLocation = null;
     private Supplier<JigsawPattern> startPoolSupplier = null;
     private int size = 0;
