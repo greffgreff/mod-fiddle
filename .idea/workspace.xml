@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="added bridge terminators to pools">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/util/StructurePieceReader.java" afterDir="false" />
+    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="added annotations">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/ModStructures.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/ModStructures.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/util/JigsawManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/util/JigsawManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/accesstransformer.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/accesstransformer.cfg" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,34 +138,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1641992804058</updated>
-    </task>
-    <task id="LOCAL-00015" summary="added structure init class">
-      <created>1642553569096</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1642553569096</updated>
-    </task>
-    <task id="LOCAL-00016" summary="added totem strat pool json in resources">
-      <created>1642553587300</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1642553587300</updated>
-    </task>
-    <task id="LOCAL-00017" summary="added access transformers">
-      <created>1642555742560</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1642555742561</updated>
-    </task>
-    <task id="LOCAL-00018" summary="added rarity and spacing of structure as method">
-      <created>1642556677277</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1642556677277</updated>
     </task>
     <task id="LOCAL-00019" summary="removed previous totem strcut class">
       <created>1642556726911</created>
@@ -485,7 +454,35 @@
       <option name="project" value="LOCAL" />
       <updated>1643103499609</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="added dummy structure piece dummy class">
+      <created>1643106980080</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1643106980080</updated>
+    </task>
+    <task id="LOCAL-00065" summary="reverted ATs">
+      <created>1643106993358</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1643106993358</updated>
+    </task>
+    <task id="LOCAL-00066" summary="changed bridge spawn scarcity">
+      <created>1643107024104</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1643107024104</updated>
+    </task>
+    <task id="LOCAL-00067" summary="added annotations">
+      <created>1643107044841</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1643107044841</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -501,11 +498,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="fixed target pool" />
-    <MESSAGE value="added custom jigsawmanager class" />
-    <MESSAGE value="added updated to use custom jigsawmanager class" />
-    <MESSAGE value="remapped and refactored jigsaw class from 1.16.5" />
-    <MESSAGE value="increased max depth size to 10" />
     <MESSAGE value="added custom jigsaw config class" />
     <MESSAGE value="started structure config class for configs files" />
     <MESSAGE value="simplified JigsawManager implementation" />
@@ -526,6 +518,11 @@
     <MESSAGE value="removed unnecessary imports" />
     <MESSAGE value="added bridge terminator pool" />
     <MESSAGE value="added bridge terminators to pools" />
-    <option name="LAST_COMMIT_MESSAGE" value="added bridge terminators to pools" />
+    <MESSAGE value="added dummay strcture piece dummy class" />
+    <MESSAGE value="added dummy structure piece dummy class" />
+    <MESSAGE value="reverted ATs" />
+    <MESSAGE value="changed bridge spawn scarcity" />
+    <MESSAGE value="added annotations" />
+    <option name="LAST_COMMIT_MESSAGE" value="added annotations" />
   </component>
 </project>

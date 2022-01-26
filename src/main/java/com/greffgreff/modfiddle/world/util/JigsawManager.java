@@ -36,7 +36,7 @@ public class JigsawManager {
     public static void addPieces(DynamicRegistries dynamicRegistries, VillageConfig villageConfig, ChunkGenerator chunkGenerator, TemplateManager templateManager, BlockPos blockPos, List<? super AbstractVillagePiece> structurePieces, Random rand, boolean useHeightMap) {
         Rotation rotation = Rotation.randomRotation(rand);
 
-        MutableRegistry<JigsawPattern> mutableregistry = dynamicRegistries.getRegistry(Registry.JIGSAW_POOL_KEY);
+        MutableRegistry<JigsawPattern> mutableRegistry = dynamicRegistries.getRegistry(Registry.JIGSAW_POOL_KEY);
         JigsawPattern jigsawpattern = villageConfig.func_242810_c().get();
 
         JigsawPiece jigsawpiece = jigsawpattern.getRandomPiece(rand);
@@ -61,7 +61,7 @@ public class JigsawManager {
             // Get non-expanded bounding box of starting piece
             AxisAlignedBB axisalignedbb = new AxisAlignedBB(i - 80, k - 80, j - 80, i + 80 + 1, k + 80 + 1, j + 80 + 1);
 
-            Assembler assembler = new Assembler(mutableregistry, villageConfig.func_236534_a_(), chunkGenerator, templateManager, structurePieces, rand);
+            Assembler assembler = new Assembler(mutableRegistry, villageConfig.func_236534_a_(), chunkGenerator, templateManager, structurePieces, rand);
             assembler.availablePieces.addLast(new Entry(piece, new MutableObject(VoxelShapes.combineAndSimplify(VoxelShapes.create(axisalignedbb), VoxelShapes.create(AxisAlignedBB.toImmutable(pieceBoundingBox)), IBooleanFunction.ONLY_FIRST)), k + 80, 0));
 
             while(!assembler.availablePieces.isEmpty()) {
