@@ -4,14 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="added annotations to JigsawManager">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/BridgePieces.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/util/JigsawManagerReloaded.java" afterDir="false" />
+    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="moved BridgeStructure class to dedicated struct folder">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/ModStructures.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/ModStructures.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/BridgeStructure.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/BridgeStructure.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/util/JigsawManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/util/JigsawManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/accesstransformer.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/accesstransformer.cfg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/BridgeStructure.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/BridgeStructure.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/util/JigsawManagerReloaded.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/util/JigsawManagerReloaded.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/data/modfiddle/worldgen/template_pool/bridge/bridge_end.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/modfiddle/worldgen/template_pool/bridge/bridge_end.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,34 +141,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1641992804058</updated>
-    </task>
-    <task id="LOCAL-00020" summary="made logger public">
-      <created>1642564703303</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1642564703303</updated>
-    </task>
-    <task id="LOCAL-00021" summary="added structure generation class">
-      <created>1642564726525</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1642564726525</updated>
-    </task>
-    <task id="LOCAL-00022" summary="added world event class">
-      <created>1642564742884</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1642564742884</updated>
-    </task>
-    <task id="LOCAL-00023" summary="import refactorying">
-      <created>1642564772875</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1642564772875</updated>
     </task>
     <task id="LOCAL-00024" summary="project reorganized">
       <created>1642565066953</created>
@@ -488,7 +457,35 @@
       <option name="project" value="LOCAL" />
       <updated>1643205070503</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <task id="LOCAL-00069" summary="added AT for resource locations in SingleStructurePiece class">
+      <created>1643261352372</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1643261352373</updated>
+    </task>
+    <task id="LOCAL-00070" summary="worked on Forteress-like class for bridges">
+      <created>1643261378318</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1643261378318</updated>
+    </task>
+    <task id="LOCAL-00071" summary="added new jigsaw manager alternative">
+      <created>1643261407020</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1643261407020</updated>
+    </task>
+    <task id="LOCAL-00072" summary="moved BridgeStructure class to dedicated struct folder">
+      <created>1643261452977</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1643261452977</updated>
+    </task>
+    <option name="localTasksCounter" value="73" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -504,10 +501,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="started structure config class for configs files" />
-    <MESSAGE value="simplified JigsawManager implementation" />
-    <MESSAGE value="refactorisation" />
-    <MESSAGE value="did fuckall" />
     <MESSAGE value="added constructor to class JigsawGeneration" />
     <MESSAGE value="added comments, refactorisation" />
     <MESSAGE value="removed no boundry adjustements variable" />
@@ -529,6 +522,10 @@
     <MESSAGE value="changed bridge spawn scarcity" />
     <MESSAGE value="added annotations" />
     <MESSAGE value="added annotations to JigsawManager" />
-    <option name="LAST_COMMIT_MESSAGE" value="added annotations to JigsawManager" />
+    <MESSAGE value="added AT for resource locations in SingleStructurePiece class" />
+    <MESSAGE value="worked on Forteress-like class for bridges" />
+    <MESSAGE value="added new jigsaw manager alternative" />
+    <MESSAGE value="moved BridgeStructure class to dedicated struct folder" />
+    <option name="LAST_COMMIT_MESSAGE" value="moved BridgeStructure class to dedicated struct folder" />
   </component>
 </project>
