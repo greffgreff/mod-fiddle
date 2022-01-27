@@ -1,4 +1,4 @@
-package com.greffgreff.modfiddle.world.structure.structures;
+package com.greffgreff.modfiddle.world.structure.structures.totem;
 
 import com.greffgreff.modfiddle.ModFiddle;
 import net.minecraft.util.ResourceLocation;
@@ -19,7 +19,6 @@ import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.feature.structure.StructureStart;
 import net.minecraft.world.gen.feature.structure.VillageConfig;
 import net.minecraft.world.gen.feature.template.TemplateManager;
-import org.apache.logging.log4j.Level;
 
 public class TotemStructure extends Structure<NoFeatureConfig> {
     public TotemStructure() {
