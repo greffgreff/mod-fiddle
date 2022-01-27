@@ -4,9 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="added annotations">
+    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="added annotations to JigsawManager">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/BridgePieces.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/util/JigsawManagerReloaded.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/ModStructures.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/ModStructures.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/BridgeStructure.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/BridgeStructure.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/util/JigsawManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/util/JigsawManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/accesstransformer.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/accesstransformer.cfg" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +62,8 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/BridgeStructure.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/BridgeStructure.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/BridgePieces.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/util/JigsawManager.java" root0="SKIP_INSPECTION" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -138,13 +144,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1641992804058</updated>
-    </task>
-    <task id="LOCAL-00019" summary="removed previous totem strcut class">
-      <created>1642556726911</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1642556726911</updated>
     </task>
     <task id="LOCAL-00020" summary="made logger public">
       <created>1642564703303</created>
@@ -482,7 +481,14 @@
       <option name="project" value="LOCAL" />
       <updated>1643107044841</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <task id="LOCAL-00068" summary="added annotations to JigsawManager">
+      <created>1643205070503</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1643205070503</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -498,7 +504,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="added custom jigsaw config class" />
     <MESSAGE value="started structure config class for configs files" />
     <MESSAGE value="simplified JigsawManager implementation" />
     <MESSAGE value="refactorisation" />
@@ -523,6 +528,7 @@
     <MESSAGE value="reverted ATs" />
     <MESSAGE value="changed bridge spawn scarcity" />
     <MESSAGE value="added annotations" />
-    <option name="LAST_COMMIT_MESSAGE" value="added annotations" />
+    <MESSAGE value="added annotations to JigsawManager" />
+    <option name="LAST_COMMIT_MESSAGE" value="added annotations to JigsawManager" />
   </component>
 </project>

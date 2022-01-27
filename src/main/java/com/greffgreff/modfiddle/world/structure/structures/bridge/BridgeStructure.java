@@ -1,4 +1,4 @@
-package com.greffgreff.modfiddle.world.structure.structures;
+package com.greffgreff.modfiddle.world.structure.structures.bridge;
 
 import com.greffgreff.modfiddle.ModFiddle;
 import com.greffgreff.modfiddle.world.structure.StructureConfigs;
@@ -24,7 +24,6 @@ import java.util.List;
 import java.util.Random;
 
 public class BridgeStructure extends Structure<NoFeatureConfig> {
-
     public BridgeStructure() {
         super(NoFeatureConfig.field_236558_a_);
     }
@@ -39,18 +38,19 @@ public class BridgeStructure extends Structure<NoFeatureConfig> {
         return GenerationStage.Decoration.SURFACE_STRUCTURES;
     }
 
-    @Override // can be generated?
+    @Override
+    // isFeatureChunk
     protected boolean func_230363_a_(ChunkGenerator chunkGenerator, BiomeProvider biomeProvider, long seed, SharedSeedRandom sharedSeedRandom, int chunkX, int chunkZ, Biome biome, ChunkPos chunkPos, NoFeatureConfig noFeatureConfig) {
         return true;
     }
 
     public static class Start extends StructureStart<NoFeatureConfig> {
-
         public Start(Structure<NoFeatureConfig> structureIn, int chunkX, int chunkZ, MutableBoundingBox mutableBoundingBox, int referenceIn, long seedIn) {
             super(structureIn, chunkX, chunkZ, mutableBoundingBox, referenceIn, seedIn);
         }
 
-        @Override // generatePieces from super
+        @Override
+        // generatePieces
         public void func_230364_a_(DynamicRegistries dynamicRegistries, ChunkGenerator chunkGenerator, TemplateManager templateManager, int chunkX, int chunkZ, Biome biome, NoFeatureConfig noFeatureConfig) {
             int x = chunkX * 16;
             int z = chunkZ * 16;

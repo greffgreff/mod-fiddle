@@ -3,7 +3,7 @@ package com.greffgreff.modfiddle.world.structure;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.greffgreff.modfiddle.ModFiddle;
-import com.greffgreff.modfiddle.world.structure.structures.BridgeStructure;
+import com.greffgreff.modfiddle.world.structure.structures.bridge.BridgeStructure;
 import com.greffgreff.modfiddle.world.structure.structures.TotemStructure;
 import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
