@@ -48,8 +48,7 @@ public class JigsawManagerReloaded {
         // Get starting
         JigsawPattern startPool = jigsawConfig.func_242810_c().get();
 
-        // Grab a random starting piece from the start pool. This is just the piece design itself, without rotation or position information.
-        // Think of it as a blueprint.
+        // Grab a random starting piece from the start pool without rotation or position
         JigsawPiece startPieceBlueprint = startPool.getRandomPiece(random);
 
         // Instantiate a piece using the "blueprint" we just got.
@@ -168,12 +167,12 @@ public class JigsawManagerReloaded {
 
                 // Process the pool pieces, randomly choosing different pieces from the pool to spawn
                 if (depth != this.maxDepth) {
-                    JigsawPiece generatedPiece = this.getPoolPiece(jigsawBlockTargetPool.get().getShuffledPieces(random), doBoundaryAdjustments, jigsawBlock, jigsawBlockTargetPos, pieceMinY, jigsawBlockPos, pieceVoxelShape, piece, depth, targetPieceBoundsTop);
+                    JigsawPiece generatedPiece = this.getPoolPiece(new ArrayList<>(jigsawBlockTargetPool.get().getShuffledPieces(random)), doBoundaryAdjustments, jigsawBlock, jigsawBlockTargetPos, pieceMinY, jigsawBlockPos, pieceVoxelShape, piece, depth, targetPieceBoundsTop);
                     if (generatedPiece != null) continue; // Stop here since we've already generated the piece
                 }
 
                 // Process the fallback pieces in the event none of the pool pieces work
-                this.getPoolPiece(jigsawBlockFallbackPool.get().getShuffledPieces(random), doBoundaryAdjustments, jigsawBlock, jigsawBlockTargetPos, pieceMinY, jigsawBlockPos, pieceVoxelShape, piece, depth, targetPieceBoundsTop);
+                this.getPoolPiece(new ArrayList<>(jigsawBlockFallbackPool.get().getShuffledPieces(random)), doBoundaryAdjustments, jigsawBlock, jigsawBlockTargetPos, pieceMinY, jigsawBlockPos, pieceVoxelShape, piece, depth, targetPieceBoundsTop);
             }
         }
 
@@ -220,7 +219,7 @@ public class JigsawManagerReloaded {
 //                }
 
                 // Choose piece if portal room wasn't selected
-                int randomInt = ThreadLocalRandom.current().nextInt(0, candidatePieces.size() + 1);
+                int randomInt = ThreadLocalRandom.current().nextInt(0, candidatePieces.size());
                 JigsawPiece candidatePiece = candidatePieces.get(randomInt);
 
                 // Vanilla check. Not sure on the implications of this.
@@ -365,17 +364,20 @@ public class JigsawManagerReloaded {
                                 if (depth + 1 <= this.maxDepth)
                                     this.availablePieces.addLast(new Entry(newPiece, pieceVoxelShape, targetPieceBoundsTop, depth + 1));
 
-
-                                ModFiddle.LOGGER.debug("Max depth: " + maxDepth + " Depth: " + depth);
-                                ModFiddle.LOGGER.debug("Total pieces: "+ availablePieces.size());
+//                                ModFiddle.LOGGER.debug("Piece name: ");
+//                                ModFiddle.LOGGER.debug("Max depth: " + maxDepth + " Depth: " + depth);
+//                                ModFiddle.LOGGER.debug("Total pieces: "+ availablePieces.size());
 
                                 return candidatePiece;
                             }
                         }
                     }
                 }
-                candidatePieces.remove(candidatePiece); // ?
+
+                // Remove piece to continue loop
+                candidatePieces.remove(candidatePiece);
             }
+
             return null;
         }
     }
