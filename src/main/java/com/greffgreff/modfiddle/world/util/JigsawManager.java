@@ -78,9 +78,9 @@ public class JigsawManager {
         private final int maxDepth; // refers to structure generation tree boundsTop
         private final ChunkGenerator chunkGenerator;
         private final TemplateManager templateManager;
-        private final List<? super AbstractVillagePiece> pieces;
         private final Random rand;
-        private final Deque<Entry> availablePieces;
+        private final List<? super AbstractVillagePiece> pieces; // ??
+        private final Deque<Entry> availablePieces; // ??
 
         private Assembler(Registry<JigsawPattern> poolConfigs, int maxDepth, ChunkGenerator chunkGenerator, TemplateManager templateManager, List<? super AbstractVillagePiece> pieces, Random rand) {
             this.availablePieces = Queues.newArrayDeque();
@@ -133,6 +133,7 @@ public class JigsawManager {
                         int i = pieceBoundingBox.minY;  // is K instead of J
                         int j = jigsawBlockPos.getY() - i;
                         int k = -1; // offset by 1 to account for parent jigsaw block
+
                         // Check if jigsaw block is within original jigsaw piece
                         boolean isVecInside = pieceBoundingBox.isVecInside(adjustedJigsawBlockPos);
                         // If inside then use parent piece bounding box, else use
@@ -223,7 +224,16 @@ public class JigsawManager {
                                                 l2 = childJigsawPiece.getGroundLevelDelta();
                                             // int l2 = isChildRigid ? j3 - l1 : childJigsawPiece.getGroundLevelDelta();
 
-                                            // If something valid, then create child piece abstract village from jigsaw piece
+                                            // Determine ground level delta for this new piece
+//                                            int newPieceGroundLevelDelta = piece.getGroundLevelDelta();
+//                                            int groundLevelDelta;
+//                                            if (isCandidateRigid) {
+//                                                groundLevelDelta = newPieceGroundLevelDelta - candidateJigsawYOffsetNeeded;
+//                                            } else {
+//                                                groundLevelDelta = candidatePiece.getGroundLevelDelta();
+//                                            }
+
+                                            // If something valid, then create child piece abstract village piece from jigsaw piece
                                             AbstractVillagePiece pieceChild = new AbstractVillagePiece(this.templateManager, childJigsawPiece, newAdjustedChildJigsawBlockPos, l2, childJigsawPieceRotation, newChildPieceBoundingBox);
 
                                             /// Unknown ///
@@ -239,9 +249,23 @@ public class JigsawManager {
                                                 i3 = k + l1 / 2;
                                             }
 
-                                            // Occupy jigsaw block on child piece, connection to parent piece?
+                                            // Determine actual y-value for the new jigsaw block
+//                                            int candidateJigsawBlockY;
+//                                            if (isPieceRigid) {
+//                                                candidateJigsawBlockY = pieceMinY + jigsawBlockRelativeY;
+//                                            } else if (isCandidateRigid) {
+//                                                candidateJigsawBlockY = adjustedCandidatePieceMinY + candidateJigsawBlockRelativeY;
+//                                            } else {
+//                                                if (surfaceHeight == -1) {
+//                                                    surfaceHeight = this.chunkGenerator.getNoiseHeight(jigsawBlockPos.getX(), jigsawBlockPos.getZ(), Heightmap.Type.WORLD_SURFACE_WG);
+//                                                }
+//
+//                                                candidateJigsawBlockY = surfaceHeight + candidateJigsawYOffsetNeeded / 2;
+//                                            }
+
+                                            // Occupy jigsaw block on child and parent pieces
                                             pieceChild.addJunction(new JigsawJunction(adjustedJigsawBlockPos.getX(), i3 - j + j3, adjustedJigsawBlockPos.getZ(), l1, childPiecePlacementBehavior));
-                                            pieceChild.addJunction(new JigsawJunction(jigsawBlockPos.getX(), i3 - k1 + l2, jigsawBlockPos.getZ(), -l1, piecePlacementBehavior));
+                                            piece.addJunction(new JigsawJunction(jigsawBlockPos.getX(), i3 - k1 + l2, jigsawBlockPos.getZ(), -l1, piecePlacementBehavior));
 
                                             // Add piece to componenets
                                             this.pieces.add(pieceChild);
@@ -249,10 +273,9 @@ public class JigsawManager {
                                             // Check if max tree depth has been reached
                                             if (depth + 1 <= this.maxDepth)
                                                 // Add new entry to available pieces
-                                                /// Unknown
                                                 this.availablePieces.addLast(new Entry(pieceChild, childPieceVoxel, childTopBounds, depth + 1));
 
-//                                            this.availablePieces.addLast(new Entry(pieceChild, childPieceVoxel, childTopBounds, depth + 1));
+                                            this.pieces.add(pieceChild);
 
                                             ModFiddle.LOGGER.debug("Max depth: " + maxDepth + " Depth: " + depth);
                                             ModFiddle.LOGGER.debug("Total pieces: "+ availablePieces.size());
