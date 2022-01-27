@@ -4,7 +4,6 @@ import com.greffgreff.modfiddle.ModFiddle;
 import com.greffgreff.modfiddle.world.structure.StructureConfigs;
 import com.greffgreff.modfiddle.world.util.JigsawConfig;
 import com.greffgreff.modfiddle.world.util.JigsawManager;
-import com.greffgreff.modfiddle.world.util.JigsawManagerReloaded;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.SharedSeedRandom;
@@ -70,7 +69,7 @@ public class BridgeStructure extends Structure<NoFeatureConfig> {
 //                    true
 //            );
 
-            JigsawManagerReloaded.assembleJigsawStructure(
+            JigsawManager.assembleJigsawStructure(
                 dynamicRegistries,
                 new VillageConfig(() -> dynamicRegistries.getRegistry(Registry.JIGSAW_POOL_KEY).getOrDefault(new ResourceLocation(ModFiddle.MOD_ID, "bridge/bridge_start")), 10),
                 chunkGenerator,
