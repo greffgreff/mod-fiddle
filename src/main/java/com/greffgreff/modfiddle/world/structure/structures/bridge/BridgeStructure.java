@@ -1,8 +1,6 @@
 package com.greffgreff.modfiddle.world.structure.structures.bridge;
 
 import com.greffgreff.modfiddle.ModFiddle;
-import com.greffgreff.modfiddle.world.structure.StructureConfigs;
-import com.greffgreff.modfiddle.world.util.JigsawConfig;
 import com.greffgreff.modfiddle.world.util.JigsawManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
@@ -17,11 +15,10 @@ import net.minecraft.world.biome.provider.BiomeProvider;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
-import net.minecraft.world.gen.feature.structure.*;
+import net.minecraft.world.gen.feature.structure.Structure;
+import net.minecraft.world.gen.feature.structure.StructureStart;
+import net.minecraft.world.gen.feature.structure.VillageConfig;
 import net.minecraft.world.gen.feature.template.TemplateManager;
-
-import java.util.List;
-import java.util.Random;
 
 public class BridgeStructure extends Structure<NoFeatureConfig> {
     public BridgeStructure() {
