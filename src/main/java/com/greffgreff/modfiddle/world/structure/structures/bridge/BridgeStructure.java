@@ -4,6 +4,7 @@ import com.greffgreff.modfiddle.ModFiddle;
 import com.greffgreff.modfiddle.world.structure.StructureConfigs;
 import com.greffgreff.modfiddle.world.util.JigsawConfig;
 import com.greffgreff.modfiddle.world.util.JigsawManager;
+import com.greffgreff.modfiddle.world.util.JigsawManagerReloaded;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.SharedSeedRandom;
@@ -54,22 +55,33 @@ public class BridgeStructure extends Structure<NoFeatureConfig> {
         public void func_230364_a_(DynamicRegistries dynamicRegistries, ChunkGenerator chunkGenerator, TemplateManager templateManager, int chunkX, int chunkZ, Biome biome, NoFeatureConfig noFeatureConfig) {
             int x = chunkX * 16;
             int z = chunkZ * 16;
-            BlockPos centerPos = new BlockPos(x, 0, z);
+            int submergedBaseOffset = -6;
+            BlockPos centerPos = new BlockPos(x, submergedBaseOffset, z);
             Rotation rotation = Rotation.randomRotation(rand);
 
-            JigsawManager.addPieces(
-                    dynamicRegistries,
-                    new VillageConfig(() -> dynamicRegistries.getRegistry(Registry.JIGSAW_POOL_KEY).getOrDefault(new ResourceLocation(ModFiddle.MOD_ID, "bridge/bridge_start")), 10),
-                    chunkGenerator,
-                    templateManager,
-                    centerPos,
-                    this.components,
-                    this.rand,
-                    true
+//            JigsawManager.addPieces(
+//                    dynamicRegistries,
+//                    new VillageConfig(() -> dynamicRegistries.getRegistry(Registry.JIGSAW_POOL_KEY).getOrDefault(new ResourceLocation(ModFiddle.MOD_ID, "bridge/bridge_start")), 10),
+//                    chunkGenerator,
+//                    templateManager,
+//                    centerPos,
+//                    this.components,
+//                    this.rand,
+//                    true
+//            );
+
+            JigsawManagerReloaded.assembleJigsawStructure(
+                dynamicRegistries,
+                new VillageConfig(() -> dynamicRegistries.getRegistry(Registry.JIGSAW_POOL_KEY).getOrDefault(new ResourceLocation(ModFiddle.MOD_ID, "bridge/bridge_start")), 10),
+                chunkGenerator,
+                templateManager,
+                centerPos,
+                this.components,
+                this.rand,
+                false,
+                true
             );
 
-            int submergedBaseOffset = -6;
-            this.components.forEach(piece -> piece.offset(0, submergedBaseOffset, 0));
             this.recalculateStructureSize();
         }
     }
