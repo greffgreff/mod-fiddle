@@ -84,7 +84,7 @@ public class JigsawManager {
 
             while(!assembler.availablePieces.isEmpty()) {
                 Entry entry = assembler.availablePieces.removeFirst();
-                assembler.tryPlacingChildren(entry.piece, entry.voxel, entry.boundsTop, entry.depth, false);
+                assembler.tryPlacingChildren(entry.piece, entry.voxel, entry.boundsTop, entry.depth, doBoundaryAdjustments);
             }
         }
 
@@ -198,46 +198,15 @@ public class JigsawManager {
                 // 1. It's a potential candidate for this pool
                 // 2. It hasn't already been placed
                 // 3. We are at least (maxDepth/2) pieces away from the starting room.
-
-//                Pair<JigsawPiece, Integer> chosenPiecePair = null;
-//                if (this.pieceCounts.get(new ResourceLocation(BetterStrongholds.MOD_ID, "portal_rooms/portal_room")) > 0) { // Condition 2
-//                    for (int i = 0; i < candidatePieces.size(); i++) {
-//                        Pair<JigsawPiece, Integer> candidatePiecePair = candidatePieces.get(i);
-//                        JigsawPiece candidatePiece = candidatePiecePair.getFirst();
-//                        if (((SingleJigsawPiece) candidatePiece).field_236839_c_.left().get().equals(new ResourceLocation(BetterStrongholds.MOD_ID, "portal_rooms/portal_room"))) { // Condition 1
-//                            if (depth >= maxDepth / 2) { // Condition 3
-//                                // All conditions are met. Use portal room as chosen piece.
-//                                chosenPiecePair = candidatePiecePair;
-//                            } else {
-//                                // If not far enough from starting room, remove the portal room piece from the list
-//                                totalCount -= candidatePiecePair.getSecond();
-//                                candidatePieces.remove(candidatePiecePair);
-//                            }
-//                            break;
-//                        }
-//                    }
-//                }
+                // if (depth >= maxDepth / 2) { // Condition 3
+                // if (this.pieceCounts.get(new ResourceLocation(BetterStrongholds.MOD_ID, "portal_rooms/portal_room")) > 0) { // Condition 2
 
                 // Choose piece if portal room wasn't selected
                 int randomInt = ThreadLocalRandom.current().nextInt(0, candidatePieces.size());
                 JigsawPiece candidatePiece = candidatePieces.get(randomInt);
 
-                // Vanilla check. Not sure on the implications of this.
-                if (candidatePiece == EmptyJigsawPiece.INSTANCE) { // optional if
-                    return null;
-                }
-
-                // Before performing any logic, check to ensure we haven't reached the max number of instances of this piece.
-                // This logic is my own additional logic - vanilla does not offer this behavior.
-//                ResourceLocation pieceName = ((SingleJigsawPiece)candidatePiece).field_236839_c_.left().get();
-//                if (this.pieceCounts.containsKey(pieceName)) {
-//                    if (this.pieceCounts.get(pieceName) <= 0) {
-//                        // Remove this piece from the list of candidates and retry.
-//                        totalCount -= chosenPiecePair.getSecond();
-//                        candidatePieces.remove(chosenPiecePair);
-//                        continue;
-//                    }
-//                }
+                SingleJigsawPiece singleJigsawPiece = (SingleJigsawPiece) candidatePiece;
+                ModFiddle.LOGGER.debug(singleJigsawPiece.field_236839_c_.left().get().getPath());
 
                 // Try different rotations to see which sides of the piece are fit to be the receiving end
                 for (Rotation rotation : Rotation.shuffledRotations(this.random)) {
@@ -245,9 +214,8 @@ public class JigsawManager {
                     MutableBoundingBox tempCandidateBoundingBox = candidatePiece.getBoundingBox(this.templateManager, BlockPos.ZERO, rotation);
 
                     // Some sort of logic for setting the candidateHeightAdjustments var if doBoundaryAdjustments.
-                    // Not sure on this - personally, I never enable doBoundaryAdjustments.
                     int candidateHeightAdjustments;
-                    if (doBoundaryAdjustments && tempCandidateBoundingBox.getYSize() <= 16) {
+                    if (doBoundaryAdjustments && tempCandidateBoundingBox.getYSize() <= 16) { // optional
                         candidateHeightAdjustments = candidateJigsawBlocks.stream().mapToInt((pieceCandidateJigsawBlock) -> {
                             if (!tempCandidateBoundingBox.isVecInside(pieceCandidateJigsawBlock.pos.offset(JigsawBlock.getConnectingDirection(pieceCandidateJigsawBlock.state)))) {
                                 return 0;
@@ -308,13 +276,6 @@ public class JigsawManager {
                                 adjustedCandidateBoundingBox.maxY = adjustedCandidateBoundingBox.minY + k2;
                             }
 
-                            // Prevent pieces from spawning above max Y
-                            if (adjustedCandidateBoundingBox.maxY > 100000) { // was this.maxY
-                                continue;
-                            }
-
-                            // Some sort of final boundary check before adding the new piece.
-                            // Not sure why the candidate box is shrunk by 0.25.
                             // Comparing if adding the piece clips through already existing structure
                             if (!VoxelShapes.compare(pieceVoxelShape.getValue(), VoxelShapes.create(AxisAlignedBB.toImmutable(adjustedCandidateBoundingBox).shrink(0.25D)), IBooleanFunction.ONLY_SECOND)) {
                                 pieceVoxelShape.setValue(VoxelShapes.combine(pieceVoxelShape.getValue(), VoxelShapes.create(AxisAlignedBB.toImmutable(adjustedCandidateBoundingBox)),  IBooleanFunction.ONLY_FIRST));
@@ -385,7 +346,7 @@ public class JigsawManager {
     static final class Entry {
         private final AbstractVillagePiece piece;
         private final MutableObject<VoxelShape> voxel;
-        private final int boundsTop; // refers to the top y boundry
+        private final int boundsTop; // refers to the top y boundary
         private final int depth;
 
         private Entry(AbstractVillagePiece piece, MutableObject<VoxelShape> voxel, int boundsTop, int depth) {

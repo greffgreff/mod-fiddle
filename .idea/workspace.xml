@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="optimized imports">
+    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="removed previous JigsawManager class call">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/BridgeStructure.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/BridgeStructure.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/util/JigsawManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/util/JigsawManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/modfiddle/worldgen/template_pool/bridge/bridge_end.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/modfiddle/worldgen/template_pool/bridge/bridge_end.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,20 +138,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1641992804058</updated>
-    </task>
-    <task id="LOCAL-00032" summary="fixed jigsaw target pool">
-      <created>1642712394659</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1642712394659</updated>
-    </task>
-    <task id="LOCAL-00033" summary="added bridge structure entry pool">
-      <created>1642712416791</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1642712416791</updated>
     </task>
     <task id="LOCAL-00034" summary="added bridge structure entry pool">
       <created>1642712432709</created>
@@ -484,7 +468,21 @@
       <option name="project" value="LOCAL" />
       <updated>1643298552853</updated>
     </task>
-    <option name="localTasksCounter" value="81" />
+    <task id="LOCAL-00081" summary="fixed end cap for pillar heads">
+      <created>1643340439879</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1643340439880</updated>
+    </task>
+    <task id="LOCAL-00082" summary="removed previous JigsawManager class call">
+      <created>1643340464589</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1643340464589</updated>
+    </task>
+    <option name="localTasksCounter" value="83" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -500,8 +498,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="removed JigsawGeneration class in favor of JigsawManager" />
-    <MESSAGE value="added codec sample code" />
     <MESSAGE value="added more sample code in JigsawConfig" />
     <MESSAGE value="worked on JigsawConfig class" />
     <MESSAGE value="removed unnecessary imports" />
@@ -525,6 +521,8 @@
     <MESSAGE value="renamed class to JigsawManager from JigsawManagerReloaded" />
     <MESSAGE value="renamed to JigsawManager.java" />
     <MESSAGE value="optimized imports" />
-    <option name="LAST_COMMIT_MESSAGE" value="optimized imports" />
+    <MESSAGE value="fixed end cap for pillar heads" />
+    <MESSAGE value="removed previous JigsawManager class call" />
+    <option name="LAST_COMMIT_MESSAGE" value="removed previous JigsawManager class call" />
   </component>
 </project>
