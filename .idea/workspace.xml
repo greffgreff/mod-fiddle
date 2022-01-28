@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="updated nbt models and json pools">
+    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="fixed waterlogged models">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/ModStructures.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/ModStructures.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/BridgeStructure.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/BridgeStructure.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/modfiddle/worldgen/template_pool/bridge/bridge_end.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/modfiddle/worldgen/template_pool/bridge/bridge_end.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/util/JigsawManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/util/JigsawManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,13 +140,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1641992804058</updated>
-    </task>
-    <task id="LOCAL-00037" summary="code refactored">
-      <created>1642712504513</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1642712504513</updated>
     </task>
     <task id="LOCAL-00038" summary="added height off set to bridge pillar">
       <created>1642712972454</created>
@@ -484,7 +477,14 @@
       <option name="project" value="LOCAL" />
       <updated>1643369105959</updated>
     </task>
-    <option name="localTasksCounter" value="86" />
+    <task id="LOCAL-00086" summary="fixed waterlogged models">
+      <created>1643369781270</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1643369781270</updated>
+    </task>
+    <option name="localTasksCounter" value="87" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -500,7 +500,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="added bridge terminator pool" />
     <MESSAGE value="added bridge terminators to pools" />
     <MESSAGE value="added dummay strcture piece dummy class" />
     <MESSAGE value="added dummy structure piece dummy class" />
@@ -525,6 +524,7 @@
     <MESSAGE value="removed unused code commented" />
     <MESSAGE value="worked on jigsaw manager constraints" />
     <MESSAGE value="updated nbt models and json pools" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated nbt models and json pools" />
+    <MESSAGE value="fixed waterlogged models" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed waterlogged models" />
   </component>
 </project>
