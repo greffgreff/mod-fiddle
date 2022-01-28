@@ -14,7 +14,7 @@
     {
       "weight": 100,
       "element": {
-        "location": "modfiddle:pillarhead1",
+        "location": "modfiddle:pillarspine1",
         "processors": "minecraft:empty",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"

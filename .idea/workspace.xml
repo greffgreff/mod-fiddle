@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="annotation and code refactoring">
+    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="optimized imports">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/BridgeStructure.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/BridgeStructure.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/util/JigsawManagerReloaded.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/util/JigsawManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/util/JigsawManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/util/JigsawManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/data/modfiddle/worldgen/template_pool/bridge/bridge_end.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/modfiddle/worldgen/template_pool/bridge/bridge_end.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,41 +140,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1641992804058</updated>
-    </task>
-    <task id="LOCAL-00027" summary="added bridge json pool file">
-      <created>1642701336878</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1642701336878</updated>
-    </task>
-    <task id="LOCAL-00028" summary="changed json file name to &quot;totem&quot;">
-      <created>1642701372582</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1642701372582</updated>
-    </task>
-    <task id="LOCAL-00029" summary="moved file">
-      <created>1642701482857</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1642701482857</updated>
-    </task>
-    <task id="LOCAL-00030" summary="added bridge structure to registry and gen">
-      <created>1642702230652</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1642702230652</updated>
-    </task>
-    <task id="LOCAL-00031" summary="fixed replacement block spelling">
-      <created>1642711820808</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1642711820808</updated>
     </task>
     <task id="LOCAL-00032" summary="fixed jigsaw target pool">
       <created>1642712394659</created>
@@ -483,7 +449,42 @@
       <option name="project" value="LOCAL" />
       <updated>1643298279049</updated>
     </task>
-    <option name="localTasksCounter" value="76" />
+    <task id="LOCAL-00076" summary="moved TotemStructure class to dedicated package">
+      <created>1643298457073</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1643298457073</updated>
+    </task>
+    <task id="LOCAL-00077" summary="changed imports">
+      <created>1643298470701</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1643298470701</updated>
+    </task>
+    <task id="LOCAL-00078" summary="renamed class to JigsawManager from JigsawManagerReloaded">
+      <created>1643298497966</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1643298497966</updated>
+    </task>
+    <task id="LOCAL-00079" summary="renamed to JigsawManager.java">
+      <created>1643298519589</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1643298519589</updated>
+    </task>
+    <task id="LOCAL-00080" summary="optimized imports">
+      <created>1643298552853</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1643298552853</updated>
+    </task>
+    <option name="localTasksCounter" value="81" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -499,11 +500,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="fixed variable name issues" />
-    <MESSAGE value="removed boundry adjustment code from JigsawManager class" />
-    <MESSAGE value="changed spawn rarity of structures" />
-    <MESSAGE value="increased structure scarcity" />
-    <MESSAGE value="completed annotation on JigsawManager class" />
     <MESSAGE value="removed JigsawGeneration class in favor of JigsawManager" />
     <MESSAGE value="added codec sample code" />
     <MESSAGE value="added more sample code in JigsawConfig" />
@@ -524,6 +520,11 @@
     <MESSAGE value="added pillar in fallback pool" />
     <MESSAGE value="changed processing to JigsawManagerReloaded class" />
     <MESSAGE value="annotation and code refactoring" />
-    <option name="LAST_COMMIT_MESSAGE" value="annotation and code refactoring" />
+    <MESSAGE value="moved TotemStructure class to dedicated package" />
+    <MESSAGE value="changed imports" />
+    <MESSAGE value="renamed class to JigsawManager from JigsawManagerReloaded" />
+    <MESSAGE value="renamed to JigsawManager.java" />
+    <MESSAGE value="optimized imports" />
+    <option name="LAST_COMMIT_MESSAGE" value="optimized imports" />
   </component>
 </project>
