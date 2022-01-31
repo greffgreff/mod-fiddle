@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="fixed waterlogged models">
+    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="fixed pillarhead and bridgecap2 nbts">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/ModStructures.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/ModStructures.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/BridgeStructure.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/BridgeStructure.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/util/JigsawManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/util/JigsawManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/data/modfiddle/worldgen/template_pool/bridge/bridge_end.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/modfiddle/worldgen/template_pool/bridge/bridge_end.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,11 +127,6 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration default="true" type="NimRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="nim.task.build.to.cache" enabled="true" />
-      </method>
-    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -140,13 +136,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1641992804058</updated>
-    </task>
-    <task id="LOCAL-00038" summary="added height off set to bridge pillar">
-      <created>1642712972454</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1642712972454</updated>
     </task>
     <task id="LOCAL-00039" summary="ignored workspace">
       <created>1642713100842</created>
@@ -484,7 +473,14 @@
       <option name="project" value="LOCAL" />
       <updated>1643369781270</updated>
     </task>
-    <option name="localTasksCounter" value="87" />
+    <task id="LOCAL-00087" summary="fixed pillarhead and bridgecap2 nbts">
+      <created>1643370761182</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1643370761182</updated>
+    </task>
+    <option name="localTasksCounter" value="88" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -500,7 +496,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="added bridge terminators to pools" />
     <MESSAGE value="added dummay strcture piece dummy class" />
     <MESSAGE value="added dummy structure piece dummy class" />
     <MESSAGE value="reverted ATs" />
@@ -525,6 +520,7 @@
     <MESSAGE value="worked on jigsaw manager constraints" />
     <MESSAGE value="updated nbt models and json pools" />
     <MESSAGE value="fixed waterlogged models" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed waterlogged models" />
+    <MESSAGE value="fixed pillarhead and bridgecap2 nbts" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed pillarhead and bridgecap2 nbts" />
   </component>
 </project>

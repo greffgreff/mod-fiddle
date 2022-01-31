@@ -88,6 +88,6 @@ public class ModStructures {
         // p_i232019_2_ = minimum distance apart in chunks between spawn attempts (< avg dist)
         // p_i232019_3_ = unique seed to avoid two structures overlapping
         setupMapSpacingAndLand(TOTEM_STRUCTURE.get(), new StructureSeparationSettings(20, 10, 1234563890), true);
-        setupMapSpacingAndLand(BRIDGE_STRUCTURE.get(), new StructureSeparationSettings(10, 4, 1432563890), false);
+        setupMapSpacingAndLand(BRIDGE_STRUCTURE.get(), new StructureSeparationSettings(20, 15, 1432563890), false);
     }
 }
