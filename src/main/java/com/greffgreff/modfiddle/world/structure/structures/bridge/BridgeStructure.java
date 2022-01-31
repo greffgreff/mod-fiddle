@@ -57,13 +57,12 @@ public class BridgeStructure extends Structure<NoFeatureConfig> {
 
             JigsawManager.assembleJigsawStructure(
                 dynamicRegistries,
-                new VillageConfig(() -> dynamicRegistries.getRegistry(Registry.JIGSAW_POOL_KEY).getOrDefault(new ResourceLocation(ModFiddle.MOD_ID, "bridge/bridge_start")), 10),
+                new VillageConfig(() -> dynamicRegistries.getRegistry(Registry.JIGSAW_POOL_KEY).getOrDefault(new ResourceLocation(ModFiddle.MOD_ID, "bridge/bridge_start")), 5),
                 chunkGenerator,
                 templateManager,
                 centerPos,
                 this.components,
                 this.rand,
-                false,
                 true
             );
 
