@@ -1,6 +1,7 @@
 package com.greffgreff.modfiddle.world.structure.structures.bridge;
 
 import com.greffgreff.modfiddle.ModFiddle;
+import com.mojang.datafixers.util.Pair;
 import net.minecraft.block.Block;
 import net.minecraft.block.JigsawBlock;
 import net.minecraft.util.Direction;
@@ -40,6 +41,8 @@ public class BridgePieces {
         this.startingPosition = startingPosition;
         this.structurePieces = structurePieces;
         this.random = random;
+
+        ModFiddle.LOGGER.debug("Components: " + structurePieces.size());
     }
 
     public void generateBridge() {
@@ -92,12 +95,14 @@ public class BridgePieces {
         public static final int maxBridgeDeckLength = 5;
         public final Rotation rotation = Rotation.randomRotation(random);
         public final JigsawPattern bridgePool = getPool(new ResourceLocation(ModFiddle.MOD_ID, "bridge/bridge"));
-//        public final List<? super AbstractVillagePiece> structurePieces = new ArrayList<>();
 
         public void createPiece() {
             JigsawPiece initialDeckPiece = getRandomDeckPiece(bridgePool.getShuffledPieces(random));
             AbstractVillagePiece initialDeckPiecePlaced = createAbstractPiece(initialDeckPiece, startingPosition, Rotation.NONE);
             structurePieces.add(initialDeckPiecePlaced);
+
+            List<Pair<JigsawPiece, Integer>> jigsawPieces = bridgePool.rawTemplates;
+            jigsawPieces.forEach(x -> ModFiddle.LOGGER.debug("Piece: " + getPieceName(x.getFirst()) + " Integer: " + x.getSecond()));
 
             MutableBoundingBox initialDeckPieceBB = initialDeckPiecePlaced.getBoundingBox();
 
