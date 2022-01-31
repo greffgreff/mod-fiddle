@@ -180,28 +180,7 @@ public class JigsawManager {
             // Exhaustive search of candidate child piece
             while (!candidatePieces.isEmpty()) {
                 // Check whether head piece, if so use only bridge deck pieces
-                JigsawPiece candidatePiece = null;
-                String pieceName = "";
-                if (processedPiece.contains("head")) {
-                    while (!pieceName.contains("walk")) {
-                        candidatePiece = getRandomJigsawPiece(candidatePieces);
-                        pieceName = getPieceName(candidatePiece);
-                        candidatePieces.remove(candidatePiece);
-                    }
-                }
-                else if (processedPiece.contains("walk")) {
-                    while (!pieceName.contains("walk")) {
-                        candidatePiece = getRandomJigsawPiece(candidatePieces);
-                        pieceName = getPieceName(candidatePiece);
-                        candidatePieces.remove(candidatePiece);
-                    }
-                    candidatePiece = getRandomJigsawPiece(candidatePieces);
-                }
-                else {
-                    candidatePiece = getRandomJigsawPiece(candidatePieces);
-                }
-
-                ModFiddle.LOGGER.debug(pieceName);
+                JigsawPiece candidatePiece = getRandomJigsawPiece(candidatePieces);
 
                 for (Rotation rotation : Rotation.shuffledRotations(this.random)) {
                     List<Template.BlockInfo> candidateJigsawBlocks = candidatePiece.getJigsawBlocks(this.templateManager, BlockPos.ZERO, rotation, this.random);
