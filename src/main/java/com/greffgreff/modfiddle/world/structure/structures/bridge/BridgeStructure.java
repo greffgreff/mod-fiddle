@@ -54,21 +54,10 @@ public class BridgeStructure extends Structure<NoFeatureConfig> {
             int x = chunkX * 16;
             int z = chunkZ * 16;
             int submergedBaseOffset = -6;
-            BlockPos centerPos = new BlockPos(x, submergedBaseOffset, z);
+            BlockPos centerPos = new BlockPos(x, 70, z);
             Rotation rotation = Rotation.randomRotation(rand);
 
-            JigsawManager.assembleJigsawStructure(
-                dynamicRegistries,
-                new VillageConfig(() -> dynamicRegistries.getRegistry(Registry.JIGSAW_POOL_KEY).getOrDefault(new ResourceLocation(ModFiddle.MOD_ID, "bridge/bridge_start")), 5),
-                chunkGenerator,
-                templateManager,
-                centerPos,
-                this.components,
-                this.rand,
-                true
-            );
-
-            BridgePieces bridgePieces = new BridgePieces(dynamicRegistries, chunkGenerator, templateManager, centerPos, rand);
+            BridgePieces bridgePieces = new BridgePieces(dynamicRegistries, chunkGenerator, templateManager, centerPos, components, rand);
             bridgePieces.generateBridge();
 
             this.recalculateStructureSize();

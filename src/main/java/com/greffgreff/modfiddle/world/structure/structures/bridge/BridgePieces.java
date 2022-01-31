@@ -1,20 +1,23 @@
 package com.greffgreff.modfiddle.world.structure.structures.bridge;
 
 import com.greffgreff.modfiddle.ModFiddle;
-import jdk.nashorn.internal.ir.Block;
+import net.minecraft.block.Block;
 import net.minecraft.block.JigsawBlock;
+import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.util.registry.DynamicRegistries;
 import net.minecraft.util.registry.MutableRegistry;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.gen.ChunkGenerator;
+import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.feature.jigsaw.*;
 import net.minecraft.world.gen.feature.structure.AbstractVillagePiece;
+import net.minecraft.world.gen.feature.structure.StructurePiece;
 import net.minecraft.world.gen.feature.template.Template;
 import net.minecraft.world.gen.feature.template.TemplateManager;
-import org.lwjgl.system.CallbackI;
 
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
@@ -26,14 +29,16 @@ public class BridgePieces {
     public final ChunkGenerator chunkGenerator;
     public final TemplateManager templateManager;
     public final BlockPos startingPosition;
+    public final List<StructurePiece> structurePieces;
     public final Random random;
 
-    public BridgePieces(DynamicRegistries dynamicRegistries, ChunkGenerator chunkGenerator, TemplateManager templateManager, BlockPos startingPosition, Random random) {
+    public BridgePieces(DynamicRegistries dynamicRegistries, ChunkGenerator chunkGenerator, TemplateManager templateManager, BlockPos startingPosition, List<StructurePiece> structurePieces, Random random) {
         this.dynamicRegistries = dynamicRegistries;
         this.jigsawPoolRegistry = dynamicRegistries.getRegistry(Registry.JIGSAW_POOL_KEY);
         this.chunkGenerator = chunkGenerator;
         this.templateManager = templateManager;
         this.startingPosition = startingPosition;
+        this.structurePieces = structurePieces;
         this.random = random;
     }
 
@@ -58,24 +63,24 @@ public class BridgePieces {
         return singleJigsawPiece.field_236839_c_.left().isPresent() ? singleJigsawPiece.field_236839_c_.left().get().getPath() : "";
     }
 
-    private static AbstractVillagePiece createAbstractPiece(TemplateManager templateManager, JigsawPiece piece, BlockPos position, Rotation rotation) {
+    private AbstractVillagePiece createAbstractPiece(JigsawPiece piece, BlockPos position, Rotation rotation) {
         return new AbstractVillagePiece(templateManager, piece, position, piece.getGroundLevelDelta(), rotation, piece.getBoundingBox(templateManager, position, rotation));
     }
 
-    private boolean validateJigsawBlockInfo(Template.BlockInfo jigsawBlock) {
-        ResourceLocation jigsawBlockPool = new ResourceLocation(jigsawBlock.nbt.getString("pool"));
-        Optional<JigsawPattern> jigsawBlockTargetPool = jigsawPoolRegistry.getOptional(jigsawBlockPool);
+    private boolean validateJigsawBlockInfo(Template.BlockInfo originJigsawBlock) {
+        ResourceLocation originJigsawBlockPool = new ResourceLocation(originJigsawBlock.nbt.getString("pool"));
+        Optional<JigsawPattern> originJigsawBlockTargetPool = jigsawPoolRegistry.getOptional(originJigsawBlockPool);
 
-        if (!(jigsawBlockTargetPool.isPresent() && (jigsawBlockTargetPool.get().getNumberOfPieces() != 0 || Objects.equals(jigsawBlockPool, JigsawPatternRegistry.field_244091_a.getLocation())))) {
-            ModFiddle.LOGGER.warn("Empty or nonexistent pool: {}", jigsawBlockPool);
+        if (!(originJigsawBlockTargetPool.isPresent() && (originJigsawBlockTargetPool.get().getNumberOfPieces() != 0 || Objects.equals(originJigsawBlockPool, JigsawPatternRegistry.field_244091_a.getLocation())))) {
+            ModFiddle.LOGGER.warn("Empty or nonexistent pool: {}", originJigsawBlockPool);
             return false;
         }
 
-        ResourceLocation jigsawBlockFallback = jigsawBlockTargetPool.get().getFallback();
-        Optional<JigsawPattern> jigsawBlockFallbackPool = jigsawPoolRegistry.getOptional(jigsawBlockFallback);
+        ResourceLocation originJigsawBlockFallback = originJigsawBlockTargetPool.get().getFallback();
+        Optional<JigsawPattern> originJigsawBlockFallbackPool = jigsawPoolRegistry.getOptional(originJigsawBlockFallback);
 
-        if (!(jigsawBlockFallbackPool.isPresent() && (jigsawBlockFallbackPool.get().getNumberOfPieces() != 0 || Objects.equals(jigsawBlockFallback, JigsawPatternRegistry.field_244091_a.getLocation())))) {
-            ModFiddle.LOGGER.warn("Empty or nonexistent fallback pool: {}", jigsawBlockFallback);
+        if (!(originJigsawBlockFallbackPool.isPresent() && (originJigsawBlockFallbackPool.get().getNumberOfPieces() != 0 || Objects.equals(originJigsawBlockFallback, JigsawPatternRegistry.field_244091_a.getLocation())))) {
+            ModFiddle.LOGGER.warn("Empty or nonexistent fallback pool: {}", originJigsawBlockFallback);
             return false;
         }
 
@@ -87,21 +92,24 @@ public class BridgePieces {
         public static final int maxBridgeDeckLength = 5;
         public final Rotation rotation = Rotation.randomRotation(random);
         public final JigsawPattern bridgePool = getPool(new ResourceLocation(ModFiddle.MOD_ID, "bridge/bridge"));
-        public final List<? super AbstractVillagePiece> structurePieces = new ArrayList<>();
+//        public final List<? super AbstractVillagePiece> structurePieces = new ArrayList<>();
 
         public void createPiece() {
-            // Adding random deck piece as deck origin
             JigsawPiece initialDeckPiece = getRandomDeckPiece(bridgePool.getShuffledPieces(random));
-            AbstractVillagePiece initialDeckPiecePlaced = createAbstractPiece(templateManager, initialDeckPiece, startingPosition, rotation);
+            AbstractVillagePiece initialDeckPiecePlaced = createAbstractPiece(initialDeckPiece, startingPosition, Rotation.NONE);
             structurePieces.add(initialDeckPiecePlaced);
 
-            for (int i = 0; i < minBridgeDeckLength - 1; i++) {
-                for (Template.BlockInfo jigsawBlock: initialDeckPiece.getJigsawBlocks(templateManager, startingPosition, rotation, random)) {
-                    if (validateJigsawBlockInfo(jigsawBlock)) continue;
+            MutableBoundingBox initialDeckPieceBB = initialDeckPiecePlaced.getBoundingBox();
 
-                    JigsawPiece deckPiece = getRandomDeckPiece(bridgePool.getShuffledPieces(random));
-                }
-            }
+            BlockPos secondPiecePos = new BlockPos(startingPosition.getX(), startingPosition.getY(), startingPosition.getZ() + initialDeckPieceBB.getZSize());
+            JigsawPiece secondDeckPiece = getRandomDeckPiece(bridgePool.getShuffledPieces(random));
+            AbstractVillagePiece secondDeckPiecePlaced = createAbstractPiece(secondDeckPiece, secondPiecePos, Rotation.NONE);
+            structurePieces.add(secondDeckPiecePlaced);
+
+            BlockPos thirdPiecePos = new BlockPos(startingPosition.getX(), startingPosition.getY(), startingPosition.getZ() + initialDeckPieceBB.getZSize() * 2);
+            JigsawPiece thirdDeckPiece = getRandomDeckPiece(bridgePool.getShuffledPieces(random));
+            AbstractVillagePiece thirdDeckPiecePlaced = createAbstractPiece(thirdDeckPiece, thirdPiecePos, Rotation.NONE);
+            structurePieces.add(thirdDeckPiecePlaced);
         }
 
         private JigsawPiece getRandomDeckPiece(List<JigsawPiece> jigsawPieces) {

@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="added DI on bridge pieces class">
+    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="added jigsawblock validation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/BridgePieces.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/BridgePieces.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/BridgeStructure.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/BridgeStructure.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -137,13 +138,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1641992804058</updated>
-    </task>
-    <task id="LOCAL-00045" summary="added custom jigsaw config class">
-      <created>1642997840701</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1642997840701</updated>
     </task>
     <task id="LOCAL-00046" summary="started structure config class for configs files">
       <created>1642997873613</created>
@@ -481,7 +475,14 @@
       <option name="project" value="LOCAL" />
       <updated>1643657528040</updated>
     </task>
-    <option name="localTasksCounter" value="94" />
+    <task id="LOCAL-00094" summary="added jigsawblock validation">
+      <created>1643658510651</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1643658510651</updated>
+    </task>
+    <option name="localTasksCounter" value="95" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -497,7 +498,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="added AT for resource locations in SingleStructurePiece class" />
     <MESSAGE value="worked on Forteress-like class for bridges" />
     <MESSAGE value="added new jigsaw manager alternative" />
     <MESSAGE value="moved BridgeStructure class to dedicated struct folder" />
@@ -522,6 +522,7 @@
     <MESSAGE value="reduced bridge structure size" />
     <MESSAGE value="reverted jigsaw manager to random piece selection" />
     <MESSAGE value="added DI on bridge pieces class" />
-    <option name="LAST_COMMIT_MESSAGE" value="added DI on bridge pieces class" />
+    <MESSAGE value="added jigsawblock validation" />
+    <option name="LAST_COMMIT_MESSAGE" value="added jigsawblock validation" />
   </component>
 </project>
