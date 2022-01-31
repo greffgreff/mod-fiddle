@@ -14,7 +14,7 @@
     {
       "weight": 100,
       "element": {
-        "location": "modfiddle:bridgecap1",
+        "location": "modfiddle:bridgecap2",
         "processors": "minecraft:empty",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
