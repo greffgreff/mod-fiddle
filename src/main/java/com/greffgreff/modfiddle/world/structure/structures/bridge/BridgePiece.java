@@ -1,136 +1,59 @@
 package com.greffgreff.modfiddle.world.structure.structures.bridge;
 
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.Rotation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.registry.DynamicRegistries;
+import net.minecraft.util.registry.MutableRegistry;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.world.gen.ChunkGenerator;
+import net.minecraft.world.gen.feature.jigsaw.JigsawPattern;
+import net.minecraft.world.gen.feature.jigsaw.JigsawPiece;
+import net.minecraft.world.gen.feature.jigsaw.SingleJigsawPiece;
+import net.minecraft.world.gen.feature.structure.AbstractVillagePiece;
 import net.minecraft.world.gen.feature.structure.StructurePiece;
+import net.minecraft.world.gen.feature.template.TemplateManager;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
+import java.util.*;
+import java.util.function.Supplier;
 
-public class BridgePiece implements List<StructurePiece> {
+public abstract class BridgePiece {
+    public final DynamicRegistries dynamicRegistries;
+    public final MutableRegistry<JigsawPattern> jigsawPoolRegistry;
+    public final ChunkGenerator chunkGenerator;
+    public final TemplateManager templateManager;
+    public final BlockPos startingPosition;
+    public final List<StructurePiece> structurePieces;
+    public final Random random;
 
-    @Override
-    public int size() {
-        return 0;
+    public BridgePiece(DynamicRegistries dynamicRegistries, ChunkGenerator chunkGenerator, TemplateManager templateManager, BlockPos startingPosition, List<StructurePiece> structurePieces, Random random) {
+        this.dynamicRegistries = dynamicRegistries;
+        this.jigsawPoolRegistry = dynamicRegistries.getRegistry(Registry.JIGSAW_POOL_KEY);
+        this.chunkGenerator = chunkGenerator;
+        this.templateManager = templateManager;
+        this.startingPosition = startingPosition;
+        this.structurePieces = structurePieces;
+        this.random = random;
     }
 
-    @Override
-    public boolean isEmpty() {
-        return false;
+    public void generateBridge() {
+        createPiece();
     }
 
-    @Override
-    public boolean contains(Object o) {
-        return false;
+    protected JigsawPattern getPool(ResourceLocation resourceLocation) {
+        Supplier<JigsawPattern> piecesPool = () -> dynamicRegistries.getRegistry(Registry.JIGSAW_POOL_KEY).getOrDefault(resourceLocation);
+        return piecesPool.get();
     }
 
-    @Override
-    public Iterator<StructurePiece> iterator() {
-        return null;
+    protected static String getPieceName(JigsawPiece jigsawPiece) {
+        if (jigsawPiece == null) return "";
+        SingleJigsawPiece singleJigsawPiece = (SingleJigsawPiece) jigsawPiece;
+        return singleJigsawPiece.field_236839_c_.left().isPresent() ? singleJigsawPiece.field_236839_c_.left().get().getPath() : "";
     }
 
-    @Override
-    public Object[] toArray() {
-        return new Object[0];
+    protected AbstractVillagePiece createAbstractPiece(JigsawPiece piece, BlockPos position, Rotation rotation) {
+        return new AbstractVillagePiece(templateManager, piece, position, piece.getGroundLevelDelta(), rotation, piece.getBoundingBox(templateManager, position, rotation));
     }
 
-    @Override
-    public <T> T[] toArray(T[] a) {
-        return null;
-    }
-
-    @Override
-    public boolean add(StructurePiece piece) {
-        return false;
-    }
-
-    @Override
-    public boolean remove(Object o) {
-        return false;
-    }
-
-    @Override
-    public boolean containsAll(Collection<?> c) {
-        return false;
-    }
-
-    @Override
-    public boolean addAll(Collection<? extends StructurePiece> c) {
-        return false;
-    }
-
-    @Override
-    public boolean addAll(int index, Collection<? extends StructurePiece> c) {
-        return false;
-    }
-
-    @Override
-    public boolean removeAll(Collection<?> c) {
-        return false;
-    }
-
-    @Override
-    public boolean retainAll(Collection<?> c) {
-        return false;
-    }
-
-    @Override
-    public void clear() {
-
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        return false;
-    }
-
-    @Override
-    public int hashCode() {
-        return 0;
-    }
-
-    @Override
-    public StructurePiece get(int index) {
-        return null;
-    }
-
-    @Override
-    public StructurePiece set(int index, StructurePiece element) {
-        return null;
-    }
-
-    @Override
-    public void add(int index, StructurePiece element) {
-
-    }
-
-    @Override
-    public StructurePiece remove(int index) {
-        return null;
-    }
-
-    @Override
-    public int indexOf(Object o) {
-        return 0;
-    }
-
-    @Override
-    public int lastIndexOf(Object o) {
-        return 0;
-    }
-
-    @Override
-    public ListIterator<StructurePiece> listIterator() {
-        return null;
-    }
-
-    @Override
-    public ListIterator<StructurePiece> listIterator(int index) {
-        return null;
-    }
-
-    @Override
-    public List<StructurePiece> subList(int fromIndex, int toIndex) {
-        return null;
-    }
+    protected abstract void createPiece();
 }
