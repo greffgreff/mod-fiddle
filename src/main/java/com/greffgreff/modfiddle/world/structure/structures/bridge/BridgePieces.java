@@ -45,8 +45,11 @@ public class BridgePieces {
     }
 
     public void generateBridge() {
-        DeckPiece deckPiece = new DeckPiece();
-        deckPiece.createPiece();
+//        DeckPiece deckPiece = new DeckPiece(10);
+//        deckPiece.createPiece();
+
+        TowerPiece towerPiece = new TowerPiece();
+        towerPiece.createPiece();
     }
 
     private JigsawPattern getPool(ResourceLocation resourceLocation) {
@@ -85,29 +88,31 @@ public class BridgePieces {
     }
 
     private class DeckPiece {
-        public final int minDeckPieces = 3;
-        public final JigsawPattern deckPool = getPool(new ResourceLocation(ModFiddle.MOD_ID, "bridge/bridge"));
         public final WeightedItems<JigsawPiece> weightedDeckPieces = new WeightedItems<>(random);
+        public final JigsawPattern deckPool = getPool(new ResourceLocation(ModFiddle.MOD_ID, "bridge/bridge"));
         public final List<StructurePiece> deckPieces = new ArrayList<>();
+        public final int deckLength;
+
+        public DeckPiece(int deckLength) {
+            deckPool.rawTemplates.forEach(p -> weightedDeckPieces.add(p.getSecond().doubleValue(), p.getFirst()));
+            this.deckLength = deckLength;
+        }
 
         public DeckPiece() {
-            deckPool.rawTemplates.forEach(p -> weightedDeckPieces.add(p.getSecond().doubleValue(), p.getFirst()));
+            this(3);
         }
 
         public void createPiece() {
-            for (int i = 0; i < minDeckPieces; i++) {
+            for (int i = 0; i < deckLength; i++) {
                 JigsawPiece deckPiece = getRandomDeckPiece();
-                ModFiddle.LOGGER.debug("Step: " + i);
                 if (deckPieces.isEmpty()) {
                     deckPieces.add(createAbstractPiece(deckPiece, startingPosition, Rotation.NONE));
                 }
                 else {
                     MutableBoundingBox prevPieceBB = deckPieces.get(i-1).getBoundingBox();
-                    ModFiddle.LOGGER.debug("Prev BB: " + deckPieces.get(i-1).getBoundingBox());
                     BlockPos deckPos = new BlockPos(startingPosition.getX(), startingPosition.getY(), prevPieceBB.minZ + prevPieceBB.getZSize());
                     deckPieces.add(createAbstractPiece(deckPiece, deckPos, Rotation.NONE));
                 }
-                ModFiddle.LOGGER.debug("BB: " + deckPieces.get(i).getBoundingBox());
             }
             structurePieces.addAll(deckPieces);
         }
@@ -117,6 +122,42 @@ public class BridgePieces {
             do {
                 deckPiece = weightedDeckPieces.next();
             } while (!getPieceName(deckPiece).contains("walk"));
+            return deckPiece;
+        }
+    }
+
+    private class TowerPiece {
+        public final WeightedItems<JigsawPiece> weightedDeckPieces = new WeightedItems<>(random);
+        public final JigsawPattern towerPool = getPool(new ResourceLocation(ModFiddle.MOD_ID, "bridge/bridge"));
+        public final List<StructurePiece> towerPieces = new ArrayList<>();
+
+        public TowerPiece() {
+            towerPool.rawTemplates.forEach(p -> weightedDeckPieces.add(p.getSecond().doubleValue(), p.getFirst()));
+        }
+
+        public void createPiece() {
+            JigsawPiece towerSpine = getRandomPillarSpinePiece();
+            AbstractVillagePiece towerSpinePlaced = createAbstractPiece(towerSpine, startingPosition, Rotation.NONE);
+            towerPieces.add(towerSpinePlaced);
+            JigsawPiece towerHead = getRandomPillarHeadPiece();
+            BlockPos towerHeadPos = new BlockPos(startingPosition.getX(), startingPosition.getY() + towerSpinePlaced.getBoundingBox().getYSize(), startingPosition.getZ());
+            towerPieces.add(createAbstractPiece(towerHead, towerHeadPos, Rotation.NONE));
+            structurePieces.addAll(towerPieces);
+        }
+
+        private JigsawPiece getRandomPillarSpinePiece() {
+            JigsawPiece deckPiece;
+            do {
+                deckPiece = weightedDeckPieces.next();
+            } while (!getPieceName(deckPiece).contains("pillarspine"));
+            return deckPiece;
+        }
+
+        private JigsawPiece getRandomPillarHeadPiece() {
+            JigsawPiece deckPiece;
+            do {
+                deckPiece = weightedDeckPieces.next();
+            } while (!getPieceName(deckPiece).contains("pillarhead"));
             return deckPiece;
         }
     }

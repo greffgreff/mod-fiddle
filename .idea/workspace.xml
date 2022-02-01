@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="made createPiece() more scalable with forloop">
+    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="removed original createPiece method">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/BridgePieces.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/BridgePieces.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -136,13 +137,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1641992804058</updated>
-    </task>
-    <task id="LOCAL-00053" summary="fixed variable name issues">
-      <created>1643087343728</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1643087343728</updated>
     </task>
     <task id="LOCAL-00054" summary="removed boundry adjustment code from JigsawManager class">
       <created>1643087380496</created>
@@ -480,7 +474,14 @@
       <option name="project" value="LOCAL" />
       <updated>1643686729208</updated>
     </task>
-    <option name="localTasksCounter" value="102" />
+    <task id="LOCAL-00102" summary="removed original createPiece method">
+      <created>1643686759931</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1643686759931</updated>
+    </task>
+    <option name="localTasksCounter" value="103" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -496,7 +497,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="changed imports" />
     <MESSAGE value="renamed class to JigsawManager from JigsawManagerReloaded" />
     <MESSAGE value="renamed to JigsawManager.java" />
     <MESSAGE value="optimized imports" />
@@ -521,6 +521,7 @@
     <MESSAGE value="removed getRandomPiece method" />
     <MESSAGE value="code cleanups" />
     <MESSAGE value="made createPiece() more scalable with forloop" />
-    <option name="LAST_COMMIT_MESSAGE" value="made createPiece() more scalable with forloop" />
+    <MESSAGE value="removed original createPiece method" />
+    <option name="LAST_COMMIT_MESSAGE" value="removed original createPiece method" />
   </component>
 </project>
