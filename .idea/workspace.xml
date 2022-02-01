@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="made generation work on worldgen">
+    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="removed StructurePieceReader.java">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/util/WeightedItems.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/BridgePieces.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/BridgePieces.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/util/StructurePieceReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/util/StructurePieceReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/accesstransformer.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/accesstransformer.cfg" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,20 +138,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1641992804058</updated>
-    </task>
-    <task id="LOCAL-00047" summary="simplified JigsawManager implementation">
-      <created>1642997910182</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
-      <option name="project" value="LOCAL" />
-      <updated>1642997910182</updated>
-    </task>
-    <task id="LOCAL-00048" summary="refactorisation">
-      <created>1642999593777</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1642999593777</updated>
     </task>
     <task id="LOCAL-00049" summary="did fuckall">
       <created>1642999606146</created>
@@ -483,7 +468,21 @@
       <option name="project" value="LOCAL" />
       <updated>1643669747655</updated>
     </task>
-    <option name="localTasksCounter" value="96" />
+    <task id="LOCAL-00096" summary="added rawTemplate AT (over getShuffled)">
+      <created>1643672377632</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1643672377633</updated>
+    </task>
+    <task id="LOCAL-00097" summary="removed StructurePieceReader.java">
+      <created>1643672401562</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1643672401562</updated>
+    </task>
+    <option name="localTasksCounter" value="98" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -499,8 +498,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="added new jigsaw manager alternative" />
-    <MESSAGE value="moved BridgeStructure class to dedicated struct folder" />
     <MESSAGE value="added pillar in fallback pool" />
     <MESSAGE value="changed processing to JigsawManagerReloaded class" />
     <MESSAGE value="annotation and code refactoring" />
@@ -524,6 +521,8 @@
     <MESSAGE value="added DI on bridge pieces class" />
     <MESSAGE value="added jigsawblock validation" />
     <MESSAGE value="made generation work on worldgen" />
-    <option name="LAST_COMMIT_MESSAGE" value="made generation work on worldgen" />
+    <MESSAGE value="added rawTemplate AT (over getShuffled)" />
+    <MESSAGE value="removed StructurePieceReader.java" />
+    <option name="LAST_COMMIT_MESSAGE" value="removed StructurePieceReader.java" />
   </component>
 </project>
