@@ -85,32 +85,49 @@ public class BridgePieces {
     }
 
     private class DeckPiece {
-        public static final int minBridgeDeckLength = 3;
-        public static final int maxBridgeDeckLength = 5;
-        public final Rotation rotation = Rotation.randomRotation(random);
+        public final int minDeckPieces = 3;
         public final JigsawPattern deckPool = getPool(new ResourceLocation(ModFiddle.MOD_ID, "bridge/bridge"));
         public final WeightedItems<JigsawPiece> weightedDeckPieces = new WeightedItems<>(random);
+        public final List<StructurePiece> deckPieces = new ArrayList<>();
 
         public DeckPiece() {
             deckPool.rawTemplates.forEach(p -> weightedDeckPieces.add(p.getSecond().doubleValue(), p.getFirst()));
         }
 
-        public void createPiece() {
-            JigsawPiece initialDeckPiece = getRandomDeckPiece();
-            AbstractVillagePiece initialDeckPiecePlaced = createAbstractPiece(initialDeckPiece, startingPosition, Rotation.NONE);
-            structurePieces.add(initialDeckPiecePlaced);
+        public void createPieceAlt() {
+            JigsawPiece firstDeckPiece = getRandomDeckPiece();
+            AbstractVillagePiece firstDeckPiecePlaced = createAbstractPiece(firstDeckPiece, startingPosition, Rotation.NONE);
+            structurePieces.add(firstDeckPiecePlaced);
 
-            MutableBoundingBox initialDeckPieceBB = initialDeckPiecePlaced.getBoundingBox();
+            MutableBoundingBox firstDeckPieceBB = firstDeckPiecePlaced.getBoundingBox();
 
-            BlockPos secondPiecePos = new BlockPos(startingPosition.getX(), startingPosition.getY(), startingPosition.getZ() + initialDeckPieceBB.getZSize());
+            BlockPos secondPiecePos = new BlockPos(startingPosition.getX(), startingPosition.getY(), startingPosition.getZ() + firstDeckPieceBB.getZSize());
             JigsawPiece secondDeckPiece = getRandomDeckPiece();
             AbstractVillagePiece secondDeckPiecePlaced = createAbstractPiece(secondDeckPiece, secondPiecePos, Rotation.NONE);
             structurePieces.add(secondDeckPiecePlaced);
 
-            BlockPos thirdPiecePos = new BlockPos(startingPosition.getX(), startingPosition.getY(), startingPosition.getZ() + initialDeckPieceBB.getZSize() * 2);
+            BlockPos thirdPiecePos = new BlockPos(startingPosition.getX(), startingPosition.getY(), startingPosition.getZ() + firstDeckPieceBB.getZSize() * 2);
             JigsawPiece thirdDeckPiece = getRandomDeckPiece();
             AbstractVillagePiece thirdDeckPiecePlaced = createAbstractPiece(thirdDeckPiece, thirdPiecePos, Rotation.NONE);
             structurePieces.add(thirdDeckPiecePlaced);
+        }
+
+        public void createPiece() {
+            for (int i = 0; i < minDeckPieces; i++) {
+                JigsawPiece deckPiece = getRandomDeckPiece();
+                ModFiddle.LOGGER.debug("Step: " + i);
+                if (deckPieces.isEmpty()) {
+                    deckPieces.add(createAbstractPiece(deckPiece, startingPosition, Rotation.NONE));
+                }
+                else {
+                    MutableBoundingBox prevPieceBB = deckPieces.get(i-1).getBoundingBox();
+                    ModFiddle.LOGGER.debug("Prev BB: " + deckPieces.get(i-1).getBoundingBox());
+                    BlockPos deckPos = new BlockPos(startingPosition.getX(), startingPosition.getY(), prevPieceBB.minZ + prevPieceBB.getZSize());
+                    deckPieces.add(createAbstractPiece(deckPiece, deckPos, Rotation.NONE));
+                }
+                ModFiddle.LOGGER.debug("BB: " + deckPieces.get(i).getBoundingBox());
+            }
+            structurePieces.addAll(deckPieces);
         }
 
         private JigsawPiece getRandomDeckPiece() {
