@@ -1,6 +1,7 @@
 package com.greffgreff.modfiddle.world.structure.structures.bridge;
 
 import com.greffgreff.modfiddle.ModFiddle;
+import com.greffgreff.modfiddle.world.util.WeightedItems;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.block.Block;
 import net.minecraft.block.JigsawBlock;
@@ -41,8 +42,6 @@ public class BridgePieces {
         this.startingPosition = startingPosition;
         this.structurePieces = structurePieces;
         this.random = random;
-
-        ModFiddle.LOGGER.debug("Components: " + structurePieces.size());
     }
 
     public void generateBridge() {
@@ -53,11 +52,6 @@ public class BridgePieces {
     private JigsawPattern getPool(ResourceLocation resourceLocation) {
         Supplier<JigsawPattern> piecesPool = () -> dynamicRegistries.getRegistry(Registry.JIGSAW_POOL_KEY).getOrDefault(resourceLocation);
         return piecesPool.get();
-    }
-
-    private JigsawPiece getRandomJigsawPiece(List<JigsawPiece> candidatePieces) {
-        int randomInt = ThreadLocalRandom.current().nextInt(0, candidatePieces.size());
-        return candidatePieces.get(randomInt);
     }
 
     private static String getPieceName(JigsawPiece jigsawPiece) {
@@ -94,33 +88,36 @@ public class BridgePieces {
         public static final int minBridgeDeckLength = 3;
         public static final int maxBridgeDeckLength = 5;
         public final Rotation rotation = Rotation.randomRotation(random);
-        public final JigsawPattern bridgePool = getPool(new ResourceLocation(ModFiddle.MOD_ID, "bridge/bridge"));
+        public final JigsawPattern deckPool = getPool(new ResourceLocation(ModFiddle.MOD_ID, "bridge/bridge"));
+        public final List<Pair<JigsawPiece, Integer>> jigsawPieces = deckPool.rawTemplates;
+        public final WeightedItems<JigsawPiece> weightedDeckPieces = new WeightedItems<>(random);
+
+        public DeckPiece() {
+            jigsawPieces.forEach(p -> weightedDeckPieces.add(p.getSecond().doubleValue(), p.getFirst()));
+        }
 
         public void createPiece() {
-            JigsawPiece initialDeckPiece = getRandomDeckPiece(bridgePool.getShuffledPieces(random));
+            JigsawPiece initialDeckPiece = getRandomDeckPiece(jigsawPieces);
             AbstractVillagePiece initialDeckPiecePlaced = createAbstractPiece(initialDeckPiece, startingPosition, Rotation.NONE);
             structurePieces.add(initialDeckPiecePlaced);
-
-            List<Pair<JigsawPiece, Integer>> jigsawPieces = bridgePool.rawTemplates;
-            jigsawPieces.forEach(x -> ModFiddle.LOGGER.debug("Piece: " + getPieceName(x.getFirst()) + " Integer: " + x.getSecond()));
 
             MutableBoundingBox initialDeckPieceBB = initialDeckPiecePlaced.getBoundingBox();
 
             BlockPos secondPiecePos = new BlockPos(startingPosition.getX(), startingPosition.getY(), startingPosition.getZ() + initialDeckPieceBB.getZSize());
-            JigsawPiece secondDeckPiece = getRandomDeckPiece(bridgePool.getShuffledPieces(random));
+            JigsawPiece secondDeckPiece = getRandomDeckPiece(jigsawPieces);
             AbstractVillagePiece secondDeckPiecePlaced = createAbstractPiece(secondDeckPiece, secondPiecePos, Rotation.NONE);
             structurePieces.add(secondDeckPiecePlaced);
 
             BlockPos thirdPiecePos = new BlockPos(startingPosition.getX(), startingPosition.getY(), startingPosition.getZ() + initialDeckPieceBB.getZSize() * 2);
-            JigsawPiece thirdDeckPiece = getRandomDeckPiece(bridgePool.getShuffledPieces(random));
+            JigsawPiece thirdDeckPiece = getRandomDeckPiece(jigsawPieces);
             AbstractVillagePiece thirdDeckPiecePlaced = createAbstractPiece(thirdDeckPiece, thirdPiecePos, Rotation.NONE);
             structurePieces.add(thirdDeckPiecePlaced);
         }
 
-        private JigsawPiece getRandomDeckPiece(List<JigsawPiece> jigsawPieces) {
+        private JigsawPiece getRandomDeckPiece(List<Pair<JigsawPiece, Integer>> jigsawPieces) {
             JigsawPiece deckPiece;
             do {
-                deckPiece = getRandomJigsawPiece(jigsawPieces);
+                deckPiece = weightedDeckPieces.next();
                 ModFiddle.LOGGER.debug(getPieceName(deckPiece));
             } while (!getPieceName(deckPiece).contains("walk"));
             return deckPiece;
