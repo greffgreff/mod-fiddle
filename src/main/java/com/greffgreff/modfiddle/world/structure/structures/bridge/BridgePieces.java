@@ -20,6 +20,7 @@ import net.minecraft.world.gen.feature.structure.AbstractVillagePiece;
 import net.minecraft.world.gen.feature.structure.StructurePiece;
 import net.minecraft.world.gen.feature.template.Template;
 import net.minecraft.world.gen.feature.template.TemplateManager;
+import net.minecraftforge.fml.common.Mod;
 
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
@@ -137,11 +138,28 @@ public class BridgePieces {
 
         public void createPiece() {
             JigsawPiece towerSpine = getRandomPillarSpinePiece();
-            AbstractVillagePiece towerSpinePlaced = createAbstractPiece(towerSpine, startingPosition, Rotation.NONE);
-            towerPieces.add(towerSpinePlaced);
             JigsawPiece towerHead = getRandomPillarHeadPiece();
-            BlockPos towerHeadPos = new BlockPos(startingPosition.getX(), startingPosition.getY() + towerSpinePlaced.getBoundingBox().getYSize(), startingPosition.getZ());
-            towerPieces.add(createAbstractPiece(towerHead, towerHeadPos, Rotation.NONE));
+
+            AbstractVillagePiece towerSpinePlaced = createAbstractPiece(towerSpine, startingPosition, Rotation.NONE);
+            AbstractVillagePiece towerHeadPlaced = createAbstractPiece(towerHead, startingPosition, Rotation.NONE);;
+
+            for (Template.BlockInfo towerSpineJigsawBlock : towerSpine.getJigsawBlocks(templateManager, BlockPos.ZERO, Rotation.NONE, random)) {
+                for (Template.BlockInfo towerHeadJigsawBlock: towerHead.getJigsawBlocks(templateManager, BlockPos.ZERO, Rotation.NONE, random)) {
+                    if (JigsawBlock.hasJigsawMatch(towerSpineJigsawBlock, towerHeadJigsawBlock)) {
+                        int xDelta = towerSpineJigsawBlock.pos.getX() - towerHeadJigsawBlock.pos.getX();
+                        int yDelta = towerSpineJigsawBlock.pos.getY() - towerHeadJigsawBlock.pos.getY();
+                        int zDelta = towerSpineJigsawBlock.pos.getZ() - towerHeadJigsawBlock.pos.getZ();
+                        ModFiddle.LOGGER.debug("Computed pos: " + new BlockPos(xDelta, yDelta, zDelta));
+                        ModFiddle.LOGGER.debug("Head jigsaw pos: " + towerHeadJigsawBlock.pos);
+                        ModFiddle.LOGGER.debug("Pillar jigsaw pos: " + towerSpineJigsawBlock.pos);
+                        ModFiddle.LOGGER.debug("Computed pos: " + new BlockPos(xDelta, yDelta, zDelta));
+                        towerHeadPlaced.offset(xDelta, yDelta, zDelta);
+                    }
+                }
+            }
+
+            towerPieces.add(towerSpinePlaced);
+            towerPieces.add(towerHeadPlaced);
             structurePieces.addAll(towerPieces);
         }
 
