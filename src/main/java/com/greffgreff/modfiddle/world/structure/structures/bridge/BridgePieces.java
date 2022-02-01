@@ -4,24 +4,33 @@ import com.greffgreff.modfiddle.ModFiddle;
 import com.greffgreff.modfiddle.world.util.WeightedItems;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.JigsawBlock;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.util.registry.DynamicRegistries;
 import net.minecraft.util.registry.MutableRegistry;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.world.ISeedReader;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.feature.jigsaw.*;
 import net.minecraft.world.gen.feature.structure.AbstractVillagePiece;
+import net.minecraft.world.gen.feature.structure.IStructurePieceType;
+import net.minecraft.world.gen.feature.structure.StructureManager;
 import net.minecraft.world.gen.feature.structure.StructurePiece;
 import net.minecraft.world.gen.feature.template.Template;
 import net.minecraft.world.gen.feature.template.TemplateManager;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.fml.common.Mod;
 
+import javax.annotation.Nullable;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.Supplier;
@@ -139,7 +148,6 @@ public class BridgePieces {
         public void createPiece() {
             JigsawPiece towerSpine = getRandomPillarSpinePiece();
             JigsawPiece towerHead = getRandomPillarHeadPiece();
-
             AbstractVillagePiece towerSpinePlaced = createAbstractPiece(towerSpine, startingPosition, Rotation.NONE);
             AbstractVillagePiece towerHeadPlaced = createAbstractPiece(towerHead, startingPosition, Rotation.NONE);;
 
@@ -149,10 +157,6 @@ public class BridgePieces {
                         int xDelta = towerSpineJigsawBlock.pos.getX() - towerHeadJigsawBlock.pos.getX();
                         int yDelta = towerSpineJigsawBlock.pos.getY() - towerHeadJigsawBlock.pos.getY();
                         int zDelta = towerSpineJigsawBlock.pos.getZ() - towerHeadJigsawBlock.pos.getZ();
-                        ModFiddle.LOGGER.debug("Computed pos: " + new BlockPos(xDelta, yDelta, zDelta));
-                        ModFiddle.LOGGER.debug("Head jigsaw pos: " + towerHeadJigsawBlock.pos);
-                        ModFiddle.LOGGER.debug("Pillar jigsaw pos: " + towerSpineJigsawBlock.pos);
-                        ModFiddle.LOGGER.debug("Computed pos: " + new BlockPos(xDelta, yDelta, zDelta));
                         towerHeadPlaced.offset(xDelta, yDelta, zDelta);
                     }
                 }
@@ -161,6 +165,14 @@ public class BridgePieces {
             towerPieces.add(towerSpinePlaced);
             towerPieces.add(towerHeadPlaced);
             structurePieces.addAll(towerPieces);
+
+            MutableBoundingBox towerBB = towerHeadPlaced.getBoundingBox();
+            for (int x = 0; x < towerBB.getXSize(); x++) {
+                for (int z = 0; z < towerBB.getZSize(); z++) {
+                    int terrainFloor = chunkGenerator.getNoiseHeight(x + towerSpinePlaced.getPos().getX(), z + towerSpinePlaced.getPos().getZ(), Heightmap.Type.OCEAN_FLOOR_WG);
+                    int groundDelta = towerBB.minY - terrainFloor;
+                }
+            }
         }
 
         private JigsawPiece getRandomPillarSpinePiece() {
