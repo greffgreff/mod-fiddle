@@ -94,24 +94,6 @@ public class BridgePieces {
             deckPool.rawTemplates.forEach(p -> weightedDeckPieces.add(p.getSecond().doubleValue(), p.getFirst()));
         }
 
-        public void createPieceAlt() {
-            JigsawPiece firstDeckPiece = getRandomDeckPiece();
-            AbstractVillagePiece firstDeckPiecePlaced = createAbstractPiece(firstDeckPiece, startingPosition, Rotation.NONE);
-            structurePieces.add(firstDeckPiecePlaced);
-
-            MutableBoundingBox firstDeckPieceBB = firstDeckPiecePlaced.getBoundingBox();
-
-            BlockPos secondPiecePos = new BlockPos(startingPosition.getX(), startingPosition.getY(), startingPosition.getZ() + firstDeckPieceBB.getZSize());
-            JigsawPiece secondDeckPiece = getRandomDeckPiece();
-            AbstractVillagePiece secondDeckPiecePlaced = createAbstractPiece(secondDeckPiece, secondPiecePos, Rotation.NONE);
-            structurePieces.add(secondDeckPiecePlaced);
-
-            BlockPos thirdPiecePos = new BlockPos(startingPosition.getX(), startingPosition.getY(), startingPosition.getZ() + firstDeckPieceBB.getZSize() * 2);
-            JigsawPiece thirdDeckPiece = getRandomDeckPiece();
-            AbstractVillagePiece thirdDeckPiecePlaced = createAbstractPiece(thirdDeckPiece, thirdPiecePos, Rotation.NONE);
-            structurePieces.add(thirdDeckPiecePlaced);
-        }
-
         public void createPiece() {
             for (int i = 0; i < minDeckPieces; i++) {
                 JigsawPiece deckPiece = getRandomDeckPiece();
