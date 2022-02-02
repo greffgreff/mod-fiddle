@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class DeckPiece extends BridgePiece{
+public class DeckPiece extends BridgePiece {
     public final WeightedItems<JigsawPiece> weightedDeckPieces = new WeightedItems<>(random);
     public final JigsawPattern deckPool = getPool(new ResourceLocation(ModFiddle.MOD_ID, "bridge/bridge"));
     public final List<StructurePiece> deckPieces = new ArrayList<>();
