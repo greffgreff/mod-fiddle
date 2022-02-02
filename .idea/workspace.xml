@@ -4,9 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="added tower piece class">
+    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="added deck piece class">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/gen/ModStructureGeneration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/gen/ModStructureGeneration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/BridgePiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/BridgePiece.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/BridgePieces.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/BridgePieces.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/BridgeStructure.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/BridgeStructure.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/DeckPiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/DeckPiece.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/accesstransformer.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/accesstransformer.cfg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/data/modfiddle/worldgen/configured_structure_feature/bridge_structure.json" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -137,48 +143,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1641992804058</updated>
-    </task>
-    <task id="LOCAL-00055" summary="increased structure scarcity">
-      <created>1643088865753</created>
-      <option name="number" value="00055" />
-      <option name="presentableId" value="LOCAL-00055" />
-      <option name="project" value="LOCAL" />
-      <updated>1643088865753</updated>
-    </task>
-    <task id="LOCAL-00056" summary="completed annotation on JigsawManager class">
-      <created>1643088886760</created>
-      <option name="number" value="00056" />
-      <option name="presentableId" value="LOCAL-00056" />
-      <option name="project" value="LOCAL" />
-      <updated>1643088886760</updated>
-    </task>
-    <task id="LOCAL-00057" summary="removed JigsawGeneration class in favor of JigsawManager">
-      <created>1643092362648</created>
-      <option name="number" value="00057" />
-      <option name="presentableId" value="LOCAL-00057" />
-      <option name="project" value="LOCAL" />
-      <updated>1643092362648</updated>
-    </task>
-    <task id="LOCAL-00058" summary="added codec sample code">
-      <created>1643092378814</created>
-      <option name="number" value="00058" />
-      <option name="presentableId" value="LOCAL-00058" />
-      <option name="project" value="LOCAL" />
-      <updated>1643092378814</updated>
-    </task>
-    <task id="LOCAL-00059" summary="added more sample code in JigsawConfig">
-      <created>1643092960015</created>
-      <option name="number" value="00059" />
-      <option name="presentableId" value="LOCAL-00059" />
-      <option name="project" value="LOCAL" />
-      <updated>1643092960015</updated>
-    </task>
-    <task id="LOCAL-00060" summary="worked on JigsawConfig class">
-      <created>1643096514858</created>
-      <option name="number" value="00060" />
-      <option name="presentableId" value="LOCAL-00060" />
-      <option name="project" value="LOCAL" />
-      <updated>1643096514858</updated>
     </task>
     <task id="LOCAL-00061" summary="removed unnecessary imports">
       <created>1643096575931</created>
@@ -481,7 +445,49 @@
       <option name="project" value="LOCAL" />
       <updated>1643687927440</updated>
     </task>
-    <option name="localTasksCounter" value="104" />
+    <task id="LOCAL-00104" summary="made tower head positioning relative to tower spine jigsaw block">
+      <created>1643691568534</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1643691568534</updated>
+    </task>
+    <task id="LOCAL-00105" summary="added bridge piece class">
+      <created>1643745271369</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1643745271369</updated>
+    </task>
+    <task id="LOCAL-00106" summary="removed bridge piece class">
+      <created>1643745285670</created>
+      <option name="number" value="00106" />
+      <option name="presentableId" value="LOCAL-00106" />
+      <option name="project" value="LOCAL" />
+      <updated>1643745285670</updated>
+    </task>
+    <task id="LOCAL-00107" summary="made class abstract">
+      <created>1643746013464</created>
+      <option name="number" value="00107" />
+      <option name="presentableId" value="LOCAL-00107" />
+      <option name="project" value="LOCAL" />
+      <updated>1643746013464</updated>
+    </task>
+    <task id="LOCAL-00108" summary="added tower piece class">
+      <created>1643746050970</created>
+      <option name="number" value="00108" />
+      <option name="presentableId" value="LOCAL-00108" />
+      <option name="project" value="LOCAL" />
+      <updated>1643746050970</updated>
+    </task>
+    <task id="LOCAL-00109" summary="added deck piece class">
+      <created>1643746185637</created>
+      <option name="number" value="00109" />
+      <option name="presentableId" value="LOCAL-00109" />
+      <option name="project" value="LOCAL" />
+      <updated>1643746185638</updated>
+    </task>
+    <option name="localTasksCounter" value="110" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -497,11 +503,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="renamed to JigsawManager.java" />
-    <MESSAGE value="optimized imports" />
-    <MESSAGE value="fixed end cap for pillar heads" />
-    <MESSAGE value="removed previous JigsawManager class call" />
-    <MESSAGE value="removed unused code commented" />
     <MESSAGE value="worked on jigsaw manager constraints" />
     <MESSAGE value="updated nbt models and json pools" />
     <MESSAGE value="fixed waterlogged models" />
@@ -521,7 +522,12 @@
     <MESSAGE value="code cleanups" />
     <MESSAGE value="made createPiece() more scalable with forloop" />
     <MESSAGE value="removed original createPiece method" />
+    <MESSAGE value="made tower head positioning relative to tower spine jigsaw block" />
+    <MESSAGE value="added bridge piece class" />
+    <MESSAGE value="removed bridge piece class" />
+    <MESSAGE value="made class abstract" />
     <MESSAGE value="added tower piece class" />
-    <option name="LAST_COMMIT_MESSAGE" value="added tower piece class" />
+    <MESSAGE value="added deck piece class" />
+    <option name="LAST_COMMIT_MESSAGE" value="added deck piece class" />
   </component>
 </project>
