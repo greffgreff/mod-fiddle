@@ -53,8 +53,8 @@ public class BridgeStructure extends Structure<NoFeatureConfig> {
         public void func_230364_a_(DynamicRegistries dynamicRegistries, ChunkGenerator chunkGenerator, TemplateManager templateManager, int chunkX, int chunkZ, Biome biome, NoFeatureConfig noFeatureConfig) {
             int x = chunkX * 16;
             int z = chunkZ * 16;
-            int submergedBaseOffset = -6;
-            BlockPos centerPos = new BlockPos(x, 70, z);
+            int submergedBaseOffset = chunkGenerator.getSeaLevel()-7;
+            BlockPos centerPos = new BlockPos(x, submergedBaseOffset, z);
             Rotation rotation = Rotation.randomRotation(rand);
 
             BridgePieces bridgePieces = new BridgePieces(dynamicRegistries, chunkGenerator, templateManager, centerPos, components, rand);
