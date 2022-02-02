@@ -36,10 +36,6 @@ public abstract class BridgePiece {
         this.random = random;
     }
 
-    public void generateBridge() {
-        createPiece();
-    }
-
     protected JigsawPattern getPool(ResourceLocation resourceLocation) {
         Supplier<JigsawPattern> piecesPool = () -> dynamicRegistries.getRegistry(Registry.JIGSAW_POOL_KEY).getOrDefault(resourceLocation);
         return piecesPool.get();
