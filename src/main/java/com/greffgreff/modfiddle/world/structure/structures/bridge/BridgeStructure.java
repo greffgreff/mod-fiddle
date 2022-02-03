@@ -1,6 +1,5 @@
 package com.greffgreff.modfiddle.world.structure.structures.bridge;
 
-import com.greffgreff.modfiddle.world.structure.structures.bridge.pieces.BridgePieces;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.SharedSeedRandom;
 import net.minecraft.util.math.BlockPos;
@@ -50,8 +49,7 @@ public class BridgeStructure extends Structure<NoFeatureConfig> {
             int submergedBaseOffset = chunkGenerator.getSeaLevel()-7;
             BlockPos centerPos = new BlockPos(x, submergedBaseOffset, z);
             Rotation rotation = Rotation.randomRotation(rand);
-            BridgePieces bridgePieces = new BridgePieces(dynamicRegistries, chunkGenerator, templateManager, centerPos, components, rand);
-            bridgePieces.generateBridge();
+            BridgeGeneration.generateBridge(dynamicRegistries, chunkGenerator, templateManager, centerPos, components, rand);
             this.recalculateStructureSize();
         }
     }
