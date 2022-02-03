@@ -38,23 +38,23 @@ public class DeckPiece extends AbstractBridgePiece {
     public List<StructurePiece> createPiece() {
         for (int i = 0; i < deckLength; i++) {
             JigsawPiece deckPiece = getRandomDeckPiece();
-            if (this.structurePieces.isEmpty()) {
-                this.structurePieces.add(createAbstractPiece(deckPiece, startingPosition, Rotation.NONE));
+            if (structurePieces.isEmpty()) {
+                structurePieces.add(createAbstractPiece(deckPiece, startingPosition, Rotation.NONE));
             }
             else {
-                MutableBoundingBox prevPieceBB = this.structurePieces.get(i-1).getBoundingBox();
+                MutableBoundingBox prevPieceBB = structurePieces.get(i-1).getBoundingBox();
                 BlockPos deckPos = new BlockPos(startingPosition.getX(), startingPosition.getY(), prevPieceBB.minZ + prevPieceBB.getZSize());
-                this.structurePieces.add(createAbstractPiece(deckPiece, deckPos, Rotation.NONE));
+                structurePieces.add(createAbstractPiece(deckPiece, deckPos, Rotation.NONE));
             }
         }
 
-        return this.structurePieces;
+        return structurePieces;
     }
 
     private JigsawPiece getRandomDeckPiece() {
         JigsawPiece deckPiece;
         do {
-            deckPiece = this.weightedPieces.next();
+            deckPiece = weightedPieces.next();
         } while (!getPieceName(deckPiece).contains("walk"));
         return deckPiece;
     }

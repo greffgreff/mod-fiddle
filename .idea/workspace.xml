@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="removed piece lists">
+    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="replaced generation bridge method to static one">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/BridgeGeneration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/BridgeGeneration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/BridgeStructure.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/BridgeStructure.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/AbstractBridgePiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/AbstractBridgePiece.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/DeckPiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/DeckPiece.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/TowerPiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/TowerPiece.java" afterDir="false" />
     </list>
@@ -80,6 +78,9 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="ToolWindowRun.ShowToolbar" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="reference.settings.ide.settings.file-colors" />
   </component>
@@ -142,34 +143,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1641992804058</updated>
-    </task>
-    <task id="LOCAL-00074" summary="changed processing to JigsawManagerReloaded class">
-      <created>1643298259380</created>
-      <option name="number" value="00074" />
-      <option name="presentableId" value="LOCAL-00074" />
-      <option name="project" value="LOCAL" />
-      <updated>1643298259380</updated>
-    </task>
-    <task id="LOCAL-00075" summary="annotation and code refactoring">
-      <created>1643298279049</created>
-      <option name="number" value="00075" />
-      <option name="presentableId" value="LOCAL-00075" />
-      <option name="project" value="LOCAL" />
-      <updated>1643298279049</updated>
-    </task>
-    <task id="LOCAL-00076" summary="moved TotemStructure class to dedicated package">
-      <created>1643298457073</created>
-      <option name="number" value="00076" />
-      <option name="presentableId" value="LOCAL-00076" />
-      <option name="project" value="LOCAL" />
-      <updated>1643298457073</updated>
-    </task>
-    <task id="LOCAL-00077" summary="changed imports">
-      <created>1643298470701</created>
-      <option name="number" value="00077" />
-      <option name="presentableId" value="LOCAL-00077" />
-      <option name="project" value="LOCAL" />
-      <updated>1643298470701</updated>
     </task>
     <task id="LOCAL-00078" summary="renamed class to JigsawManager from JigsawManagerReloaded">
       <created>1643298497966</created>
@@ -486,7 +459,35 @@
       <option name="project" value="LOCAL" />
       <updated>1643883756202</updated>
     </task>
-    <option name="localTasksCounter" value="123" />
+    <task id="LOCAL-00123" summary="removed structure pieces param, moved variables to super">
+      <created>1643893203097</created>
+      <option name="number" value="00123" />
+      <option name="presentableId" value="LOCAL-00123" />
+      <option name="project" value="LOCAL" />
+      <updated>1643893203097</updated>
+    </task>
+    <task id="LOCAL-00124" summary="removed structure pieces from params">
+      <created>1643893223783</created>
+      <option name="number" value="00124" />
+      <option name="presentableId" value="LOCAL-00124" />
+      <option name="project" value="LOCAL" />
+      <updated>1643893223783</updated>
+    </task>
+    <task id="LOCAL-00125" summary="removed structure pieces  from params in AbstractBridgePiece">
+      <created>1643893246988</created>
+      <option name="number" value="00125" />
+      <option name="presentableId" value="LOCAL-00125" />
+      <option name="project" value="LOCAL" />
+      <updated>1643893246988</updated>
+    </task>
+    <task id="LOCAL-00126" summary="replaced generation bridge method to static one">
+      <created>1643893286632</created>
+      <option name="number" value="00126" />
+      <option name="presentableId" value="LOCAL-00126" />
+      <option name="project" value="LOCAL" />
+      <updated>1643893286632</updated>
+    </task>
+    <option name="localTasksCounter" value="127" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -502,10 +503,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="added rawTemplate AT (over getShuffled)" />
-    <MESSAGE value="removed StructurePieceReader.java" />
-    <MESSAGE value="added WeightedItems class to handle structure piece and their weights" />
-    <MESSAGE value="removed getRandomPiece method" />
     <MESSAGE value="code cleanups" />
     <MESSAGE value="made createPiece() more scalable with forloop" />
     <MESSAGE value="removed original createPiece method" />
@@ -527,6 +524,10 @@
     <MESSAGE value="removed bridge pieces class" />
     <MESSAGE value="implemented get BB and get jigsaw blocks methods" />
     <MESSAGE value="removed piece lists" />
-    <option name="LAST_COMMIT_MESSAGE" value="removed piece lists" />
+    <MESSAGE value="removed structure pieces param, moved variables to super" />
+    <MESSAGE value="removed structure pieces from params" />
+    <MESSAGE value="removed structure pieces  from params in AbstractBridgePiece" />
+    <MESSAGE value="replaced generation bridge method to static one" />
+    <option name="LAST_COMMIT_MESSAGE" value="replaced generation bridge method to static one" />
   </component>
 </project>

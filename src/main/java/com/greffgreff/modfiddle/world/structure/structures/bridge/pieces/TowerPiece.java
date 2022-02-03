@@ -37,22 +37,22 @@ public class TowerPiece extends AbstractBridgePiece {
     public List<StructurePiece> createPiece() {
         JigsawPiece towerSpine = getRandomPillarSpinePiece();
         JigsawPiece towerHead = getRandomPillarHeadPiece();
-        AbstractVillagePiece towerSpinePlaced = createAbstractPiece(towerSpine, startingPosition, Rotation.randomRotation(this.random));
-        AbstractVillagePiece towerHeadPlaced = createAbstractPiece(towerHead, startingPosition, Rotation.randomRotation(this.random));;
+        AbstractVillagePiece towerSpinePlaced = createAbstractPiece(towerSpine, startingPosition, Rotation.NONE);
+        AbstractVillagePiece towerHeadPlaced = createAbstractPiece(towerHead, startingPosition, Rotation.NONE);
 
-        for (Template.BlockInfo towerSpineJigsawBlock : towerSpine.getJigsawBlocks(templateManager, BlockPos.ZERO, Rotation.randomRotation(this.random), random)) {
-            for (Template.BlockInfo towerHeadJigsawBlock: towerHead.getJigsawBlocks(templateManager, BlockPos.ZERO, Rotation.randomRotation(this.random), random)) {
+        for (Template.BlockInfo towerSpineJigsawBlock : towerSpine.getJigsawBlocks(templateManager, BlockPos.ZERO, Rotation.NONE, random)) {
+            for (Template.BlockInfo towerHeadJigsawBlock: towerHead.getJigsawBlocks(templateManager, BlockPos.ZERO, Rotation.NONE, random)) {
                 if (JigsawBlock.hasJigsawMatch(towerSpineJigsawBlock, towerHeadJigsawBlock)) {
                     int xDelta = towerSpineJigsawBlock.pos.getX() - towerHeadJigsawBlock.pos.getX();
-                    int yDelta = towerSpineJigsawBlock.pos.getY() - towerHeadJigsawBlock.pos.getY();
+                    int yDelta = towerSpineJigsawBlock.pos.getY() - towerHeadJigsawBlock.pos.getY() + 1;
                     int zDelta = towerSpineJigsawBlock.pos.getZ() - towerHeadJigsawBlock.pos.getZ();
                     towerHeadPlaced.offset(xDelta, yDelta, zDelta);
                 }
             }
         }
 
-        this.structurePieces.add(towerSpinePlaced);
-        this.structurePieces.add(towerHeadPlaced);
+        structurePieces.add(towerSpinePlaced);
+        structurePieces.add(towerHeadPlaced);
 
         MutableBoundingBox towerBB = towerHeadPlaced.getBoundingBox();
         for (int x = 0; x < towerBB.getXSize(); x++) {
@@ -62,13 +62,13 @@ public class TowerPiece extends AbstractBridgePiece {
             }
         }
 
-        return this.structurePieces;
+        return structurePieces;
     }
 
     private JigsawPiece getRandomPillarSpinePiece() {
         JigsawPiece deckPiece;
         do {
-            deckPiece = this.weightedPieces.next();
+            deckPiece = weightedPieces.next();
         } while (!getPieceName(deckPiece).contains("pillarspine"));
         return deckPiece;
     }
@@ -76,7 +76,7 @@ public class TowerPiece extends AbstractBridgePiece {
     private JigsawPiece getRandomPillarHeadPiece() {
         JigsawPiece deckPiece;
         do {
-            deckPiece = this.weightedPieces.next();
+            deckPiece = weightedPieces.next();
         } while (!getPieceName(deckPiece).contains("pillarhead"));
         return deckPiece;
     }
