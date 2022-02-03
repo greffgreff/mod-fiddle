@@ -1,4 +1,4 @@
-package com.greffgreff.modfiddle.world.structure.structures.bridge;
+package com.greffgreff.modfiddle.world.structure.structures.bridge.pieces;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
@@ -17,7 +17,7 @@ import net.minecraft.world.gen.feature.template.TemplateManager;
 import java.util.*;
 import java.util.function.Supplier;
 
-public abstract class BridgePiece {
+public abstract class AbstractBridgePiece extends JigsawPiece {
     public final DynamicRegistries dynamicRegistries;
     public final MutableRegistry<JigsawPattern> jigsawPoolRegistry;
     public final ChunkGenerator chunkGenerator;
@@ -26,7 +26,8 @@ public abstract class BridgePiece {
     public final List<StructurePiece> structurePieces;
     public final Random random;
 
-    public BridgePiece(DynamicRegistries dynamicRegistries, ChunkGenerator chunkGenerator, TemplateManager templateManager, BlockPos startingPosition, List<StructurePiece> structurePieces, Random random) {
+    public AbstractBridgePiece(DynamicRegistries dynamicRegistries, ChunkGenerator chunkGenerator, TemplateManager templateManager, BlockPos startingPosition, List<StructurePiece> structurePieces, Random random) {
+        super(JigsawPattern.PlacementBehaviour.RIGID);
         this.dynamicRegistries = dynamicRegistries;
         this.jigsawPoolRegistry = dynamicRegistries.getRegistry(Registry.JIGSAW_POOL_KEY);
         this.chunkGenerator = chunkGenerator;
