@@ -1,4 +1,4 @@
-package com.greffgreff.modfiddle.world.structure.structures.bridge;
+package com.greffgreff.modfiddle.world.structure.structures.bridge.pieces;
 
 import com.greffgreff.modfiddle.ModFiddle;
 import com.greffgreff.modfiddle.world.util.WeightedItems;
@@ -17,14 +17,12 @@ import net.minecraft.util.registry.DynamicRegistries;
 import net.minecraft.util.registry.MutableRegistry;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.ISeedReader;
+import net.minecraft.world.IServerWorld;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.feature.jigsaw.*;
-import net.minecraft.world.gen.feature.structure.AbstractVillagePiece;
-import net.minecraft.world.gen.feature.structure.IStructurePieceType;
-import net.minecraft.world.gen.feature.structure.StructureManager;
-import net.minecraft.world.gen.feature.structure.StructurePiece;
+import net.minecraft.world.gen.feature.structure.*;
 import net.minecraft.world.gen.feature.template.Template;
 import net.minecraft.world.gen.feature.template.TemplateManager;
 import net.minecraft.world.server.ServerWorld;
@@ -55,46 +53,11 @@ public class BridgePieces {
     }
 
     public void generateBridge() {
-//        DeckPiece deckPiece = new DeckPiece(10);
-//        deckPiece.createPiece();
-
         TowerPiece towerPiece = new TowerPiece();
         towerPiece.createPiece();
-    }
 
-    private JigsawPattern getPool(ResourceLocation resourceLocation) {
-        Supplier<JigsawPattern> piecesPool = () -> dynamicRegistries.getRegistry(Registry.JIGSAW_POOL_KEY).getOrDefault(resourceLocation);
-        return piecesPool.get();
-    }
-
-    private static String getPieceName(JigsawPiece jigsawPiece) {
-        if (jigsawPiece == null) return "";
-        SingleJigsawPiece singleJigsawPiece = (SingleJigsawPiece) jigsawPiece;
-        return singleJigsawPiece.field_236839_c_.left().isPresent() ? singleJigsawPiece.field_236839_c_.left().get().getPath() : "";
-    }
-
-    private AbstractVillagePiece createAbstractPiece(JigsawPiece piece, BlockPos position, Rotation rotation) {
-        return new AbstractVillagePiece(templateManager, piece, position, piece.getGroundLevelDelta(), rotation, piece.getBoundingBox(templateManager, position, rotation));
-    }
-
-    private boolean validateJigsawBlockInfo(Template.BlockInfo originJigsawBlock) {
-        ResourceLocation originJigsawBlockPool = new ResourceLocation(originJigsawBlock.nbt.getString("pool"));
-        Optional<JigsawPattern> originJigsawBlockTargetPool = jigsawPoolRegistry.getOptional(originJigsawBlockPool);
-
-        if (!(originJigsawBlockTargetPool.isPresent() && (originJigsawBlockTargetPool.get().getNumberOfPieces() != 0 || Objects.equals(originJigsawBlockPool, JigsawPatternRegistry.field_244091_a.getLocation())))) {
-            ModFiddle.LOGGER.warn("Empty or nonexistent pool: {}", originJigsawBlockPool);
-            return false;
-        }
-
-        ResourceLocation originJigsawBlockFallback = originJigsawBlockTargetPool.get().getFallback();
-        Optional<JigsawPattern> originJigsawBlockFallbackPool = jigsawPoolRegistry.getOptional(originJigsawBlockFallback);
-
-        if (!(originJigsawBlockFallbackPool.isPresent() && (originJigsawBlockFallbackPool.get().getNumberOfPieces() != 0 || Objects.equals(originJigsawBlockFallback, JigsawPatternRegistry.field_244091_a.getLocation())))) {
-            ModFiddle.LOGGER.warn("Empty or nonexistent fallback pool: {}", originJigsawBlockFallback);
-            return false;
-        }
-
-        return true;
+//        DeckPiece deckPiece = new DeckPiece();
+//        deckPiece.createPiece();
     }
 
     private class DeckPiece {
@@ -152,12 +115,14 @@ public class BridgePieces {
             AbstractVillagePiece towerHeadPlaced = createAbstractPiece(towerHead, startingPosition, Rotation.NONE);;
 
             for (Template.BlockInfo towerSpineJigsawBlock : towerSpine.getJigsawBlocks(templateManager, BlockPos.ZERO, Rotation.NONE, random)) {
-                for (Template.BlockInfo towerHeadJigsawBlock: towerHead.getJigsawBlocks(templateManager, BlockPos.ZERO, Rotation.NONE, random)) {
-                    if (JigsawBlock.hasJigsawMatch(towerSpineJigsawBlock, towerHeadJigsawBlock)) {
-                        int xDelta = towerSpineJigsawBlock.pos.getX() - towerHeadJigsawBlock.pos.getX();
-                        int yDelta = towerSpineJigsawBlock.pos.getY() - towerHeadJigsawBlock.pos.getY();
-                        int zDelta = towerSpineJigsawBlock.pos.getZ() - towerHeadJigsawBlock.pos.getZ();
-                        towerHeadPlaced.offset(xDelta, yDelta, zDelta);
+                if (validateJigsawBlockInfo(towerSpineJigsawBlock)) {
+                    for (Template.BlockInfo towerHeadJigsawBlock: towerHead.getJigsawBlocks(templateManager, BlockPos.ZERO, Rotation.NONE, random)) {
+                        if (validateJigsawBlockInfo(towerHeadJigsawBlock) && JigsawBlock.hasJigsawMatch(towerSpineJigsawBlock, towerHeadJigsawBlock)) {
+                            int xDelta = towerSpineJigsawBlock.pos.getX() - towerHeadJigsawBlock.pos.getX();
+                            int yDelta = towerSpineJigsawBlock.pos.getY() - towerHeadJigsawBlock.pos.getY();
+                            int zDelta = towerSpineJigsawBlock.pos.getZ() - towerHeadJigsawBlock.pos.getZ();
+                            towerHeadPlaced.offset(xDelta, yDelta, zDelta);
+                        }
                     }
                 }
             }
@@ -190,5 +155,40 @@ public class BridgePieces {
             } while (!getPieceName(deckPiece).contains("pillarhead"));
             return deckPiece;
         }
+    }
+
+    private JigsawPattern getPool(ResourceLocation resourceLocation) {
+        Supplier<JigsawPattern> piecesPool = () -> dynamicRegistries.getRegistry(Registry.JIGSAW_POOL_KEY).getOrDefault(resourceLocation);
+        return piecesPool.get();
+    }
+
+    private static String getPieceName(JigsawPiece jigsawPiece) {
+        if (jigsawPiece == null) return "";
+        SingleJigsawPiece singleJigsawPiece = (SingleJigsawPiece) jigsawPiece;
+        return singleJigsawPiece.field_236839_c_.left().isPresent() ? singleJigsawPiece.field_236839_c_.left().get().getPath() : "";
+    }
+
+    private AbstractVillagePiece createAbstractPiece(JigsawPiece piece, BlockPos position, Rotation rotation) {
+        return new AbstractVillagePiece(templateManager, piece, position, piece.getGroundLevelDelta(), rotation, piece.getBoundingBox(templateManager, position, rotation));
+    }
+
+    private boolean validateJigsawBlockInfo(Template.BlockInfo originJigsawBlock) {
+        ResourceLocation originJigsawBlockPool = new ResourceLocation(originJigsawBlock.nbt.getString("pool"));
+        Optional<JigsawPattern> originJigsawBlockTargetPool = jigsawPoolRegistry.getOptional(originJigsawBlockPool);
+
+        if (!(originJigsawBlockTargetPool.isPresent() && (originJigsawBlockTargetPool.get().getNumberOfPieces() != 0 || Objects.equals(originJigsawBlockPool, JigsawPatternRegistry.field_244091_a.getLocation())))) {
+            ModFiddle.LOGGER.warn("Empty or nonexistent pool: {}", originJigsawBlockPool);
+            return false;
+        }
+
+        ResourceLocation originJigsawBlockFallback = originJigsawBlockTargetPool.get().getFallback();
+        Optional<JigsawPattern> originJigsawBlockFallbackPool = jigsawPoolRegistry.getOptional(originJigsawBlockFallback);
+
+        if (!(originJigsawBlockFallbackPool.isPresent() && (originJigsawBlockFallbackPool.get().getNumberOfPieces() != 0 || Objects.equals(originJigsawBlockFallback, JigsawPatternRegistry.field_244091_a.getLocation())))) {
+            ModFiddle.LOGGER.warn("Empty or nonexistent fallback pool: {}", originJigsawBlockFallback);
+            return false;
+        }
+
+        return true;
     }
 }
