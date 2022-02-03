@@ -17,8 +17,6 @@ public class BridgeGeneration {
     public static void generateBridge(DynamicRegistries dynamicRegistries, ChunkGenerator chunkGenerator, TemplateManager templateManager, BlockPos centerPos, List<StructurePiece> structurePieces, Random random) {
         ResourceLocation loc = new ResourceLocation(ModFiddle.MOD_ID, "bridge/bridge");
         TowerPiece piece = new TowerPiece(dynamicRegistries, chunkGenerator, templateManager, centerPos, random, loc);
-        piece.createPiece();
-
-
+        structurePieces.addAll(piece.createPiece());
     }
 }
