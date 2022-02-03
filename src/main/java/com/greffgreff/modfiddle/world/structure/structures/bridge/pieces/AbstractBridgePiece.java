@@ -1,5 +1,7 @@
 package com.greffgreff.modfiddle.world.structure.structures.bridge.pieces;
 
+import com.greffgreff.modfiddle.ModFiddle;
+import com.greffgreff.modfiddle.world.util.WeightedItems;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
@@ -28,21 +30,25 @@ public abstract class AbstractBridgePiece extends JigsawPiece {
     public final ChunkGenerator chunkGenerator;
     public final TemplateManager templateManager;
     public final BlockPos startingPosition;
-    public final List<StructurePiece> structurePieces;
+    public final List<StructurePiece> structurePieces = new ArrayList<>();
     public final Random random;
+    protected final WeightedItems<JigsawPiece> weightedPieces = new WeightedItems<>(); // should pass random
+    protected final JigsawPattern piecePool;
+    protected static final JigsawPattern.PlacementBehaviour PLACEMENT_BEHAVIOUR = JigsawPattern.PlacementBehaviour.RIGID;
 
-    public AbstractBridgePiece(DynamicRegistries dynamicRegistries, ChunkGenerator chunkGenerator, TemplateManager templateManager, BlockPos startingPosition, List<StructurePiece> structurePieces, Random random) {
-        super(JigsawPattern.PlacementBehaviour.RIGID);
+    public AbstractBridgePiece(DynamicRegistries dynamicRegistries, ChunkGenerator chunkGenerator, TemplateManager templateManager, BlockPos startingPosition, Random random, ResourceLocation poolLocation) {
+        super(PLACEMENT_BEHAVIOUR);
         this.dynamicRegistries = dynamicRegistries;
         this.jigsawPoolRegistry = dynamicRegistries.getRegistry(Registry.JIGSAW_POOL_KEY);
         this.chunkGenerator = chunkGenerator;
         this.templateManager = templateManager;
         this.startingPosition = startingPosition;
-        this.structurePieces = structurePieces;
         this.random = random;
+        piecePool = getPool(poolLocation);
+        piecePool.rawTemplates.forEach(p -> weightedPieces.add(p.getSecond().doubleValue(), p.getFirst()));
     }
 
-    protected JigsawPattern getPool(ResourceLocation resourceLocation) {
+    private JigsawPattern getPool(ResourceLocation resourceLocation) {
         Supplier<JigsawPattern> piecesPool = () -> dynamicRegistries.getRegistry(Registry.JIGSAW_POOL_KEY).getOrDefault(resourceLocation);
         return piecesPool.get();
     }
@@ -57,7 +63,7 @@ public abstract class AbstractBridgePiece extends JigsawPiece {
         return new AbstractVillagePiece(templateManager, piece, position, piece.getGroundLevelDelta(), rotation, piece.getBoundingBox(templateManager, position, rotation));
     }
 
-    protected abstract void createPiece();
+    protected abstract List<StructurePiece> createPiece();
 
     @Override
     public List<Template.BlockInfo> getJigsawBlocks(TemplateManager templateManager, BlockPos blockPos, Rotation rotation, Random random) {
