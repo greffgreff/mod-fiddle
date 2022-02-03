@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="removed bridge pieces class">
+    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="removed piece lists">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/BridgeGeneration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/BridgeGeneration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/BridgeStructure.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/BridgeStructure.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/AbstractBridgePiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/AbstractBridgePiece.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/DeckPiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/DeckPiece.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/TowerPiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/TowerPiece.java" afterDir="false" />
@@ -140,20 +142,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1641992804058</updated>
-    </task>
-    <task id="LOCAL-00072" summary="moved BridgeStructure class to dedicated struct folder">
-      <created>1643261452977</created>
-      <option name="number" value="00072" />
-      <option name="presentableId" value="LOCAL-00072" />
-      <option name="project" value="LOCAL" />
-      <updated>1643261452977</updated>
-    </task>
-    <task id="LOCAL-00073" summary="added pillar in fallback pool">
-      <created>1643298216694</created>
-      <option name="number" value="00073" />
-      <option name="presentableId" value="LOCAL-00073" />
-      <option name="project" value="LOCAL" />
-      <updated>1643298216694</updated>
     </task>
     <task id="LOCAL-00074" summary="changed processing to JigsawManagerReloaded class">
       <created>1643298259380</created>
@@ -484,7 +472,21 @@
       <option name="project" value="LOCAL" />
       <updated>1643882040431</updated>
     </task>
-    <option name="localTasksCounter" value="121" />
+    <task id="LOCAL-00121" summary="implemented get BB and get jigsaw blocks methods">
+      <created>1643883732930</created>
+      <option name="number" value="00121" />
+      <option name="presentableId" value="LOCAL-00121" />
+      <option name="project" value="LOCAL" />
+      <updated>1643883732930</updated>
+    </task>
+    <task id="LOCAL-00122" summary="removed piece lists">
+      <created>1643883756202</created>
+      <option name="number" value="00122" />
+      <option name="presentableId" value="LOCAL-00122" />
+      <option name="project" value="LOCAL" />
+      <updated>1643883756202</updated>
+    </task>
+    <option name="localTasksCounter" value="123" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -500,8 +502,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="added jigsawblock validation" />
-    <MESSAGE value="made generation work on worldgen" />
     <MESSAGE value="added rawTemplate AT (over getShuffled)" />
     <MESSAGE value="removed StructurePieceReader.java" />
     <MESSAGE value="added WeightedItems class to handle structure piece and their weights" />
@@ -525,6 +525,8 @@
     <MESSAGE value="removed unused methods" />
     <MESSAGE value="fiddled with climate stuff" />
     <MESSAGE value="removed bridge pieces class" />
-    <option name="LAST_COMMIT_MESSAGE" value="removed bridge pieces class" />
+    <MESSAGE value="implemented get BB and get jigsaw blocks methods" />
+    <MESSAGE value="removed piece lists" />
+    <option name="LAST_COMMIT_MESSAGE" value="removed piece lists" />
   </component>
 </project>

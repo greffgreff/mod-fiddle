@@ -13,9 +13,11 @@ import net.minecraft.world.ISeedReader;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.feature.jigsaw.IJigsawDeserializer;
+import net.minecraft.world.gen.feature.jigsaw.JigsawJunction;
 import net.minecraft.world.gen.feature.jigsaw.JigsawPattern;
 import net.minecraft.world.gen.feature.jigsaw.JigsawPiece;
 import net.minecraft.world.gen.feature.structure.AbstractVillagePiece;
+import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.feature.structure.StructureManager;
 import net.minecraft.world.gen.feature.structure.StructurePiece;
 import net.minecraft.world.gen.feature.template.Template;
@@ -26,22 +28,20 @@ import java.util.List;
 import java.util.Random;
 
 public class TowerPiece extends AbstractBridgePiece {
-    public final WeightedItems<JigsawPiece> weightedDeckPieces = new WeightedItems<>(random);
-    public final JigsawPattern towerPool = getPool(new ResourceLocation(ModFiddle.MOD_ID, "bridge/bridge"));
 
-    public TowerPiece(DynamicRegistries dynamicRegistries, ChunkGenerator chunkGenerator, TemplateManager templateManager, BlockPos startingPosition, List<StructurePiece> structurePieces, Random random) {
-        super(dynamicRegistries, chunkGenerator, templateManager, startingPosition, structurePieces, random);
-        towerPool.rawTemplates.forEach(p -> weightedDeckPieces.add(p.getSecond().doubleValue(), p.getFirst()));
+    public TowerPiece(DynamicRegistries dynamicRegistries, ChunkGenerator chunkGenerator, TemplateManager templateManager, BlockPos startingPosition, Random random, ResourceLocation poolLocation) {
+        super(dynamicRegistries, chunkGenerator, templateManager, startingPosition, random, poolLocation);
     }
 
-    public void createPiece() {
+    @Override
+    public List<StructurePiece> createPiece() {
         JigsawPiece towerSpine = getRandomPillarSpinePiece();
         JigsawPiece towerHead = getRandomPillarHeadPiece();
-        AbstractVillagePiece towerSpinePlaced = createAbstractPiece(towerSpine, startingPosition, Rotation.NONE);
-        AbstractVillagePiece towerHeadPlaced = createAbstractPiece(towerHead, startingPosition, Rotation.NONE);;
+        AbstractVillagePiece towerSpinePlaced = createAbstractPiece(towerSpine, startingPosition, Rotation.randomRotation(this.random));
+        AbstractVillagePiece towerHeadPlaced = createAbstractPiece(towerHead, startingPosition, Rotation.randomRotation(this.random));;
 
-        for (Template.BlockInfo towerSpineJigsawBlock : towerSpine.getJigsawBlocks(templateManager, BlockPos.ZERO, Rotation.NONE, random)) {
-            for (Template.BlockInfo towerHeadJigsawBlock: towerHead.getJigsawBlocks(templateManager, BlockPos.ZERO, Rotation.NONE, random)) {
+        for (Template.BlockInfo towerSpineJigsawBlock : towerSpine.getJigsawBlocks(templateManager, BlockPos.ZERO, Rotation.randomRotation(this.random), random)) {
+            for (Template.BlockInfo towerHeadJigsawBlock: towerHead.getJigsawBlocks(templateManager, BlockPos.ZERO, Rotation.randomRotation(this.random), random)) {
                 if (JigsawBlock.hasJigsawMatch(towerSpineJigsawBlock, towerHeadJigsawBlock)) {
                     int xDelta = towerSpineJigsawBlock.pos.getX() - towerHeadJigsawBlock.pos.getX();
                     int yDelta = towerSpineJigsawBlock.pos.getY() - towerHeadJigsawBlock.pos.getY();
@@ -61,12 +61,14 @@ public class TowerPiece extends AbstractBridgePiece {
                 int groundDelta = towerBB.minY - terrainFloor;
             }
         }
+
+        return this.structurePieces;
     }
 
     private JigsawPiece getRandomPillarSpinePiece() {
         JigsawPiece deckPiece;
         do {
-            deckPiece = weightedDeckPieces.next();
+            deckPiece = this.weightedPieces.next();
         } while (!getPieceName(deckPiece).contains("pillarspine"));
         return deckPiece;
     }
@@ -74,7 +76,7 @@ public class TowerPiece extends AbstractBridgePiece {
     private JigsawPiece getRandomPillarHeadPiece() {
         JigsawPiece deckPiece;
         do {
-            deckPiece = weightedDeckPieces.next();
+            deckPiece = this.weightedPieces.next();
         } while (!getPieceName(deckPiece).contains("pillarhead"));
         return deckPiece;
     }

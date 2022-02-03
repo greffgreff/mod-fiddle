@@ -23,21 +23,19 @@ import java.util.List;
 import java.util.Random;
 
 public class DeckPiece extends AbstractBridgePiece {
-    public final WeightedItems<JigsawPiece> weightedDeckPieces = new WeightedItems<>(random);
-    public final JigsawPattern deckPool = getPool(new ResourceLocation(ModFiddle.MOD_ID, "bridge/bridge"));
     public final int deckLength;
 
-    public DeckPiece(DynamicRegistries dynamicRegistries, ChunkGenerator chunkGenerator, TemplateManager templateManager, BlockPos startingPosition, List<StructurePiece> structurePieces, Random random, int deckLength) {
-        super(dynamicRegistries, chunkGenerator, templateManager, startingPosition, structurePieces, random);
-        deckPool.rawTemplates.forEach(p -> weightedDeckPieces.add(p.getSecond().doubleValue(), p.getFirst()));
+    public DeckPiece(DynamicRegistries dynamicRegistries, ChunkGenerator chunkGenerator, TemplateManager templateManager, BlockPos startingPosition, Random random, ResourceLocation poolLocation, int deckLength) {
+        super(dynamicRegistries, chunkGenerator, templateManager, startingPosition, random, poolLocation);
         this.deckLength = deckLength;
     }
 
-    public DeckPiece(DynamicRegistries dynamicRegistries, ChunkGenerator chunkGenerator, TemplateManager templateManager, BlockPos startingPosition, List<StructurePiece> structurePieces, Random random) {
-        this(dynamicRegistries, chunkGenerator, templateManager, startingPosition, structurePieces, random, 3);
+    public DeckPiece(DynamicRegistries dynamicRegistries, ChunkGenerator chunkGenerator, TemplateManager templateManager, BlockPos startingPosition, Random random, ResourceLocation poolLocation) {
+        this(dynamicRegistries, chunkGenerator, templateManager, startingPosition, random, poolLocation, 3);
     }
 
-    public void createPiece() {
+    @Override
+    public List<StructurePiece> createPiece() {
         for (int i = 0; i < deckLength; i++) {
             JigsawPiece deckPiece = getRandomDeckPiece();
             if (this.structurePieces.isEmpty()) {
@@ -49,12 +47,14 @@ public class DeckPiece extends AbstractBridgePiece {
                 this.structurePieces.add(createAbstractPiece(deckPiece, deckPos, Rotation.NONE));
             }
         }
+
+        return this.structurePieces;
     }
 
     private JigsawPiece getRandomDeckPiece() {
         JigsawPiece deckPiece;
         do {
-            deckPiece = weightedDeckPieces.next();
+            deckPiece = this.weightedPieces.next();
         } while (!getPieceName(deckPiece).contains("walk"));
         return deckPiece;
     }
