@@ -1,15 +1,12 @@
 package com.greffgreff.modfiddle.world.structure.structures.bridge;
 
-import com.greffgreff.modfiddle.ModFiddle;
-import com.greffgreff.modfiddle.world.util.JigsawManager;
-import net.minecraft.util.ResourceLocation;
+import com.greffgreff.modfiddle.world.structure.structures.bridge.pieces.BridgePieces;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.SharedSeedRandom;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.util.registry.DynamicRegistries;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.provider.BiomeProvider;
 import net.minecraft.world.gen.ChunkGenerator;
@@ -17,10 +14,7 @@ import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.feature.structure.StructureStart;
-import net.minecraft.world.gen.feature.structure.VillageConfig;
 import net.minecraft.world.gen.feature.template.TemplateManager;
-
-import java.util.Random;
 
 public class BridgeStructure extends Structure<NoFeatureConfig> {
     public BridgeStructure() {
@@ -56,10 +50,8 @@ public class BridgeStructure extends Structure<NoFeatureConfig> {
             int submergedBaseOffset = chunkGenerator.getSeaLevel()-7;
             BlockPos centerPos = new BlockPos(x, submergedBaseOffset, z);
             Rotation rotation = Rotation.randomRotation(rand);
-
             BridgePieces bridgePieces = new BridgePieces(dynamicRegistries, chunkGenerator, templateManager, centerPos, components, rand);
             bridgePieces.generateBridge();
-
             this.recalculateStructureSize();
         }
     }
