@@ -28,7 +28,6 @@ import java.util.Random;
 public class TowerPiece extends AbstractBridgePiece {
     public final WeightedItems<JigsawPiece> weightedDeckPieces = new WeightedItems<>(random);
     public final JigsawPattern towerPool = getPool(new ResourceLocation(ModFiddle.MOD_ID, "bridge/bridge"));
-    public final List<StructurePiece> towerPieces = new ArrayList<>();
 
     public TowerPiece(DynamicRegistries dynamicRegistries, ChunkGenerator chunkGenerator, TemplateManager templateManager, BlockPos startingPosition, List<StructurePiece> structurePieces, Random random) {
         super(dynamicRegistries, chunkGenerator, templateManager, startingPosition, structurePieces, random);
@@ -52,9 +51,8 @@ public class TowerPiece extends AbstractBridgePiece {
             }
         }
 
-        towerPieces.add(towerSpinePlaced);
-        towerPieces.add(towerHeadPlaced);
-        structurePieces.addAll(towerPieces);
+        this.structurePieces.add(towerSpinePlaced);
+        this.structurePieces.add(towerHeadPlaced);
 
         MutableBoundingBox towerBB = towerHeadPlaced.getBoundingBox();
         for (int x = 0; x < towerBB.getXSize(); x++) {
@@ -79,25 +77,5 @@ public class TowerPiece extends AbstractBridgePiece {
             deckPiece = weightedDeckPieces.next();
         } while (!getPieceName(deckPiece).contains("pillarhead"));
         return deckPiece;
-    }
-
-    @Override
-    public List<Template.BlockInfo> getJigsawBlocks(TemplateManager templateManager, BlockPos blockPos, Rotation rotation, Random random) {
-        return null;
-    }
-
-    @Override
-    public MutableBoundingBox getBoundingBox(TemplateManager templateManager, BlockPos blockPos, Rotation rotation) {
-        return null;
-    }
-
-    @Override
-    public boolean func_230378_a_(TemplateManager templateManager, ISeedReader iSeedReader, StructureManager structureManager, ChunkGenerator chunkGenerator, BlockPos blockPos, BlockPos blockPos1, Rotation rotation, MutableBoundingBox mutableBoundingBox, Random random, boolean b) {
-        return false;
-    }
-
-    @Override
-    public IJigsawDeserializer<?> getType() {
-        return null;
     }
 }

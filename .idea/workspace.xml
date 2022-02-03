@@ -4,15 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="removed generateBridge method">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/BridgeGeneration.java" afterDir="false" />
+    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="removed bridge pieces class">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/gen/ModStructureGeneration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/gen/ModStructureGeneration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/BridgePiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/AbstractBridgePiece.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/BridgePieces.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/BridgePieces.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/BridgeStructure.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/BridgeStructure.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/DeckPiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/DeckPiece.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/TowerPiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/TowerPiece.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/AbstractBridgePiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/AbstractBridgePiece.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/DeckPiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/DeckPiece.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/TowerPiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/TowerPiece.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,6 +60,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/BridgeStructure.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/AbstractBridgePiece.java" root0="SKIP_INSPECTION" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -143,48 +140,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1641992804058</updated>
-    </task>
-    <task id="LOCAL-00066" summary="changed bridge spawn scarcity">
-      <created>1643107024104</created>
-      <option name="number" value="00066" />
-      <option name="presentableId" value="LOCAL-00066" />
-      <option name="project" value="LOCAL" />
-      <updated>1643107024104</updated>
-    </task>
-    <task id="LOCAL-00067" summary="added annotations">
-      <created>1643107044841</created>
-      <option name="number" value="00067" />
-      <option name="presentableId" value="LOCAL-00067" />
-      <option name="project" value="LOCAL" />
-      <updated>1643107044841</updated>
-    </task>
-    <task id="LOCAL-00068" summary="added annotations to JigsawManager">
-      <created>1643205070503</created>
-      <option name="number" value="00068" />
-      <option name="presentableId" value="LOCAL-00068" />
-      <option name="project" value="LOCAL" />
-      <updated>1643205070503</updated>
-    </task>
-    <task id="LOCAL-00069" summary="added AT for resource locations in SingleStructurePiece class">
-      <created>1643261352372</created>
-      <option name="number" value="00069" />
-      <option name="presentableId" value="LOCAL-00069" />
-      <option name="project" value="LOCAL" />
-      <updated>1643261352373</updated>
-    </task>
-    <task id="LOCAL-00070" summary="worked on Forteress-like class for bridges">
-      <created>1643261378318</created>
-      <option name="number" value="00070" />
-      <option name="presentableId" value="LOCAL-00070" />
-      <option name="project" value="LOCAL" />
-      <updated>1643261378318</updated>
-    </task>
-    <task id="LOCAL-00071" summary="added new jigsaw manager alternative">
-      <created>1643261407020</created>
-      <option name="number" value="00071" />
-      <option name="presentableId" value="LOCAL-00071" />
-      <option name="project" value="LOCAL" />
-      <updated>1643261407020</updated>
     </task>
     <task id="LOCAL-00072" summary="moved BridgeStructure class to dedicated struct folder">
       <created>1643261452977</created>
@@ -487,7 +442,49 @@
       <option name="project" value="LOCAL" />
       <updated>1643766252369</updated>
     </task>
-    <option name="localTasksCounter" value="115" />
+    <task id="LOCAL-00115" summary="made AbstractBridgePiece inherit from jigsawpiece">
+      <created>1643880701080</created>
+      <option name="number" value="00115" />
+      <option name="presentableId" value="LOCAL-00115" />
+      <option name="project" value="LOCAL" />
+      <updated>1643880701082</updated>
+    </task>
+    <task id="LOCAL-00116" summary="added bridge generation class">
+      <created>1643880714654</created>
+      <option name="number" value="00116" />
+      <option name="presentableId" value="LOCAL-00116" />
+      <option name="project" value="LOCAL" />
+      <updated>1643880714654</updated>
+    </task>
+    <task id="LOCAL-00117" summary="optimised imports">
+      <created>1643880743421</created>
+      <option name="number" value="00117" />
+      <option name="presentableId" value="LOCAL-00117" />
+      <option name="project" value="LOCAL" />
+      <updated>1643880743421</updated>
+    </task>
+    <task id="LOCAL-00118" summary="removed unused methods">
+      <created>1643880775152</created>
+      <option name="number" value="00118" />
+      <option name="presentableId" value="LOCAL-00118" />
+      <option name="project" value="LOCAL" />
+      <updated>1643880775152</updated>
+    </task>
+    <task id="LOCAL-00119" summary="fiddled with climate stuff">
+      <created>1643880793066</created>
+      <option name="number" value="00119" />
+      <option name="presentableId" value="LOCAL-00119" />
+      <option name="project" value="LOCAL" />
+      <updated>1643880793066</updated>
+    </task>
+    <task id="LOCAL-00120" summary="removed bridge pieces class">
+      <created>1643882040431</created>
+      <option name="number" value="00120" />
+      <option name="presentableId" value="LOCAL-00120" />
+      <option name="project" value="LOCAL" />
+      <updated>1643882040431</updated>
+    </task>
+    <option name="localTasksCounter" value="121" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -503,12 +500,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="removed if statement" />
-    <MESSAGE value="increased bridge rarity" />
-    <MESSAGE value="fixed bridgecap2 typo" />
-    <MESSAGE value="reduced bridge structure size" />
-    <MESSAGE value="reverted jigsaw manager to random piece selection" />
-    <MESSAGE value="added DI on bridge pieces class" />
     <MESSAGE value="added jigsawblock validation" />
     <MESSAGE value="made generation work on worldgen" />
     <MESSAGE value="added rawTemplate AT (over getShuffled)" />
@@ -528,6 +519,12 @@
     <MESSAGE value="removed bridge strcuture json config" />
     <MESSAGE value="removed unused ATs" />
     <MESSAGE value="removed generateBridge method" />
-    <option name="LAST_COMMIT_MESSAGE" value="removed generateBridge method" />
+    <MESSAGE value="made AbstractBridgePiece inherit from jigsawpiece" />
+    <MESSAGE value="added bridge generation class" />
+    <MESSAGE value="optimised imports" />
+    <MESSAGE value="removed unused methods" />
+    <MESSAGE value="fiddled with climate stuff" />
+    <MESSAGE value="removed bridge pieces class" />
+    <option name="LAST_COMMIT_MESSAGE" value="removed bridge pieces class" />
   </component>
 </project>

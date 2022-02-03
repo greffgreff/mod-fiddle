@@ -25,7 +25,6 @@ import java.util.Random;
 public class DeckPiece extends AbstractBridgePiece {
     public final WeightedItems<JigsawPiece> weightedDeckPieces = new WeightedItems<>(random);
     public final JigsawPattern deckPool = getPool(new ResourceLocation(ModFiddle.MOD_ID, "bridge/bridge"));
-    public final List<StructurePiece> deckPieces = new ArrayList<>();
     public final int deckLength;
 
     public DeckPiece(DynamicRegistries dynamicRegistries, ChunkGenerator chunkGenerator, TemplateManager templateManager, BlockPos startingPosition, List<StructurePiece> structurePieces, Random random, int deckLength) {
@@ -41,16 +40,15 @@ public class DeckPiece extends AbstractBridgePiece {
     public void createPiece() {
         for (int i = 0; i < deckLength; i++) {
             JigsawPiece deckPiece = getRandomDeckPiece();
-            if (deckPieces.isEmpty()) {
-                deckPieces.add(createAbstractPiece(deckPiece, startingPosition, Rotation.NONE));
+            if (this.structurePieces.isEmpty()) {
+                this.structurePieces.add(createAbstractPiece(deckPiece, startingPosition, Rotation.NONE));
             }
             else {
-                MutableBoundingBox prevPieceBB = deckPieces.get(i-1).getBoundingBox();
+                MutableBoundingBox prevPieceBB = this.structurePieces.get(i-1).getBoundingBox();
                 BlockPos deckPos = new BlockPos(startingPosition.getX(), startingPosition.getY(), prevPieceBB.minZ + prevPieceBB.getZSize());
-                deckPieces.add(createAbstractPiece(deckPiece, deckPos, Rotation.NONE));
+                this.structurePieces.add(createAbstractPiece(deckPiece, deckPos, Rotation.NONE));
             }
         }
-        structurePieces.addAll(deckPieces);
     }
 
     private JigsawPiece getRandomDeckPiece() {
@@ -59,25 +57,5 @@ public class DeckPiece extends AbstractBridgePiece {
             deckPiece = weightedDeckPieces.next();
         } while (!getPieceName(deckPiece).contains("walk"));
         return deckPiece;
-    }
-
-    @Override
-    public List<Template.BlockInfo> getJigsawBlocks(TemplateManager templateManager, BlockPos blockPos, Rotation rotation, Random random) {
-        return null;
-    }
-
-    @Override
-    public MutableBoundingBox getBoundingBox(TemplateManager templateManager, BlockPos blockPos, Rotation rotation) {
-        return null;
-    }
-
-    @Override
-    public boolean func_230378_a_(TemplateManager templateManager, ISeedReader iSeedReader, StructureManager structureManager, ChunkGenerator chunkGenerator, BlockPos blockPos, BlockPos blockPos1, Rotation rotation, MutableBoundingBox mutableBoundingBox, Random random, boolean b) {
-        return false;
-    }
-
-    @Override
-    public IJigsawDeserializer<?> getType() {
-        return null;
     }
 }
