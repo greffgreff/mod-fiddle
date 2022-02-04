@@ -164,8 +164,7 @@ public abstract class AbstractBridgePiece extends JigsawPiece {
     }
 
     public static void joinJigsaws(AbstractBridgePiece piece1, AbstractBridgePiece piece2, Random random, TemplateManager templateManager) {
-        // for (Rotation rotation : Rotation.shuffledRotations(random)) { }
-
+        matching:
         for (Template.BlockInfo jigsawPiece1 : piece1.getJigsawBlocks(templateManager, BlockPos.ZERO, Rotation.NONE, random)) {
             for (Template.BlockInfo jigsawPiece2: piece2.getJigsawBlocks(templateManager, BlockPos.ZERO, Rotation.NONE, random)) {
                 if (JigsawBlock.hasJigsawMatch(jigsawPiece1, jigsawPiece2)) {
@@ -189,6 +188,7 @@ public abstract class AbstractBridgePiece extends JigsawPiece {
                         yDelta -=1;
 
                     piece2.offset(xDelta, yDelta, zDelta);
+                    break matching;
                 }
             }
         }
