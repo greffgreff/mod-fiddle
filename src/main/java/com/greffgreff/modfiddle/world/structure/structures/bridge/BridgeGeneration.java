@@ -9,6 +9,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.DynamicRegistries;
 import net.minecraft.world.gen.ChunkGenerator;
+import net.minecraft.world.gen.feature.structure.AbstractVillagePiece;
 import net.minecraft.world.gen.feature.structure.StructurePiece;
 import net.minecraft.world.gen.feature.template.Template;
 import net.minecraft.world.gen.feature.template.TemplateManager;
@@ -26,7 +27,7 @@ public class BridgeGeneration {
         List<StructurePiece> towerPieces = tower.createPiece();
         List<StructurePiece> deckPieces = deck.createPiece();
 
-        AbstractBridgePiece.joinJigsaws(tower, deck, random);
+        AbstractBridgePiece.joinJigsaws(tower, deck, random, templateManager);
 
         structurePieces.addAll(towerPieces);
         structurePieces.addAll(deckPieces);
