@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="added offset method">
+    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="added required offset on joinJigsaw">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/BridgeGeneration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/BridgeGeneration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/AbstractBridgePiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/AbstractBridgePiece.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/TowerPiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/TowerPiece.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,20 +143,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1641992804058</updated>
-    </task>
-    <task id="LOCAL-00085" summary="updated nbt models and json pools">
-      <created>1643369105958</created>
-      <option name="number" value="00085" />
-      <option name="presentableId" value="LOCAL-00085" />
-      <option name="project" value="LOCAL" />
-      <updated>1643369105959</updated>
-    </task>
-    <task id="LOCAL-00086" summary="fixed waterlogged models">
-      <created>1643369781270</created>
-      <option name="number" value="00086" />
-      <option name="presentableId" value="LOCAL-00086" />
-      <option name="project" value="LOCAL" />
-      <updated>1643369781270</updated>
     </task>
     <task id="LOCAL-00087" summary="fixed pillarhead and bridgecap2 nbts">
       <created>1643370761182</created>
@@ -486,7 +473,21 @@
       <option name="project" value="LOCAL" />
       <updated>1643937543560</updated>
     </task>
-    <option name="localTasksCounter" value="134" />
+    <task id="LOCAL-00134" summary="moved joinjigsaw method">
+      <created>1643937849542</created>
+      <option name="number" value="00134" />
+      <option name="presentableId" value="LOCAL-00134" />
+      <option name="project" value="LOCAL" />
+      <updated>1643937849542</updated>
+    </task>
+    <task id="LOCAL-00135" summary="added required offset on joinJigsaw">
+      <created>1643940785180</created>
+      <option name="number" value="00135" />
+      <option name="presentableId" value="LOCAL-00135" />
+      <option name="project" value="LOCAL" />
+      <updated>1643940785181</updated>
+    </task>
+    <option name="localTasksCounter" value="136" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -502,8 +503,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="made class abstract" />
-    <MESSAGE value="added tower piece class" />
     <MESSAGE value="added deck piece class" />
     <MESSAGE value="added getSeaLvl to structure offset pos" />
     <MESSAGE value="removed bridge strcuture json config" />
@@ -527,6 +526,8 @@
     <MESSAGE value="optimised imports" />
     <MESSAGE value="renamed position var" />
     <MESSAGE value="added offset method" />
-    <option name="LAST_COMMIT_MESSAGE" value="added offset method" />
+    <MESSAGE value="moved joinjigsaw method" />
+    <MESSAGE value="added required offset on joinJigsaw" />
+    <option name="LAST_COMMIT_MESSAGE" value="added required offset on joinJigsaw" />
   </component>
 </project>

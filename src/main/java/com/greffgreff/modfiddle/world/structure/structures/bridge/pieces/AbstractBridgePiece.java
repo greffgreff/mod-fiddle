@@ -125,19 +125,18 @@ public abstract class AbstractBridgePiece extends JigsawPiece {
         return singleJigsawPiece.field_236839_c_.left().isPresent() ? singleJigsawPiece.field_236839_c_.left().get().getPath() : "";
     }
 
-    public static void joinJigsaws(AbstractBridgePiece piece1, AbstractBridgePiece piece2, Random random) {
+    public static void joinJigsaws(AbstractVillagePiece piece1, AbstractVillagePiece piece2, Random random, TemplateManager templateManager) {
         // for (Rotation rotation : Rotation.shuffledRotations(random)) { }
 
-        for (Template.BlockInfo jigsawPiece1 : piece1.getJigsawBlocks()) {
-            for (Template.BlockInfo jigsawPiece2: piece2.getJigsawBlocks()) {
+        for (Template.BlockInfo jigsawPiece1 : piece1.getJigsawPiece().getJigsawBlocks(templateManager, BlockPos.ZERO, Rotation.NONE, random)) {
+            for (Template.BlockInfo jigsawPiece2: piece2.getJigsawPiece().getJigsawBlocks(templateManager, BlockPos.ZERO, Rotation.NONE, random)) {
                 if (JigsawBlock.hasJigsawMatch(jigsawPiece1, jigsawPiece2)) {
-                    Direction directionPiece1 = JigsawBlock.getConnectingDirection(jigsawPiece1.state);
-                    Direction directionPiece2 = JigsawBlock.getConnectingDirection(jigsawPiece2.state);
-
                     int xDelta = jigsawPiece1.pos.getX() - jigsawPiece2.pos.getX();
                     int yDelta = jigsawPiece1.pos.getY() - jigsawPiece2.pos.getY();
                     int zDelta = jigsawPiece1.pos.getZ() - jigsawPiece2.pos.getZ();
 
+                    Direction directionPiece1 = JigsawBlock.getConnectingDirection(jigsawPiece1.state);
+                    Direction directionPiece2 = JigsawBlock.getConnectingDirection(jigsawPiece2.state);
                     if (directionPiece1 == Direction.SOUTH && directionPiece2 == Direction.NORTH)
                         zDelta +=1;
                     if (directionPiece1 == Direction.NORTH && directionPiece2 == Direction.SOUTH)
@@ -155,5 +154,40 @@ public abstract class AbstractBridgePiece extends JigsawPiece {
                 }
             }
         }
+    }
+
+    public static void joinJigsaws(AbstractBridgePiece piece1, AbstractBridgePiece piece2, Random random, TemplateManager templateManager) {
+        // for (Rotation rotation : Rotation.shuffledRotations(random)) { }
+
+        for (Template.BlockInfo jigsawPiece1 : piece1.getJigsawBlocks(templateManager, BlockPos.ZERO, Rotation.NONE, random)) {
+            for (Template.BlockInfo jigsawPiece2: piece2.getJigsawBlocks(templateManager, BlockPos.ZERO, Rotation.NONE, random)) {
+                if (JigsawBlock.hasJigsawMatch(jigsawPiece1, jigsawPiece2)) {
+                    int xDelta = jigsawPiece1.pos.getX() - jigsawPiece2.pos.getX();
+                    int yDelta = jigsawPiece1.pos.getY() - jigsawPiece2.pos.getY();
+                    int zDelta = jigsawPiece1.pos.getZ() - jigsawPiece2.pos.getZ();
+
+                    Direction directionPiece1 = JigsawBlock.getConnectingDirection(jigsawPiece1.state);
+                    Direction directionPiece2 = JigsawBlock.getConnectingDirection(jigsawPiece2.state);
+                    if (directionPiece1 == Direction.SOUTH && directionPiece2 == Direction.NORTH)
+                        zDelta +=1;
+                    if (directionPiece1 == Direction.NORTH && directionPiece2 == Direction.SOUTH)
+                        zDelta -=1;
+                    if (directionPiece1 == Direction.EAST && directionPiece2 == Direction.WEST)
+                        xDelta +=1;
+                    if (directionPiece1 == Direction.WEST && directionPiece2 == Direction.EAST)
+                        xDelta -=1;
+                    if (directionPiece1 == Direction.DOWN && directionPiece2 == Direction.UP)
+                        yDelta +=1;
+                    if (directionPiece1 == Direction.UP && directionPiece2 == Direction.DOWN)
+                        yDelta -=1;
+
+                    piece2.offset(xDelta, yDelta, zDelta);
+                }
+            }
+        }
+    }
+
+    protected void joinJigsaws(AbstractVillagePiece piece1, AbstractVillagePiece piece2) {
+        joinJigsaws(piece1, piece2, random, templateManager);
     }
 }
