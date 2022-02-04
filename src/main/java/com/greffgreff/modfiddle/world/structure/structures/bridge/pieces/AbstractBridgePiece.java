@@ -2,6 +2,7 @@ package com.greffgreff.modfiddle.world.structure.structures.bridge.pieces;
 
 import com.greffgreff.modfiddle.ModFiddle;
 import com.greffgreff.modfiddle.world.util.WeightedItems;
+import net.minecraft.block.JigsawBlock;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
@@ -124,5 +125,24 @@ public abstract class AbstractBridgePiece extends JigsawPiece {
     @Override
     public IJigsawDeserializer<?> getType() {
         return IJigsawDeserializer.LIST_POOL_ELEMENT;
+    }
+
+    public static void joinJigsaws(AbstractBridgePiece piece1, AbstractBridgePiece piece2, Random random) {
+        // for (Rotation rotation : Rotation.shuffledRotations(random)) { }
+
+        for (Template.BlockInfo piece1Jigsaw : piece1.getJigsawBlocks()) {
+            for (Template.BlockInfo piece2jigsaw: piece2.getJigsawBlocks()) {
+                ModFiddle.LOGGER.debug("Has match: " + JigsawBlock.hasJigsawMatch(piece1Jigsaw, piece2jigsaw));
+
+                if (JigsawBlock.hasJigsawMatch(piece1Jigsaw, piece2jigsaw)) {
+                    int xDelta = piece1Jigsaw.pos.getX() - piece2jigsaw.pos.getX();
+                    int yDelta = piece1Jigsaw.pos.getY() - piece2jigsaw.pos.getY() + 1;
+                    int zDelta = piece1Jigsaw.pos.getZ() - piece2jigsaw.pos.getZ();
+                    piece2.offset(xDelta, yDelta, zDelta);
+                    ModFiddle.LOGGER.debug(piece2.position);
+                    ModFiddle.LOGGER.debug(piece2.getBoundingBox());
+                }
+            }
+        }
     }
 }
