@@ -1,6 +1,5 @@
 package com.greffgreff.modfiddle.world.structure.structures.bridge.pieces;
 
-import com.greffgreff.modfiddle.ModFiddle;
 import com.greffgreff.modfiddle.world.util.WeightedItems;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
@@ -20,10 +19,11 @@ import net.minecraft.world.gen.feature.structure.StructureManager;
 import net.minecraft.world.gen.feature.structure.StructurePiece;
 import net.minecraft.world.gen.feature.template.Template;
 import net.minecraft.world.gen.feature.template.TemplateManager;
-import net.minecraftforge.fml.common.Mod;
-import org.apache.commons.lang3.ArrayUtils;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
 import java.util.function.Supplier;
 
 public abstract class AbstractBridgePiece extends JigsawPiece {
