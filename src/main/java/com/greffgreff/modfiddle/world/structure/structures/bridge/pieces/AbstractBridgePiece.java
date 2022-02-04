@@ -20,6 +20,8 @@ import net.minecraft.world.gen.feature.structure.StructureManager;
 import net.minecraft.world.gen.feature.structure.StructurePiece;
 import net.minecraft.world.gen.feature.template.Template;
 import net.minecraft.world.gen.feature.template.TemplateManager;
+import net.minecraftforge.fml.common.Mod;
+import org.apache.commons.lang3.ArrayUtils;
 
 import java.util.*;
 import java.util.function.Supplier;
@@ -67,14 +69,27 @@ public abstract class AbstractBridgePiece extends JigsawPiece {
 
     @Override
     public List<Template.BlockInfo> getJigsawBlocks(TemplateManager templateManager, BlockPos blockPos, Rotation rotation, Random random) {
-        // could either return all jigsaw blocks and treat jigsaw junctions OR return any jigsaw blocks adjastent to the piece BB
-
         List<Template.BlockInfo> jigsawBlocks = new ArrayList<>();
+        MutableBoundingBox boundingBox = this.getBoundingBox(templateManager, blockPos, rotation);
+        List<Integer> edges = Arrays.asList(boundingBox.minX, boundingBox.minY, boundingBox.minZ, boundingBox.maxX, boundingBox.maxY, boundingBox.maxZ);
+
         for (StructurePiece structurePiece: this.structurePieces) {
             JigsawPiece jigsawPiece = ((AbstractVillagePiece) structurePiece).getJigsawPiece();
-            jigsawBlocks.addAll(jigsawPiece.getJigsawBlocks(templateManager, blockPos, rotation, random));
+
+            for (Template.BlockInfo jigsawBlock: jigsawPiece.getJigsawBlocks(templateManager, ((AbstractVillagePiece) structurePiece).getPos(), rotation, random)) {
+                BlockPos jigsawPos = jigsawBlock.pos;
+
+                if (edges.contains(jigsawPos.getX()) || edges.contains(jigsawPos.getY()) || edges.contains(jigsawPos.getZ())) {
+                    jigsawBlocks.add(jigsawBlock);
+                }
+            }
         }
+
         return jigsawBlocks;
+    }
+
+    public List<Template.BlockInfo> getJigsawBlocks() {
+        return getJigsawBlocks(templateManager, BlockPos.ZERO, Rotation.NONE, random);
     }
 
     @Override
@@ -83,6 +98,10 @@ public abstract class AbstractBridgePiece extends JigsawPiece {
         for(StructurePiece structurePiece : this.structurePieces)
             mutableboundingbox.expandTo(structurePiece.getBoundingBox());
         return mutableboundingbox;
+    }
+
+    public MutableBoundingBox getBoundingBox() {
+        return getBoundingBox(templateManager, BlockPos.ZERO, Rotation.NONE);
     }
 
     @Override // ??
