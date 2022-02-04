@@ -3,6 +3,7 @@ package com.greffgreff.modfiddle.world.structure.structures.bridge.pieces;
 import com.greffgreff.modfiddle.ModFiddle;
 import com.greffgreff.modfiddle.world.util.WeightedItems;
 import net.minecraft.block.JigsawBlock;
+import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
@@ -12,10 +13,7 @@ import net.minecraft.util.registry.MutableRegistry;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.feature.jigsaw.IJigsawDeserializer;
-import net.minecraft.world.gen.feature.jigsaw.JigsawPattern;
-import net.minecraft.world.gen.feature.jigsaw.JigsawPiece;
-import net.minecraft.world.gen.feature.jigsaw.SingleJigsawPiece;
+import net.minecraft.world.gen.feature.jigsaw.*;
 import net.minecraft.world.gen.feature.structure.AbstractVillagePiece;
 import net.minecraft.world.gen.feature.structure.StructureManager;
 import net.minecraft.world.gen.feature.structure.StructurePiece;
@@ -50,17 +48,6 @@ public abstract class AbstractBridgePiece extends JigsawPiece {
         this.random = random;
         piecePool = getPool(poolLocation);
         piecePool.rawTemplates.forEach(p -> weightedPieces.add(p.getSecond().doubleValue(), p.getFirst()));
-    }
-
-    private JigsawPattern getPool(ResourceLocation resourceLocation) {
-        Supplier<JigsawPattern> piecesPool = () -> dynamicRegistries.getRegistry(Registry.JIGSAW_POOL_KEY).getOrDefault(resourceLocation);
-        return piecesPool.get();
-    }
-
-    protected static String getPieceName(JigsawPiece jigsawPiece) {
-        if (jigsawPiece == null) return "";
-        SingleJigsawPiece singleJigsawPiece = (SingleJigsawPiece) jigsawPiece;
-        return singleJigsawPiece.field_236839_c_.left().isPresent() ? singleJigsawPiece.field_236839_c_.left().get().getPath() : "";
     }
 
     public void offset(int x, int y, int z) {
@@ -127,20 +114,44 @@ public abstract class AbstractBridgePiece extends JigsawPiece {
         return IJigsawDeserializer.LIST_POOL_ELEMENT;
     }
 
+    private JigsawPattern getPool(ResourceLocation resourceLocation) {
+        Supplier<JigsawPattern> piecesPool = () -> dynamicRegistries.getRegistry(Registry.JIGSAW_POOL_KEY).getOrDefault(resourceLocation);
+        return piecesPool.get();
+    }
+
+    protected static String getPieceName(JigsawPiece jigsawPiece) {
+        if (jigsawPiece == null) return "";
+        SingleJigsawPiece singleJigsawPiece = (SingleJigsawPiece) jigsawPiece;
+        return singleJigsawPiece.field_236839_c_.left().isPresent() ? singleJigsawPiece.field_236839_c_.left().get().getPath() : "";
+    }
+
     public static void joinJigsaws(AbstractBridgePiece piece1, AbstractBridgePiece piece2, Random random) {
         // for (Rotation rotation : Rotation.shuffledRotations(random)) { }
 
-        for (Template.BlockInfo piece1Jigsaw : piece1.getJigsawBlocks()) {
-            for (Template.BlockInfo piece2jigsaw: piece2.getJigsawBlocks()) {
-                ModFiddle.LOGGER.debug("Has match: " + JigsawBlock.hasJigsawMatch(piece1Jigsaw, piece2jigsaw));
+        for (Template.BlockInfo jigsawPiece1 : piece1.getJigsawBlocks()) {
+            for (Template.BlockInfo jigsawPiece2: piece2.getJigsawBlocks()) {
+                if (JigsawBlock.hasJigsawMatch(jigsawPiece1, jigsawPiece2)) {
+                    Direction directionPiece1 = JigsawBlock.getConnectingDirection(jigsawPiece1.state);
+                    Direction directionPiece2 = JigsawBlock.getConnectingDirection(jigsawPiece2.state);
 
-                if (JigsawBlock.hasJigsawMatch(piece1Jigsaw, piece2jigsaw)) {
-                    int xDelta = piece1Jigsaw.pos.getX() - piece2jigsaw.pos.getX();
-                    int yDelta = piece1Jigsaw.pos.getY() - piece2jigsaw.pos.getY() + 1;
-                    int zDelta = piece1Jigsaw.pos.getZ() - piece2jigsaw.pos.getZ();
+                    int xDelta = jigsawPiece1.pos.getX() - jigsawPiece2.pos.getX();
+                    int yDelta = jigsawPiece1.pos.getY() - jigsawPiece2.pos.getY();
+                    int zDelta = jigsawPiece1.pos.getZ() - jigsawPiece2.pos.getZ();
+
+                    if (directionPiece1 == Direction.SOUTH && directionPiece2 == Direction.NORTH)
+                        zDelta +=1;
+                    if (directionPiece1 == Direction.NORTH && directionPiece2 == Direction.SOUTH)
+                        zDelta -=1;
+                    if (directionPiece1 == Direction.EAST && directionPiece2 == Direction.WEST)
+                        xDelta +=1;
+                    if (directionPiece1 == Direction.WEST && directionPiece2 == Direction.EAST)
+                        xDelta -=1;
+                    if (directionPiece1 == Direction.DOWN && directionPiece2 == Direction.UP)
+                        yDelta +=1;
+                    if (directionPiece1 == Direction.UP && directionPiece2 == Direction.DOWN)
+                        yDelta -=1;
+
                     piece2.offset(xDelta, yDelta, zDelta);
-                    ModFiddle.LOGGER.debug(piece2.position);
-                    ModFiddle.LOGGER.debug(piece2.getBoundingBox());
                 }
             }
         }
