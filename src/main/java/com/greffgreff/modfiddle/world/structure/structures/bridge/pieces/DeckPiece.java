@@ -16,13 +16,13 @@ import java.util.Random;
 public class DeckPiece extends AbstractBridgePiece {
     public final int deckLength;
 
-    public DeckPiece(DynamicRegistries dynamicRegistries, ChunkGenerator chunkGenerator, TemplateManager templateManager, BlockPos startingPosition, Random random, ResourceLocation poolLocation, int deckLength) {
-        super(dynamicRegistries, chunkGenerator, templateManager, startingPosition, random, poolLocation);
+    public DeckPiece(DynamicRegistries dynamicRegistries, ChunkGenerator chunkGenerator, TemplateManager templateManager, BlockPos position, Random random, ResourceLocation poolLocation, int deckLength) {
+        super(dynamicRegistries, chunkGenerator, templateManager, position, random, poolLocation);
         this.deckLength = deckLength;
     }
 
-    public DeckPiece(DynamicRegistries dynamicRegistries, ChunkGenerator chunkGenerator, TemplateManager templateManager, BlockPos startingPosition, Random random, ResourceLocation poolLocation) {
-        this(dynamicRegistries, chunkGenerator, templateManager, startingPosition, random, poolLocation, 3);
+    public DeckPiece(DynamicRegistries dynamicRegistries, ChunkGenerator chunkGenerator, TemplateManager templateManager, BlockPos position, Random random, ResourceLocation poolLocation) {
+        this(dynamicRegistries, chunkGenerator, templateManager, position, random, poolLocation, 3);
     }
 
     @Override
@@ -30,11 +30,11 @@ public class DeckPiece extends AbstractBridgePiece {
         for (int i = 0; i < deckLength; i++) {
             JigsawPiece deckPiece = getRandomDeckPiece();
             if (structurePieces.isEmpty()) {
-                structurePieces.add(createAbstractPiece(deckPiece, startingPosition, Rotation.NONE));
+                structurePieces.add(createAbstractPiece(deckPiece, position, Rotation.NONE));
             }
             else {
                 MutableBoundingBox prevPieceBB = structurePieces.get(i-1).getBoundingBox();
-                BlockPos deckPos = new BlockPos(startingPosition.getX(), startingPosition.getY(), prevPieceBB.minZ + prevPieceBB.getZSize());
+                BlockPos deckPos = new BlockPos(position.getX(), position.getY(), prevPieceBB.minZ + prevPieceBB.getZSize());
                 structurePieces.add(createAbstractPiece(deckPiece, deckPos, Rotation.NONE));
             }
         }

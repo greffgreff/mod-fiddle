@@ -17,16 +17,16 @@ import java.util.Random;
 
 public class TowerPiece extends AbstractBridgePiece {
 
-    public TowerPiece(DynamicRegistries dynamicRegistries, ChunkGenerator chunkGenerator, TemplateManager templateManager, BlockPos startingPosition, Random random, ResourceLocation poolLocation) {
-        super(dynamicRegistries, chunkGenerator, templateManager, startingPosition, random, poolLocation);
+    public TowerPiece(DynamicRegistries dynamicRegistries, ChunkGenerator chunkGenerator, TemplateManager templateManager, BlockPos position, Random random, ResourceLocation poolLocation) {
+        super(dynamicRegistries, chunkGenerator, templateManager, position, random, poolLocation);
     }
 
     @Override
     public List<StructurePiece> createPiece() {
         JigsawPiece towerSpine = getRandomPillarSpinePiece();
         JigsawPiece towerHead = getRandomPillarHeadPiece();
-        AbstractVillagePiece towerSpinePlaced = createAbstractPiece(towerSpine, startingPosition, Rotation.NONE); // must work on random rotations
-        AbstractVillagePiece towerHeadPlaced = createAbstractPiece(towerHead, startingPosition, Rotation.NONE);
+        AbstractVillagePiece towerSpinePlaced = createAbstractPiece(towerSpine, position, Rotation.NONE); // must work on random rotations
+        AbstractVillagePiece towerHeadPlaced = createAbstractPiece(towerHead, position, Rotation.NONE);
 
         for (Template.BlockInfo towerSpineJigsawBlock : towerSpine.getJigsawBlocks(templateManager, BlockPos.ZERO, Rotation.NONE, random)) {
             for (Template.BlockInfo towerHeadJigsawBlock: towerHead.getJigsawBlocks(templateManager, BlockPos.ZERO, Rotation.NONE, random)) {
