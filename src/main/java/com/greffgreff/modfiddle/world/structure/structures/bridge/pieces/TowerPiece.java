@@ -27,20 +27,10 @@ public class TowerPiece extends AbstractBridgePiece {
         JigsawPiece towerHead = getRandomPillarHeadPiece();
         AbstractVillagePiece towerSpinePlaced = createAbstractPiece(towerSpine, position, Rotation.NONE); // must work on random rotations
         AbstractVillagePiece towerHeadPlaced = createAbstractPiece(towerHead, position, Rotation.NONE);
-
-        for (Template.BlockInfo towerSpineJigsawBlock : towerSpine.getJigsawBlocks(templateManager, BlockPos.ZERO, Rotation.NONE, random)) {
-            for (Template.BlockInfo towerHeadJigsawBlock: towerHead.getJigsawBlocks(templateManager, BlockPos.ZERO, Rotation.NONE, random)) {
-                if (JigsawBlock.hasJigsawMatch(towerSpineJigsawBlock, towerHeadJigsawBlock)) {
-                    int xDelta = towerSpineJigsawBlock.pos.getX() - towerHeadJigsawBlock.pos.getX();
-                    int yDelta = towerSpineJigsawBlock.pos.getY() - towerHeadJigsawBlock.pos.getY() + 1;
-                    int zDelta = towerSpineJigsawBlock.pos.getZ() - towerHeadJigsawBlock.pos.getZ();
-                    towerHeadPlaced.offset(xDelta, yDelta, zDelta);
-                }
-            }
-        }
-
+        joinJigsaws(towerSpinePlaced, towerHeadPlaced);
         structurePieces.add(towerSpinePlaced);
         structurePieces.add(towerHeadPlaced);
+        return structurePieces;
 
 //        MutableBoundingBox towerBB = towerHeadPlaced.getBoundingBox();
 //        for (int x = 0; x < towerBB.getXSize(); x++) {
@@ -49,8 +39,6 @@ public class TowerPiece extends AbstractBridgePiece {
 //                int groundDelta = towerBB.minY - terrainFloor;
 //            }
 //        }
-
-        return structurePieces;
     }
 
     private JigsawPiece getRandomPillarSpinePiece() {
