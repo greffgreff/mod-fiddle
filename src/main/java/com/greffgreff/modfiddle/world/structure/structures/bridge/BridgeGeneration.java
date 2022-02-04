@@ -24,12 +24,12 @@ public class BridgeGeneration {
         TowerPiece tower = new TowerPiece(dynamicRegistries, chunkGenerator, templateManager, centerPos, random, loc);
         DeckPiece deck = new DeckPiece(dynamicRegistries, chunkGenerator, templateManager, centerPos, random, loc);
 
-        List<StructurePiece> towerPieces = tower.createPiece();
-        List<StructurePiece> deckPieces = deck.createPiece();
+        tower.createPiece();
+        deck.createPiece();
 
         AbstractBridgePiece.joinJigsaws(tower, deck, random, templateManager);
 
-        structurePieces.addAll(towerPieces);
-        structurePieces.addAll(deckPieces);
+        structurePieces.addAll(tower.getPiece());
+        structurePieces.addAll(deck.getPiece());
     }
 }

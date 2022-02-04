@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="added required offset on joinJigsaw">
+    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="made use of static joinJigsaw">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/BridgeGeneration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/BridgeGeneration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/AbstractBridgePiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/AbstractBridgePiece.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/TowerPiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/TowerPiece.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,27 +142,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1641992804058</updated>
-    </task>
-    <task id="LOCAL-00087" summary="fixed pillarhead and bridgecap2 nbts">
-      <created>1643370761182</created>
-      <option name="number" value="00087" />
-      <option name="presentableId" value="LOCAL-00087" />
-      <option name="project" value="LOCAL" />
-      <updated>1643370761182</updated>
-    </task>
-    <task id="LOCAL-00088" summary="removed if statement">
-      <created>1643646277079</created>
-      <option name="number" value="00088" />
-      <option name="presentableId" value="LOCAL-00088" />
-      <option name="project" value="LOCAL" />
-      <updated>1643646277080</updated>
-    </task>
-    <task id="LOCAL-00089" summary="increased bridge rarity">
-      <created>1643646328361</created>
-      <option name="number" value="00089" />
-      <option name="presentableId" value="LOCAL-00089" />
-      <option name="project" value="LOCAL" />
-      <updated>1643646328361</updated>
     </task>
     <task id="LOCAL-00090" summary="fixed bridgecap2 typo">
       <created>1643646358634</created>
@@ -487,7 +465,28 @@
       <option name="project" value="LOCAL" />
       <updated>1643940785181</updated>
     </task>
-    <option name="localTasksCounter" value="136" />
+    <task id="LOCAL-00136" summary="added joinJigsaw overloads">
+      <created>1643941989568</created>
+      <option name="number" value="00136" />
+      <option name="presentableId" value="LOCAL-00136" />
+      <option name="project" value="LOCAL" />
+      <updated>1643941989568</updated>
+    </task>
+    <task id="LOCAL-00137" summary="made use of statis joinJigsaw">
+      <created>1643942024426</created>
+      <option name="number" value="00137" />
+      <option name="presentableId" value="LOCAL-00137" />
+      <option name="project" value="LOCAL" />
+      <updated>1643942024426</updated>
+    </task>
+    <task id="LOCAL-00138" summary="made use of static joinJigsaw">
+      <created>1643942047329</created>
+      <option name="number" value="00138" />
+      <option name="presentableId" value="LOCAL-00138" />
+      <option name="project" value="LOCAL" />
+      <updated>1643942047329</updated>
+    </task>
+    <option name="localTasksCounter" value="139" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -503,9 +502,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="added deck piece class" />
-    <MESSAGE value="added getSeaLvl to structure offset pos" />
-    <MESSAGE value="removed bridge strcuture json config" />
     <MESSAGE value="removed unused ATs" />
     <MESSAGE value="removed generateBridge method" />
     <MESSAGE value="made AbstractBridgePiece inherit from jigsawpiece" />
@@ -528,6 +524,9 @@
     <MESSAGE value="added offset method" />
     <MESSAGE value="moved joinjigsaw method" />
     <MESSAGE value="added required offset on joinJigsaw" />
-    <option name="LAST_COMMIT_MESSAGE" value="added required offset on joinJigsaw" />
+    <MESSAGE value="added joinJigsaw overloads" />
+    <MESSAGE value="made use of statis joinJigsaw" />
+    <MESSAGE value="made use of static joinJigsaw" />
+    <option name="LAST_COMMIT_MESSAGE" value="made use of static joinJigsaw" />
   </component>
 </project>

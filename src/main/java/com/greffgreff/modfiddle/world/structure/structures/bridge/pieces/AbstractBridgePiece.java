@@ -19,6 +19,7 @@ import net.minecraft.world.gen.feature.structure.StructureManager;
 import net.minecraft.world.gen.feature.structure.StructurePiece;
 import net.minecraft.world.gen.feature.template.Template;
 import net.minecraft.world.gen.feature.template.TemplateManager;
+import net.minecraftforge.fml.common.Mod;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -49,23 +50,6 @@ public abstract class AbstractBridgePiece extends JigsawPiece {
         piecePool = getPool(poolLocation);
         piecePool.rawTemplates.forEach(p -> weightedPieces.add(p.getSecond().doubleValue(), p.getFirst()));
     }
-
-    public void offset(int x, int y, int z) {
-        if (structurePieces.isEmpty())  {
-            position.add(x, z, y);
-        }
-        else {
-            for (StructurePiece structurePiece: structurePieces) {
-                structurePiece.offset(x, y, z);
-            }
-        }
-    }
-
-    protected AbstractVillagePiece createAbstractPiece(JigsawPiece piece, BlockPos position, Rotation rotation) {
-        return new AbstractVillagePiece(templateManager, piece, position, piece.getGroundLevelDelta(), rotation, piece.getBoundingBox(templateManager, position, rotation));
-    }
-
-    protected abstract List<StructurePiece> createPiece();
 
     @Override
     public List<Template.BlockInfo> getJigsawBlocks(TemplateManager templateManager, BlockPos blockPos, Rotation rotation, Random random) {
@@ -112,6 +96,29 @@ public abstract class AbstractBridgePiece extends JigsawPiece {
     @Override
     public IJigsawDeserializer<?> getType() {
         return IJigsawDeserializer.LIST_POOL_ELEMENT;
+    }
+
+    public void offset(int x, int y, int z) {
+        if (structurePieces.isEmpty())  {
+            ModFiddle.LOGGER.debug(position);
+            position.add(x, z, y);
+            ModFiddle.LOGGER.debug(position);
+        }
+        else {
+            for (StructurePiece structurePiece: structurePieces) {
+                structurePiece.offset(x, y, z);
+            }
+        }
+    }
+
+    protected AbstractVillagePiece createAbstractPiece(JigsawPiece piece, BlockPos position, Rotation rotation) {
+        return new AbstractVillagePiece(templateManager, piece, position, piece.getGroundLevelDelta(), rotation, piece.getBoundingBox(templateManager, position, rotation));
+    }
+
+    protected abstract List<StructurePiece> createPiece();
+
+    public List<StructurePiece> getPiece() {
+        return this.structurePieces;
     }
 
     private JigsawPattern getPool(ResourceLocation resourceLocation) {
