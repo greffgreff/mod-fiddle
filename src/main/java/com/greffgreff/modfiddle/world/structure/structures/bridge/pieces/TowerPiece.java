@@ -37,7 +37,7 @@ public class TowerPiece extends AbstractBridgePiece {
     public List<StructurePiece> createPiece() {
         JigsawPiece towerSpine = getRandomPillarSpinePiece();
         JigsawPiece towerHead = getRandomPillarHeadPiece();
-        AbstractVillagePiece towerSpinePlaced = createAbstractPiece(towerSpine, startingPosition, Rotation.NONE);
+        AbstractVillagePiece towerSpinePlaced = createAbstractPiece(towerSpine, startingPosition, Rotation.NONE); // must work on random rotations
         AbstractVillagePiece towerHeadPlaced = createAbstractPiece(towerHead, startingPosition, Rotation.NONE);
 
         for (Template.BlockInfo towerSpineJigsawBlock : towerSpine.getJigsawBlocks(templateManager, BlockPos.ZERO, Rotation.NONE, random)) {
@@ -54,13 +54,13 @@ public class TowerPiece extends AbstractBridgePiece {
         structurePieces.add(towerSpinePlaced);
         structurePieces.add(towerHeadPlaced);
 
-        MutableBoundingBox towerBB = towerHeadPlaced.getBoundingBox();
-        for (int x = 0; x < towerBB.getXSize(); x++) {
-            for (int z = 0; z < towerBB.getZSize(); z++) {
-                int terrainFloor = chunkGenerator.getNoiseHeight(x + towerSpinePlaced.getPos().getX(), z + towerSpinePlaced.getPos().getZ(), Heightmap.Type.OCEAN_FLOOR_WG);
-                int groundDelta = towerBB.minY - terrainFloor;
-            }
-        }
+//        MutableBoundingBox towerBB = towerHeadPlaced.getBoundingBox();
+//        for (int x = 0; x < towerBB.getXSize(); x++) {
+//            for (int z = 0; z < towerBB.getZSize(); z++) {
+//                int terrainFloor = chunkGenerator.getNoiseHeight(x + towerSpinePlaced.getPos().getX(), z + towerSpinePlaced.getPos().getZ(), Heightmap.Type.OCEAN_FLOOR_WG);
+//                int groundDelta = towerBB.minY - terrainFloor;
+//            }
+//        }
 
         return structurePieces;
     }
