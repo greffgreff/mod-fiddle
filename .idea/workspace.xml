@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="passed rotation to super">
+    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="code cleanups">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/BridgeGeneration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/BridgeGeneration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/AbstractBridgePiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/AbstractBridgePiece.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/DeckPiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/DeckPiece.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,20 +142,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1641992804058</updated>
-    </task>
-    <task id="LOCAL-00094" summary="added jigsawblock validation">
-      <created>1643658510651</created>
-      <option name="number" value="00094" />
-      <option name="presentableId" value="LOCAL-00094" />
-      <option name="project" value="LOCAL" />
-      <updated>1643658510651</updated>
-    </task>
-    <task id="LOCAL-00095" summary="made generation work on worldgen">
-      <created>1643669747655</created>
-      <option name="number" value="00095" />
-      <option name="presentableId" value="LOCAL-00095" />
-      <option name="project" value="LOCAL" />
-      <updated>1643669747655</updated>
     </task>
     <task id="LOCAL-00096" summary="added rawTemplate AT (over getShuffled)">
       <created>1643672377632</created>
@@ -487,7 +472,21 @@
       <option name="project" value="LOCAL" />
       <updated>1644055447481</updated>
     </task>
-    <option name="localTasksCounter" value="143" />
+    <task id="LOCAL-00143" summary="made use of super joinJigsaw">
+      <created>1644059506756</created>
+      <option name="number" value="00143" />
+      <option name="presentableId" value="LOCAL-00143" />
+      <option name="project" value="LOCAL" />
+      <updated>1644059506756</updated>
+    </task>
+    <task id="LOCAL-00144" summary="code cleanups">
+      <created>1644059539269</created>
+      <option name="number" value="00144" />
+      <option name="presentableId" value="LOCAL-00144" />
+      <option name="project" value="LOCAL" />
+      <updated>1644059539269</updated>
+    </task>
+    <option name="localTasksCounter" value="145" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -503,7 +502,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="removed unused methods" />
     <MESSAGE value="fiddled with climate stuff" />
     <MESSAGE value="removed bridge pieces class" />
     <MESSAGE value="implemented get BB and get jigsaw blocks methods" />
@@ -513,7 +511,6 @@
     <MESSAGE value="removed structure pieces  from params in AbstractBridgePiece" />
     <MESSAGE value="replaced generation bridge method to static one" />
     <MESSAGE value="removed structure param in AbstractPiece class" />
-    <MESSAGE value="code cleanups" />
     <MESSAGE value="fixed getjigsawblocks method" />
     <MESSAGE value="commented unsued code" />
     <MESSAGE value="optimised imports" />
@@ -528,6 +525,8 @@
     <MESSAGE value="added break" />
     <MESSAGE value="added bridge direction to joinjigsaw" />
     <MESSAGE value="passed rotation to super" />
-    <option name="LAST_COMMIT_MESSAGE" value="passed rotation to super" />
+    <MESSAGE value="made use of super joinJigsaw" />
+    <MESSAGE value="code cleanups" />
+    <option name="LAST_COMMIT_MESSAGE" value="code cleanups" />
   </component>
 </project>

@@ -141,15 +141,19 @@ public abstract class AbstractBridgePiece extends JigsawPiece {
 
     public void joinJigsaws(AbstractVillagePiece piece1, AbstractVillagePiece piece2) {
         matching:
-        for (Template.BlockInfo jigsawPiece1 : piece1.getJigsawPiece().getJigsawBlocks(templateManager, BlockPos.ZERO, rotation, random)) {
-            for (Template.BlockInfo jigsawPiece2 : piece2.getJigsawPiece().getJigsawBlocks(templateManager, BlockPos.ZERO, rotation, random)) {
+        for (Template.BlockInfo jigsawPiece1 : piece1.getJigsawPiece().getJigsawBlocks(templateManager, position, rotation, random)) {
+            for (Template.BlockInfo jigsawPiece2 : piece2.getJigsawPiece().getJigsawBlocks(templateManager, position, rotation, random)) {
                 if (JigsawBlock.hasJigsawMatch(jigsawPiece1, jigsawPiece2)) {
                     int xDelta = jigsawPiece1.pos.getX() - jigsawPiece2.pos.getX();
                     int yDelta = jigsawPiece1.pos.getY() - jigsawPiece2.pos.getY();
                     int zDelta = jigsawPiece1.pos.getZ() - jigsawPiece2.pos.getZ();
-
                     Direction directionPiece1 = JigsawBlock.getConnectingDirection(jigsawPiece1.state);
                     Direction directionPiece2 = JigsawBlock.getConnectingDirection(jigsawPiece2.state);
+
+                    ModFiddle.LOGGER.debug("X offset: " + (xDelta + directionPiece1.getDirectionVec().getX()));
+                    ModFiddle.LOGGER.debug("Y offset: " + (yDelta + directionPiece1.getDirectionVec().getY()));
+                    ModFiddle.LOGGER.debug("Z offset: " + (zDelta + directionPiece1.getDirectionVec().getZ()));
+
                     if (directionPiece1 == Direction.SOUTH && directionPiece2 == Direction.NORTH) zDelta += 1;
                     if (directionPiece1 == Direction.NORTH && directionPiece2 == Direction.SOUTH) zDelta -= 1;
                     if (directionPiece1 == Direction.EAST && directionPiece2 == Direction.WEST) xDelta += 1;
@@ -157,8 +161,22 @@ public abstract class AbstractBridgePiece extends JigsawPiece {
                     if (directionPiece1 == Direction.DOWN && directionPiece2 == Direction.UP) yDelta += 1;
                     if (directionPiece1 == Direction.UP && directionPiece2 == Direction.DOWN) yDelta -= 1;
 
-                     piece2.offset(xDelta, yDelta, zDelta);
-                     break matching;
+                    MutableBoundingBox BB = piece2.getBoundingBox();
+                    MutableBoundingBox theoreticalBB = MutableBoundingBox.createProper(BB.minX+xDelta, BB.minY+yDelta, BB.minZ+zDelta, BB.maxX+xDelta, BB.maxY+yDelta, BB.maxZ+zDelta);
+
+                    ModFiddle.LOGGER.debug("Direction 1: " + directionPiece1);
+                    ModFiddle.LOGGER.debug("Direction 2: " + directionPiece2);
+
+                    ModFiddle.LOGGER.debug("Piece 1: " + piece1.getPos());
+                    ModFiddle.LOGGER.debug("Piece 2: " + piece2.getPos());
+
+                    ModFiddle.LOGGER.debug("Piece 1 BB: " + piece1.getBoundingBox());
+                    ModFiddle.LOGGER.debug("Piece 2 BB: " + piece2.getBoundingBox());
+
+                    if (!getBoundingBox().intersectsWith(theoreticalBB)) {
+                        piece2.offset(xDelta, yDelta, zDelta);
+                        break matching;
+                    }
                 }
             }
         }
