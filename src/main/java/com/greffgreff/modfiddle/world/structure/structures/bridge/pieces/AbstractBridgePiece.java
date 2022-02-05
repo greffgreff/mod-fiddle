@@ -34,18 +34,20 @@ public abstract class AbstractBridgePiece extends JigsawPiece {
     public final TemplateManager templateManager;
     public final List<StructurePiece> structurePieces = new ArrayList<>();
     public BlockPos position;
+    public Rotation rotation;
     public final Random random;
     protected final WeightedItems<JigsawPiece> weightedPieces = new WeightedItems<>(); // should pass random
     protected final JigsawPattern piecePool;
     protected static final JigsawPattern.PlacementBehaviour PLACEMENT_BEHAVIOUR = JigsawPattern.PlacementBehaviour.RIGID;
 
-    public AbstractBridgePiece(DynamicRegistries dynamicRegistries, ChunkGenerator chunkGenerator, TemplateManager templateManager, BlockPos position, Random random, ResourceLocation poolLocation) {
+    public AbstractBridgePiece(DynamicRegistries dynamicRegistries, ChunkGenerator chunkGenerator, TemplateManager templateManager, BlockPos position, Rotation rotation, Random random, ResourceLocation poolLocation) {
         super(PLACEMENT_BEHAVIOUR);
         this.dynamicRegistries = dynamicRegistries;
         this.jigsawPoolRegistry = dynamicRegistries.getRegistry(Registry.JIGSAW_POOL_KEY);
         this.chunkGenerator = chunkGenerator;
         this.templateManager = templateManager;
         this.position = position;
+        this.rotation = rotation;
         this.random = random;
         piecePool = getPool(poolLocation);
         piecePool.rawTemplates.forEach(p -> weightedPieces.add(p.getSecond().doubleValue(), p.getFirst()));
@@ -73,7 +75,7 @@ public abstract class AbstractBridgePiece extends JigsawPiece {
     }
 
     public List<Template.BlockInfo> getJigsawBlocks() {
-        return getJigsawBlocks(templateManager, BlockPos.ZERO, Rotation.NONE, random);
+        return getJigsawBlocks(templateManager, BlockPos.ZERO, rotation, random);
     }
 
     @Override
@@ -100,9 +102,7 @@ public abstract class AbstractBridgePiece extends JigsawPiece {
 
     public void offset(int x, int y, int z) {
         if (structurePieces.isEmpty())  {
-            ModFiddle.LOGGER.debug(position);
             position.add(x, z, y);
-            ModFiddle.LOGGER.debug(position);
         }
         else {
             for (StructurePiece structurePiece: structurePieces) {
@@ -110,6 +110,8 @@ public abstract class AbstractBridgePiece extends JigsawPiece {
             }
         }
     }
+
+    public void setRotation(Rotation rotation1) { }
 
     protected AbstractVillagePiece createAbstractPiece(JigsawPiece piece, BlockPos position, Rotation rotation) {
         return new AbstractVillagePiece(templateManager, piece, position, piece.getGroundLevelDelta(), rotation, piece.getBoundingBox(templateManager, position, rotation));
@@ -132,11 +134,10 @@ public abstract class AbstractBridgePiece extends JigsawPiece {
         return singleJigsawPiece.field_236839_c_.left().isPresent() ? singleJigsawPiece.field_236839_c_.left().get().getPath() : "";
     }
 
-    public static void joinJigsaws(AbstractVillagePiece piece1, AbstractVillagePiece piece2, Random random, TemplateManager templateManager) {
-        // for (Rotation rotation : Rotation.shuffledRotations(random)) { }
-
-        for (Template.BlockInfo jigsawPiece1 : piece1.getJigsawPiece().getJigsawBlocks(templateManager, BlockPos.ZERO, Rotation.NONE, random)) {
-            for (Template.BlockInfo jigsawPiece2: piece2.getJigsawPiece().getJigsawBlocks(templateManager, BlockPos.ZERO, Rotation.NONE, random)) {
+    public static void joinJigsaws(AbstractVillagePiece piece1, AbstractVillagePiece piece2, TemplateManager templateManager, Rotation rotation, Random random) {
+        matching:
+        for (Template.BlockInfo jigsawPiece1 : piece1.getJigsawPiece().getJigsawBlocks(templateManager, BlockPos.ZERO, rotation, random)) {
+            for (Template.BlockInfo jigsawPiece2: piece2.getJigsawPiece().getJigsawBlocks(templateManager, BlockPos.ZERO, rotation, random)) {
                 if (JigsawBlock.hasJigsawMatch(jigsawPiece1, jigsawPiece2)) {
                     int xDelta = jigsawPiece1.pos.getX() - jigsawPiece2.pos.getX();
                     int yDelta = jigsawPiece1.pos.getY() - jigsawPiece2.pos.getY();
@@ -158,15 +159,16 @@ public abstract class AbstractBridgePiece extends JigsawPiece {
                         yDelta -=1;
 
                     piece2.offset(xDelta, yDelta, zDelta);
+                    break matching;
                 }
             }
         }
     }
 
-    public static void joinJigsaws(AbstractBridgePiece piece1, AbstractBridgePiece piece2, Random random, TemplateManager templateManager) {
+    public static void joinJigsaws(AbstractBridgePiece piece1, AbstractBridgePiece piece2, TemplateManager templateManager, Rotation rotation, Random random) {
         matching:
-        for (Template.BlockInfo jigsawPiece1 : piece1.getJigsawBlocks(templateManager, BlockPos.ZERO, Rotation.NONE, random)) {
-            for (Template.BlockInfo jigsawPiece2: piece2.getJigsawBlocks(templateManager, BlockPos.ZERO, Rotation.NONE, random)) {
+        for (Template.BlockInfo jigsawPiece1 : piece1.getJigsawBlocks(templateManager, BlockPos.ZERO, rotation, random)) {
+            for (Template.BlockInfo jigsawPiece2: piece2.getJigsawBlocks(templateManager, BlockPos.ZERO, rotation, random)) {
                 if (JigsawBlock.hasJigsawMatch(jigsawPiece1, jigsawPiece2)) {
                     int xDelta = jigsawPiece1.pos.getX() - jigsawPiece2.pos.getX();
                     int yDelta = jigsawPiece1.pos.getY() - jigsawPiece2.pos.getY();
@@ -195,6 +197,6 @@ public abstract class AbstractBridgePiece extends JigsawPiece {
     }
 
     protected void joinJigsaws(AbstractVillagePiece piece1, AbstractVillagePiece piece2) {
-        joinJigsaws(piece1, piece2, random, templateManager);
+        joinJigsaws(piece1, piece2, templateManager, rotation, random);
     }
 }
