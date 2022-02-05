@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="code cleanups">
+    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="fixed direction issue on join jigsaw">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/BridgeGeneration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/BridgeGeneration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/AbstractBridgePiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/AbstractBridgePiece.java" afterDir="false" />
@@ -142,13 +142,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1641992804058</updated>
-    </task>
-    <task id="LOCAL-00096" summary="added rawTemplate AT (over getShuffled)">
-      <created>1643672377632</created>
-      <option name="number" value="00096" />
-      <option name="presentableId" value="LOCAL-00096" />
-      <option name="project" value="LOCAL" />
-      <updated>1643672377633</updated>
     </task>
     <task id="LOCAL-00097" summary="removed StructurePieceReader.java">
       <created>1643672401562</created>
@@ -486,7 +479,14 @@
       <option name="project" value="LOCAL" />
       <updated>1644059539269</updated>
     </task>
-    <option name="localTasksCounter" value="145" />
+    <task id="LOCAL-00145" summary="fixed direction issue on join jigsaw">
+      <created>1644062321168</created>
+      <option name="number" value="00145" />
+      <option name="presentableId" value="LOCAL-00145" />
+      <option name="project" value="LOCAL" />
+      <updated>1644062321168</updated>
+    </task>
+    <option name="localTasksCounter" value="146" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -502,7 +502,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="fiddled with climate stuff" />
     <MESSAGE value="removed bridge pieces class" />
     <MESSAGE value="implemented get BB and get jigsaw blocks methods" />
     <MESSAGE value="removed piece lists" />
@@ -527,6 +526,7 @@
     <MESSAGE value="passed rotation to super" />
     <MESSAGE value="made use of super joinJigsaw" />
     <MESSAGE value="code cleanups" />
-    <option name="LAST_COMMIT_MESSAGE" value="code cleanups" />
+    <MESSAGE value="fixed direction issue on join jigsaw" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed direction issue on join jigsaw" />
   </component>
 </project>
