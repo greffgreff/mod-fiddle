@@ -1,5 +1,6 @@
 package com.greffgreff.modfiddle.world.structure.structures.bridge;
 
+import com.greffgreff.modfiddle.world.gen.BridgeGeneration;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.SharedSeedRandom;
 import net.minecraft.util.math.BlockPos;

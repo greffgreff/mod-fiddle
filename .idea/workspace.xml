@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="fixed direction issue on join jigsaw">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="simplified join jigs methods">
       <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/BridgeGeneration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/BridgeGeneration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/AbstractBridgePiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/AbstractBridgePiece.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,13 +140,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1641992804058</updated>
-    </task>
-    <task id="LOCAL-00097" summary="removed StructurePieceReader.java">
-      <created>1643672401562</created>
-      <option name="number" value="00097" />
-      <option name="presentableId" value="LOCAL-00097" />
-      <option name="project" value="LOCAL" />
-      <updated>1643672401562</updated>
     </task>
     <task id="LOCAL-00098" summary="added WeightedItems class to handle structure piece and their weights">
       <created>1643681927035</created>
@@ -486,7 +477,14 @@
       <option name="project" value="LOCAL" />
       <updated>1644062321168</updated>
     </task>
-    <option name="localTasksCounter" value="146" />
+    <task id="LOCAL-00146" summary="simplified join jigs methods">
+      <created>1644063086852</created>
+      <option name="number" value="00146" />
+      <option name="presentableId" value="LOCAL-00146" />
+      <option name="project" value="LOCAL" />
+      <updated>1644063086852</updated>
+    </task>
+    <option name="localTasksCounter" value="147" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -502,7 +500,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="removed bridge pieces class" />
     <MESSAGE value="implemented get BB and get jigsaw blocks methods" />
     <MESSAGE value="removed piece lists" />
     <MESSAGE value="removed structure pieces param, moved variables to super" />
@@ -527,6 +524,7 @@
     <MESSAGE value="made use of super joinJigsaw" />
     <MESSAGE value="code cleanups" />
     <MESSAGE value="fixed direction issue on join jigsaw" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed direction issue on join jigsaw" />
+    <MESSAGE value="simplified join jigs methods" />
+    <option name="LAST_COMMIT_MESSAGE" value="simplified join jigs methods" />
   </component>
 </project>
