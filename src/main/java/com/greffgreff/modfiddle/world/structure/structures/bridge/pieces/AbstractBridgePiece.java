@@ -2,12 +2,18 @@ package com.greffgreff.modfiddle.world.structure.structures.bridge.pieces;
 
 import com.greffgreff.modfiddle.ModFiddle;
 import com.greffgreff.modfiddle.world.util.WeightedItems;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import net.minecraft.block.JigsawBlock;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MutableBoundingBox;
+import net.minecraft.util.math.shapes.SplitVoxelShape;
+import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.math.shapes.VoxelShapes;
+import net.minecraft.util.math.vector.Vector3i;
 import net.minecraft.util.registry.DynamicRegistries;
 import net.minecraft.util.registry.MutableRegistry;
 import net.minecraft.util.registry.Registry;
@@ -19,7 +25,6 @@ import net.minecraft.world.gen.feature.structure.StructureManager;
 import net.minecraft.world.gen.feature.structure.StructurePiece;
 import net.minecraft.world.gen.feature.template.Template;
 import net.minecraft.world.gen.feature.template.TemplateManager;
-import net.minecraftforge.fml.common.Mod;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -87,7 +92,7 @@ public abstract class AbstractBridgePiece extends JigsawPiece {
     }
 
     public MutableBoundingBox getBoundingBox() {
-        return getBoundingBox(templateManager, BlockPos.ZERO, Rotation.NONE);
+        return getBoundingBox(templateManager, BlockPos.ZERO, rotation);
     }
 
     @Override // ??
@@ -134,10 +139,10 @@ public abstract class AbstractBridgePiece extends JigsawPiece {
         return singleJigsawPiece.field_236839_c_.left().isPresent() ? singleJigsawPiece.field_236839_c_.left().get().getPath() : "";
     }
 
-    public static void joinJigsaws(AbstractVillagePiece piece1, AbstractVillagePiece piece2, TemplateManager templateManager, Rotation rotation, Random random) {
+    public void joinJigsaws(AbstractVillagePiece piece1, AbstractVillagePiece piece2) {
         matching:
         for (Template.BlockInfo jigsawPiece1 : piece1.getJigsawPiece().getJigsawBlocks(templateManager, BlockPos.ZERO, rotation, random)) {
-            for (Template.BlockInfo jigsawPiece2: piece2.getJigsawPiece().getJigsawBlocks(templateManager, BlockPos.ZERO, rotation, random)) {
+            for (Template.BlockInfo jigsawPiece2 : piece2.getJigsawPiece().getJigsawBlocks(templateManager, BlockPos.ZERO, rotation, random)) {
                 if (JigsawBlock.hasJigsawMatch(jigsawPiece1, jigsawPiece2)) {
                     int xDelta = jigsawPiece1.pos.getX() - jigsawPiece2.pos.getX();
                     int yDelta = jigsawPiece1.pos.getY() - jigsawPiece2.pos.getY();
@@ -145,21 +150,15 @@ public abstract class AbstractBridgePiece extends JigsawPiece {
 
                     Direction directionPiece1 = JigsawBlock.getConnectingDirection(jigsawPiece1.state);
                     Direction directionPiece2 = JigsawBlock.getConnectingDirection(jigsawPiece2.state);
-                    if (directionPiece1 == Direction.SOUTH && directionPiece2 == Direction.NORTH)
-                        zDelta +=1;
-                    if (directionPiece1 == Direction.NORTH && directionPiece2 == Direction.SOUTH)
-                        zDelta -=1;
-                    if (directionPiece1 == Direction.EAST && directionPiece2 == Direction.WEST)
-                        xDelta +=1;
-                    if (directionPiece1 == Direction.WEST && directionPiece2 == Direction.EAST)
-                        xDelta -=1;
-                    if (directionPiece1 == Direction.DOWN && directionPiece2 == Direction.UP)
-                        yDelta +=1;
-                    if (directionPiece1 == Direction.UP && directionPiece2 == Direction.DOWN)
-                        yDelta -=1;
+                    if (directionPiece1 == Direction.SOUTH && directionPiece2 == Direction.NORTH) zDelta += 1;
+                    if (directionPiece1 == Direction.NORTH && directionPiece2 == Direction.SOUTH) zDelta -= 1;
+                    if (directionPiece1 == Direction.EAST && directionPiece2 == Direction.WEST) xDelta += 1;
+                    if (directionPiece1 == Direction.WEST && directionPiece2 == Direction.EAST) xDelta -= 1;
+                    if (directionPiece1 == Direction.DOWN && directionPiece2 == Direction.UP) yDelta += 1;
+                    if (directionPiece1 == Direction.UP && directionPiece2 == Direction.DOWN) yDelta -= 1;
 
-                    piece2.offset(xDelta, yDelta, zDelta);
-                    break matching;
+                     piece2.offset(xDelta, yDelta, zDelta);
+                     break matching;
                 }
             }
         }
@@ -176,27 +175,16 @@ public abstract class AbstractBridgePiece extends JigsawPiece {
 
                     Direction directionPiece1 = JigsawBlock.getConnectingDirection(jigsawPiece1.state);
                     Direction directionPiece2 = JigsawBlock.getConnectingDirection(jigsawPiece2.state);
-                    if (directionPiece1 == Direction.SOUTH && directionPiece2 == Direction.NORTH)
-                        zDelta +=1;
-                    if (directionPiece1 == Direction.NORTH && directionPiece2 == Direction.SOUTH)
-                        zDelta -=1;
-                    if (directionPiece1 == Direction.EAST && directionPiece2 == Direction.WEST)
-                        xDelta +=1;
-                    if (directionPiece1 == Direction.WEST && directionPiece2 == Direction.EAST)
-                        xDelta -=1;
-                    if (directionPiece1 == Direction.DOWN && directionPiece2 == Direction.UP)
-                        yDelta +=1;
-                    if (directionPiece1 == Direction.UP && directionPiece2 == Direction.DOWN)
-                        yDelta -=1;
+                    if (directionPiece1 == Direction.NORTH && directionPiece2 == Direction.SOUTH) zDelta -=1;
+                    if (directionPiece1 == Direction.EAST && directionPiece2 == Direction.WEST) xDelta +=1;
+                    if (directionPiece1 == Direction.WEST && directionPiece2 == Direction.EAST) xDelta -=1;
+                    if (directionPiece1 == Direction.DOWN && directionPiece2 == Direction.UP) yDelta +=1;
+                    if (directionPiece1 == Direction.UP && directionPiece2 == Direction.DOWN) yDelta -=1;
 
                     piece2.offset(xDelta, yDelta, zDelta);
                     break matching;
                 }
             }
         }
-    }
-
-    protected void joinJigsaws(AbstractVillagePiece piece1, AbstractVillagePiece piece2) {
-        joinJigsaws(piece1, piece2, templateManager, rotation, random);
     }
 }
