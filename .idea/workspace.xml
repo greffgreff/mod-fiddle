@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="made use of static joinJigsaw">
+    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="added bridge direction to joinjigsaw">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/BridgeGeneration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/BridgeGeneration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/AbstractBridgePiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/AbstractBridgePiece.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/DeckPiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/DeckPiece.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/TowerPiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/TowerPiece.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,27 +143,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1641992804058</updated>
-    </task>
-    <task id="LOCAL-00090" summary="fixed bridgecap2 typo">
-      <created>1643646358634</created>
-      <option name="number" value="00090" />
-      <option name="presentableId" value="LOCAL-00090" />
-      <option name="project" value="LOCAL" />
-      <updated>1643646358634</updated>
-    </task>
-    <task id="LOCAL-00091" summary="reduced bridge structure size">
-      <created>1643653106558</created>
-      <option name="number" value="00091" />
-      <option name="presentableId" value="LOCAL-00091" />
-      <option name="project" value="LOCAL" />
-      <updated>1643653106558</updated>
-    </task>
-    <task id="LOCAL-00092" summary="reverted jigsaw manager to random piece selection">
-      <created>1643653152813</created>
-      <option name="number" value="00092" />
-      <option name="presentableId" value="LOCAL-00092" />
-      <option name="project" value="LOCAL" />
-      <updated>1643653152813</updated>
     </task>
     <task id="LOCAL-00093" summary="added DI on bridge pieces class">
       <created>1643657528039</created>
@@ -486,7 +466,28 @@
       <option name="project" value="LOCAL" />
       <updated>1643942047329</updated>
     </task>
-    <option name="localTasksCounter" value="139" />
+    <task id="LOCAL-00139" summary="added getPiece method">
+      <created>1643943086053</created>
+      <option name="number" value="00139" />
+      <option name="presentableId" value="LOCAL-00139" />
+      <option name="project" value="LOCAL" />
+      <updated>1643943086053</updated>
+    </task>
+    <task id="LOCAL-00140" summary="added break">
+      <created>1643943456386</created>
+      <option name="number" value="00140" />
+      <option name="presentableId" value="LOCAL-00140" />
+      <option name="project" value="LOCAL" />
+      <updated>1643943456386</updated>
+    </task>
+    <task id="LOCAL-00141" summary="added bridge direction to joinjigsaw">
+      <created>1644055404925</created>
+      <option name="number" value="00141" />
+      <option name="presentableId" value="LOCAL-00141" />
+      <option name="project" value="LOCAL" />
+      <updated>1644055404925</updated>
+    </task>
+    <option name="localTasksCounter" value="142" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -502,9 +503,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="removed unused ATs" />
-    <MESSAGE value="removed generateBridge method" />
-    <MESSAGE value="made AbstractBridgePiece inherit from jigsawpiece" />
     <MESSAGE value="added bridge generation class" />
     <MESSAGE value="removed unused methods" />
     <MESSAGE value="fiddled with climate stuff" />
@@ -527,6 +525,9 @@
     <MESSAGE value="added joinJigsaw overloads" />
     <MESSAGE value="made use of statis joinJigsaw" />
     <MESSAGE value="made use of static joinJigsaw" />
-    <option name="LAST_COMMIT_MESSAGE" value="made use of static joinJigsaw" />
+    <MESSAGE value="added getPiece method" />
+    <MESSAGE value="added break" />
+    <MESSAGE value="added bridge direction to joinjigsaw" />
+    <option name="LAST_COMMIT_MESSAGE" value="added bridge direction to joinjigsaw" />
   </component>
 </project>

@@ -17,8 +17,8 @@ import java.util.Random;
 
 public class TowerPiece extends AbstractBridgePiece {
 
-    public TowerPiece(DynamicRegistries dynamicRegistries, ChunkGenerator chunkGenerator, TemplateManager templateManager, BlockPos position, Random random, ResourceLocation poolLocation) {
-        super(dynamicRegistries, chunkGenerator, templateManager, position, random, poolLocation);
+    public TowerPiece(DynamicRegistries dynamicRegistries, ChunkGenerator chunkGenerator, TemplateManager templateManager, BlockPos position, Rotation rotation, Random random, ResourceLocation poolLocation) {
+        super(dynamicRegistries, chunkGenerator, templateManager, position, rotation, random, poolLocation);
     }
 
     @Override
