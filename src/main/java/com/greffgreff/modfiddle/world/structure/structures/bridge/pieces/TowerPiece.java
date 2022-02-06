@@ -22,7 +22,7 @@ public class TowerPiece extends AbstractBridgePiece {
     public AbstractBridgePiece createPiece() {
         JigsawPiece towerSpine = getRandomPillarSpinePiece();
         JigsawPiece towerHead = getRandomPillarHeadPiece();
-        AbstractVillagePiece towerSpinePlaced = createAbstractPiece(towerSpine, position, rotation, templateManager); // must work on random rotations
+        AbstractVillagePiece towerSpinePlaced = createAbstractPiece(towerSpine, position, rotation, templateManager);
         AbstractVillagePiece towerHeadPlaced = createAbstractPiece(towerHead, position, rotation, templateManager);
         joinJigsaws(towerSpinePlaced, towerHeadPlaced);
         structurePieces.add(towerSpinePlaced);

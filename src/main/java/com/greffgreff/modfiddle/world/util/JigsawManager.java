@@ -59,7 +59,7 @@ public class JigsawManager {
 
         structurePieces.add(startPiece); // Add start piece to list of pieces
 
-        // Get non-expanded bounding box of starting piece
+        // Generate AABB of one block on starting position
         AxisAlignedBB axisalignedbb = new AxisAlignedBB(pieceCenterX - 80, pieceCenterY - 80, pieceCenterZ - 80, pieceCenterX + 80 + 1, pieceCenterY + 80 + 1, pieceCenterZ + 80 + 1);
 
         Assembler assembler = new Assembler(jigsawPoolRegistry, jigsawConfig.func_236534_a_(), chunkGenerator, templateManager, structurePieces, random);
