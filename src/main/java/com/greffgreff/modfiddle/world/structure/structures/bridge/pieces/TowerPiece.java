@@ -1,5 +1,6 @@
 package com.greffgreff.modfiddle.world.structure.structures.bridge.pieces;
 
+import com.greffgreff.modfiddle.world.util.Jigsaws;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
@@ -10,6 +11,8 @@ import net.minecraft.world.gen.feature.structure.AbstractVillagePiece;
 import net.minecraft.world.gen.feature.template.TemplateManager;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 public class TowerPiece extends AbstractBridgePiece {
@@ -22,19 +25,24 @@ public class TowerPiece extends AbstractBridgePiece {
     public AbstractBridgePiece createPiece() {
         JigsawPiece towerSpine = getRandomPillarSpinePiece();
         JigsawPiece towerHead = getRandomPillarHeadPiece();
-        AbstractVillagePiece towerSpinePlaced = createAbstractPiece(towerSpine, position, rotation, templateManager);
-        AbstractVillagePiece towerHeadPlaced = createAbstractPiece(towerHead, position, rotation, templateManager);
+        AbstractVillagePiece towerSpinePlaced = Jigsaws.createAbstractPiece(towerSpine, position, rotation, templateManager);
+        AbstractVillagePiece towerHeadPlaced = Jigsaws.createAbstractPiece(towerHead, position, rotation, templateManager);
         joinJigsaws(towerSpinePlaced, towerHeadPlaced);
-        structurePieces.add(towerSpinePlaced);
-        structurePieces.add(towerHeadPlaced);
+        placedStructurePieces.add(towerSpinePlaced);
+        placedStructurePieces.add(towerHeadPlaced);
         return this;
+    }
+
+    @Override
+    protected List<JigsawPiece> fetchPieces() {
+        return Arrays.asList(getRandomPillarSpinePiece(), getRandomPillarHeadPiece());
     }
 
     private JigsawPiece getRandomPillarSpinePiece() {
         JigsawPiece deckPiece;
         do {
             deckPiece = weightedPieces.next();
-        } while (!getPieceName(deckPiece).contains("pillarspine"));
+        } while (!Jigsaws.getPieceName(deckPiece).contains("pillarspine"));
         return deckPiece;
     }
 
@@ -42,7 +50,7 @@ public class TowerPiece extends AbstractBridgePiece {
         JigsawPiece deckPiece;
         do {
             deckPiece = weightedPieces.next();
-        } while (!getPieceName(deckPiece).contains("pillarhead"));
+        } while (!Jigsaws.getPieceName(deckPiece).contains("pillarhead"));
         return deckPiece;
     }
 }

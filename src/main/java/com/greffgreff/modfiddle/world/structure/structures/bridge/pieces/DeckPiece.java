@@ -1,5 +1,6 @@
 package com.greffgreff.modfiddle.world.structure.structures.bridge.pieces;
 
+import com.greffgreff.modfiddle.world.util.Jigsaws;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
@@ -10,6 +11,7 @@ import net.minecraft.world.gen.feature.structure.AbstractVillagePiece;
 import net.minecraft.world.gen.feature.template.TemplateManager;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class DeckPiece extends AbstractBridgePiece {
@@ -28,23 +30,31 @@ public class DeckPiece extends AbstractBridgePiece {
     public AbstractBridgePiece createPiece() {
         for (int i = 0; i < deckLength; i++) {
             JigsawPiece deckPiece = getRandomDeckPiece();
-            if (structurePieces.isEmpty()) {
-                structurePieces.add(createAbstractPiece(deckPiece, position, rotation, templateManager));
+            if (placedStructurePieces.isEmpty()) {
+                placedStructurePieces.add(Jigsaws.createAbstractPiece(deckPiece, position, rotation, templateManager));
             }
             else {
-                AbstractVillagePiece deckPiecePlaced = createAbstractPiece(deckPiece, position, rotation, templateManager);
-                joinJigsaws(structurePieces.get(i-1), deckPiecePlaced);
-                structurePieces.add(deckPiecePlaced);
+                AbstractVillagePiece deckPiecePlaced = Jigsaws.createAbstractPiece(deckPiece, position, rotation, templateManager);
+                joinJigsaws(placedStructurePieces.get(i-1), deckPiecePlaced);
+                placedStructurePieces.add(deckPiecePlaced);
             }
         }
         return this;
+    }
+
+    @Override
+    protected List<JigsawPiece> fetchPieces() {
+        List<JigsawPiece> pieces = new ArrayList<>();
+        for (int i = 0; i < deckLength; i++)
+            pieces.add(getRandomDeckPiece());
+        return pieces;
     }
 
     private JigsawPiece getRandomDeckPiece() {
         JigsawPiece deckPiece;
         do {
             deckPiece = weightedPieces.next();
-        } while (!getPieceName(deckPiece).contains("walk"));
+        } while (!Jigsaws.getPieceName(deckPiece).contains("walk"));
         return deckPiece;
     }
 }
