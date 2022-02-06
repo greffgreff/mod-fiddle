@@ -37,8 +37,8 @@ public class BridgeGeneration {
 
         AbstractBridgePiece.joinJigsaws(tower, deck, templateManager, random);
 
-        structurePieces.addAll(tower.getPiece());
-        structurePieces.addAll(deck.getPiece());
+//        structurePieces.addAll(tower.getPiece());
+//        structurePieces.addAll(deck.getPiece());
 
         ModFiddle.LOGGER.debug("=== GENERATION FINISHED ===");
     }
