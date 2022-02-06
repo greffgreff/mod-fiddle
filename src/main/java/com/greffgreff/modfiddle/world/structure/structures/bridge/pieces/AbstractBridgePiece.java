@@ -90,7 +90,7 @@ public abstract class AbstractBridgePiece extends JigsawPiece {
         return getBoundingBox(templateManager, BlockPos.ZERO, rotation);
     }
 
-    @Override // ??
+    @Override
     public boolean func_230378_a_(TemplateManager templateManager, ISeedReader iSeedReader, StructureManager structureManager, ChunkGenerator chunkGenerator, BlockPos blockPos, BlockPos blockPos1, Rotation rotation, MutableBoundingBox mutableBoundingBox, Random random, boolean b) {
         return true;
     }
@@ -162,10 +162,8 @@ public abstract class AbstractBridgePiece extends JigsawPiece {
     public static void joinJigsaws(AbstractBridgePiece parentPiece, AbstractBridgePiece childPiece, TemplateManager templateManager, Random random) {
         matching:
         for (Rotation rotation: Rotation.shuffledRotations(random)) {
-            for (Template.BlockInfo parentJigsaw : parentPiece.getJigsawBlocks(rotation)) {
+            for (Template.BlockInfo parentJigsaw : parentPiece.getJigsawBlocks(Rotation.NONE)) {
                 for (Template.BlockInfo childJigsaw : childPiece.getJigsawBlocks(rotation)) {
-                    ModFiddle.LOGGER.debug("Rotation " + rotation);
-                    ModFiddle.LOGGER.debug("Match? " + JigsawBlock.hasJigsawMatch(parentJigsaw, childJigsaw));
                     if (JigsawBlock.hasJigsawMatch(parentJigsaw, childJigsaw)) {
                         Vector3i parentDirection = JigsawBlock.getConnectingDirection(parentJigsaw.state).getDirectionVec();
                         int xDelta = parentJigsaw.pos.getX() - childJigsaw.pos.getX() + parentDirection.getX();
