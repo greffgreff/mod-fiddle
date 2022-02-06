@@ -19,10 +19,8 @@ import net.minecraft.world.gen.feature.jigsaw.JigsawPiece;
 import net.minecraft.world.gen.feature.jigsaw.SingleJigsawPiece;
 import net.minecraft.world.gen.feature.structure.AbstractVillagePiece;
 import net.minecraft.world.gen.feature.structure.StructureManager;
-import net.minecraft.world.gen.feature.structure.StructurePiece;
 import net.minecraft.world.gen.feature.template.Template;
 import net.minecraft.world.gen.feature.template.TemplateManager;
-import net.minecraftforge.fml.common.Mod;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -35,7 +33,7 @@ public abstract class AbstractBridgePiece extends JigsawPiece {
     public final MutableRegistry<JigsawPattern> jigsawPoolRegistry;
     public final ChunkGenerator chunkGenerator;
     public final TemplateManager templateManager;
-    public List<StructurePiece> structurePieces = new ArrayList<>();
+    protected List<AbstractVillagePiece> structurePieces = new ArrayList<>();
     public BlockPos position;
     public Rotation rotation;
     public final Random random;
@@ -61,10 +59,10 @@ public abstract class AbstractBridgePiece extends JigsawPiece {
         MutableBoundingBox boundingBox = getBoundingBox();
         List<Integer> edges = Arrays.asList(boundingBox.minX, boundingBox.minY, boundingBox.minZ, boundingBox.maxX, boundingBox.maxY, boundingBox.maxZ);
 
-        for (StructurePiece structurePiece: structurePieces) {
-            JigsawPiece jigsawPiece = ((AbstractVillagePiece) structurePiece).getJigsawPiece();
+        for (AbstractVillagePiece structurePiece: structurePieces) {
+            JigsawPiece jigsawPiece = structurePiece.getJigsawPiece();
 
-            for (Template.BlockInfo jigsawBlock: jigsawPiece.getJigsawBlocks(templateManager, ((AbstractVillagePiece) structurePiece).getPos(), rotation, random)) {
+            for (Template.BlockInfo jigsawBlock: jigsawPiece.getJigsawBlocks(templateManager, structurePiece.getPos(), rotation, random)) {
                 BlockPos jigsawPos = jigsawBlock.pos;
 
                 if (edges.contains(jigsawPos.getX()) || edges.contains(jigsawPos.getY()) || edges.contains(jigsawPos.getZ())) {
@@ -76,14 +74,14 @@ public abstract class AbstractBridgePiece extends JigsawPiece {
         return jigsawBlocks;
     }
 
-    public List<Template.BlockInfo> getJigsawBlocks() {
+    public List<Template.BlockInfo> getJigsawBlocks(Rotation rotation) {
         return getJigsawBlocks(templateManager, BlockPos.ZERO, rotation, random);
     }
 
     @Override
     public MutableBoundingBox getBoundingBox(TemplateManager templateManager, BlockPos blockPos, Rotation rotation) {
         MutableBoundingBox mutableboundingbox = MutableBoundingBox.getNewBoundingBox();
-        for(StructurePiece structurePiece : this.structurePieces)
+        for(AbstractVillagePiece structurePiece : structurePieces)
             mutableboundingbox.expandTo(structurePiece.getBoundingBox());
         return mutableboundingbox;
     }
@@ -107,7 +105,7 @@ public abstract class AbstractBridgePiece extends JigsawPiece {
             position.add(x, z, y);
         }
         else {
-            for (StructurePiece structurePiece: structurePieces) {
+            for (AbstractVillagePiece structurePiece: structurePieces) {
                 structurePiece.offset(x, y, z);
             }
         }
@@ -120,7 +118,7 @@ public abstract class AbstractBridgePiece extends JigsawPiece {
 
     protected abstract AbstractBridgePiece createPiece();
 
-    public List<StructurePiece> getPiece() {
+    public List<AbstractVillagePiece> getPiece() {
         return this.structurePieces;
     }
 
@@ -164,8 +162,10 @@ public abstract class AbstractBridgePiece extends JigsawPiece {
     public static void joinJigsaws(AbstractBridgePiece parentPiece, AbstractBridgePiece childPiece, TemplateManager templateManager, Random random) {
         matching:
         for (Rotation rotation: Rotation.shuffledRotations(random)) {
-            for (Template.BlockInfo parentJigsaw : parentPiece.getJigsawBlocks()) {
-                for (Template.BlockInfo childJigsaw : childPiece.getJigsawBlocks()) {
+            for (Template.BlockInfo parentJigsaw : parentPiece.getJigsawBlocks(rotation)) {
+                for (Template.BlockInfo childJigsaw : childPiece.getJigsawBlocks(rotation)) {
+                    ModFiddle.LOGGER.debug("Rotation " + rotation);
+                    ModFiddle.LOGGER.debug("Match? " + JigsawBlock.hasJigsawMatch(parentJigsaw, childJigsaw));
                     if (JigsawBlock.hasJigsawMatch(parentJigsaw, childJigsaw)) {
                         Vector3i parentDirection = JigsawBlock.getConnectingDirection(parentJigsaw.state).getDirectionVec();
                         int xDelta = parentJigsaw.pos.getX() - childJigsaw.pos.getX() + parentDirection.getX();
@@ -186,7 +186,7 @@ public abstract class AbstractBridgePiece extends JigsawPiece {
     }
 
     private void rotate() {
-        for (StructurePiece structurePiece: structurePieces) {
+        for (AbstractVillagePiece structurePiece: structurePieces) {
 
         }
     }
