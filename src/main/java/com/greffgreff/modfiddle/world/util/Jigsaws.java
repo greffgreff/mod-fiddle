@@ -1,6 +1,8 @@
 package com.greffgreff.modfiddle.world.util;
 
+import com.greffgreff.modfiddle.ModFiddle;
 import com.greffgreff.modfiddle.world.structure.structures.bridge.pieces.AbstractBridgePiece;
+import net.minecraft.block.Block;
 import net.minecraft.block.JigsawBlock;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
@@ -49,14 +51,29 @@ public class Jigsaws {
 
                         MutableBoundingBox BB = childPiece.getBoundingBox();
                         MutableBoundingBox theoreticalBB = MutableBoundingBox.createProper(BB.minX + xDelta, BB.minY + yDelta, BB.minZ + zDelta, BB.maxX + xDelta, BB.maxY + yDelta, BB.maxZ + zDelta);
+                        MutableBoundingBox rotatedBB = Jigsaws.rotateBB(theoreticalBB, rotation);
 
-                        if (!parentPiece.getBoundingBox().intersectsWith(theoreticalBB)) {
-                            childPiece.offset(xDelta, yDelta, zDelta);
+                        BlockPos pos = childJigsaw.pos.add(xDelta, yDelta, zDelta);
+                        ModFiddle.LOGGER.debug("Direction:      " + parentDirection);
+                        ModFiddle.LOGGER.debug("Child BB:       " + BB.minX + " " + BB.minY + " " + BB.minZ + "    " + BB.maxX + " " + BB.maxY + " " + BB.maxZ);
+                        ModFiddle.LOGGER.debug("Computed BB:    " + rotatedBB.minX + " " + rotatedBB.minY + " " + rotatedBB.minZ + "    " + rotatedBB.maxX + " " + rotatedBB.maxY + " " + rotatedBB.maxZ);
+                        ModFiddle.LOGGER.debug("Child jig pos:  " + pos.getX() + " " + pos.getY() + " " + pos.getZ());
+                        ModFiddle.LOGGER.debug("Parent jig pos: " + parentJigsaw.pos.getX() + " " + parentJigsaw.pos.getY() + " " + parentJigsaw.pos.getZ());
+
+                        if (!parentPiece.getBoundingBox().intersectsWith(rotatedBB)) {
+                            childPiece.offset(xDelta, yDelta, zDelta).rotate(rotation).createPiece();
                             break matching;
                         }
                     }
                 }
             }
         }
+    }
+
+    public static MutableBoundingBox rotateBB(MutableBoundingBox boundingBox, Rotation rotation) {
+        if (rotation == Rotation.COUNTERCLOCKWISE_90 || rotation == Rotation.CLOCKWISE_90)
+            return MutableBoundingBox.createProper(boundingBox.minZ, boundingBox.minY, boundingBox.minX, boundingBox.maxZ, boundingBox.maxY, boundingBox.maxX);
+//            return MutableBoundingBox.createProper(boundingBox.minX, boundingBox.minY, boundingBox.maxX, boundingBox.minZ, boundingBox.maxY, boundingBox.maxZ);
+        return boundingBox;
     }
 }

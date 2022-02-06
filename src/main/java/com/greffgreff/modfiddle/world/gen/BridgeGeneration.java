@@ -23,24 +23,19 @@ import java.util.Random;
 public class BridgeGeneration {
 
     public static void generateBridge(DynamicRegistries dynamicRegistries, ChunkGenerator chunkGenerator, TemplateManager templateManager, BlockPos startingPos, List<StructurePiece> structurePieces, Random random) {
-        ModFiddle.LOGGER.debug("=== STARTING GENERATION ===");
+        ModFiddle.LOGGER.debug("===================================");
 
 //        AxisAlignedBB axisAlignedBB = new AxisAlignedBB(startingPos.getX() - 80, startingPos.getY() - 80, startingPos.getZ() - 80, startingPos.getX() + 80 + 1, startingPos.getY() + 80 + 1, startingPos.getZ() + 80 + 1);
 //        VoxelShape voxel = VoxelShapes.combineAndSimplify(VoxelShapes.create(axisAlignedBB), VoxelShapes.create(AxisAlignedBB.toImmutable(pieceBoundingBox)));
 //        VoxelShapes.compare(pieceVoxelShape.getValue(), VoxelShapes.create(AxisAlignedBB.toImmutable(adjustedCandidateBoundingBox).shrink(0.25D)), IBooleanFunction.ONLY_SECOND)
 
         ResourceLocation loc = new ResourceLocation(ModFiddle.MOD_ID, "bridge/bridge");
-        TowerPiece tower = new TowerPiece(dynamicRegistries, chunkGenerator, templateManager, startingPos, Rotation.randomRotation(random), random, loc);
-        DeckPiece deck = new DeckPiece(dynamicRegistries, chunkGenerator, templateManager, startingPos, Rotation.NONE, random, loc);
-
-        tower.createPiece();
-        deck.createPiece();
+        TowerPiece tower = new TowerPiece(dynamicRegistries, chunkGenerator, templateManager, startingPos.add(0, 30, 0), random, loc);
+        DeckPiece deck = new DeckPiece(dynamicRegistries, chunkGenerator, templateManager, startingPos.add(0, 30, 0), random, loc);
 
         Jigsaws.joinJigsaws(tower, deck, templateManager, random);
 
         structurePieces.addAll(tower.getPiece());
         structurePieces.addAll(deck.getPiece());
-
-        ModFiddle.LOGGER.debug("=== GENERATION FINISHED ===");
     }
 }

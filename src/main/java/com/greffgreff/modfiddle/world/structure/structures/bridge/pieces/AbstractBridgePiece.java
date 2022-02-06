@@ -1,5 +1,6 @@
 package com.greffgreff.modfiddle.world.structure.structures.bridge.pieces;
 
+import com.greffgreff.modfiddle.ModFiddle;
 import com.greffgreff.modfiddle.world.util.Jigsaws;
 import com.greffgreff.modfiddle.world.util.WeightedItems;
 import net.minecraft.block.JigsawBlock;
@@ -33,8 +34,7 @@ public abstract class AbstractBridgePiece extends JigsawPiece {
     public final MutableRegistry<JigsawPattern> jigsawPoolRegistry;
     public final ChunkGenerator chunkGenerator;
     public final TemplateManager templateManager;
-    protected final List<AbstractVillagePiece> placedStructurePieces = new ArrayList<>();
-    protected final List<JigsawPiece> structurePieces;
+    protected List<AbstractVillagePiece> structurePieces;
     public BlockPos position;
     public Rotation rotation;
     public final Random random;
@@ -52,12 +52,10 @@ public abstract class AbstractBridgePiece extends JigsawPiece {
         this.random = random;
         piecePool = Jigsaws.getPool(poolLocation, dynamicRegistries);
         piecePool.rawTemplates.forEach(p -> weightedPieces.add(p.getSecond().doubleValue(), p.getFirst()));
-        structurePieces = fetchPieces();
+        createPiece();
     }
 
-    protected abstract AbstractBridgePiece createPiece();
-
-    protected abstract List<JigsawPiece> fetchPieces();
+    public abstract AbstractBridgePiece createPiece();
 
     @Override
     public List<Template.BlockInfo> getJigsawBlocks(TemplateManager templateManager, BlockPos blockPos, Rotation rotation, Random random) {
@@ -65,7 +63,7 @@ public abstract class AbstractBridgePiece extends JigsawPiece {
         MutableBoundingBox boundingBox = getBoundingBox();
         List<Integer> edges = Arrays.asList(boundingBox.minX, boundingBox.minY, boundingBox.minZ, boundingBox.maxX, boundingBox.maxY, boundingBox.maxZ);
 
-        for (AbstractVillagePiece structurePiece: placedStructurePieces) {
+        for (AbstractVillagePiece structurePiece: structurePieces) {
             JigsawPiece jigsawPiece = structurePiece.getJigsawPiece();
 
             for (Template.BlockInfo jigsawBlock: jigsawPiece.getJigsawBlocks(templateManager, structurePiece.getPos(), rotation, random)) {
@@ -92,29 +90,21 @@ public abstract class AbstractBridgePiece extends JigsawPiece {
 
     @Override
     public MutableBoundingBox getBoundingBox(TemplateManager templateManager, BlockPos blockPos, Rotation rotation) {
-        MutableBoundingBox mutableboundingbox = MutableBoundingBox.getNewBoundingBox();
-        for(AbstractVillagePiece structurePiece : placedStructurePieces)
-            mutableboundingbox.expandTo(structurePiece.getBoundingBox());
-        return mutableboundingbox;
+        MutableBoundingBox boundingBox = MutableBoundingBox.getNewBoundingBox();
+        for(AbstractVillagePiece structurePiece : structurePieces)
+            boundingBox.expandTo(structurePiece.getBoundingBox());
+        return boundingBox;
     }
 
     public MutableBoundingBox getBoundingBox() {
         return getBoundingBox(templateManager, BlockPos.ZERO, rotation);
     }
 
-    public AbstractBridgePiece offset(int x, int y, int z) {
-        if (placedStructurePieces.isEmpty())  {
-            position.add(x, z, y);
-        }
-        else {
-            for (AbstractVillagePiece structurePiece: placedStructurePieces) {
-                structurePiece.offset(x, y, z);
-            }
-        }
-        return this;
+    public List<AbstractVillagePiece> getPiece() {
+        return this.structurePieces;
     }
 
-    public void joinJigsaws(AbstractVillagePiece parentPiece, AbstractVillagePiece childPiece) {
+    protected void joinJigsaws(AbstractVillagePiece parentPiece, AbstractVillagePiece childPiece) {
         matching:
         for (Template.BlockInfo parentJigsaw : parentPiece.getJigsawPiece().getJigsawBlocks(templateManager, position, rotation, random)) {
             for (Template.BlockInfo childJigsaw : childPiece.getJigsawPiece().getJigsawBlocks(templateManager, position, rotation, random)) {
@@ -136,7 +126,15 @@ public abstract class AbstractBridgePiece extends JigsawPiece {
         }
     }
 
-    public List<AbstractVillagePiece> getPiece() {
-        return this.placedStructurePieces;
+    public AbstractBridgePiece offset(int x, int y, int z) {
+//        for (AbstractVillagePiece structurePiece: structurePieces)
+//            structurePiece.offset(x, y, z);
+        this.position.add(x, y, z);
+        return this;
+    }
+
+    public AbstractBridgePiece rotate(Rotation rotation) {
+        this.rotation = rotation;
+        return this;
     }
 }

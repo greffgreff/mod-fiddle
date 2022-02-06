@@ -21,21 +21,21 @@ public class TowerPiece extends AbstractBridgePiece {
         super(dynamicRegistries, chunkGenerator, templateManager, position, rotation, random, poolLocation);
     }
 
+    public TowerPiece(DynamicRegistries dynamicRegistries, ChunkGenerator chunkGenerator, TemplateManager templateManager, BlockPos position, Random random, ResourceLocation poolLocation) {
+        super(dynamicRegistries, chunkGenerator, templateManager, position, Rotation.NONE, random, poolLocation);
+    }
+
     @Override
     public AbstractBridgePiece createPiece() {
+        structurePieces = new ArrayList<>();
         JigsawPiece towerSpine = getRandomPillarSpinePiece();
         JigsawPiece towerHead = getRandomPillarHeadPiece();
         AbstractVillagePiece towerSpinePlaced = Jigsaws.createAbstractPiece(towerSpine, position, rotation, templateManager);
         AbstractVillagePiece towerHeadPlaced = Jigsaws.createAbstractPiece(towerHead, position, rotation, templateManager);
         joinJigsaws(towerSpinePlaced, towerHeadPlaced);
-        placedStructurePieces.add(towerSpinePlaced);
-        placedStructurePieces.add(towerHeadPlaced);
+        structurePieces.add(towerSpinePlaced);
+        structurePieces.add(towerHeadPlaced);
         return this;
-    }
-
-    @Override
-    protected List<JigsawPiece> fetchPieces() {
-        return Arrays.asList(getRandomPillarSpinePiece(), getRandomPillarHeadPiece());
     }
 
     private JigsawPiece getRandomPillarSpinePiece() {
