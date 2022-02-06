@@ -4,6 +4,7 @@ import com.greffgreff.modfiddle.ModFiddle;
 import com.greffgreff.modfiddle.world.structure.structures.bridge.pieces.AbstractBridgePiece;
 import com.greffgreff.modfiddle.world.structure.structures.bridge.pieces.DeckPiece;
 import com.greffgreff.modfiddle.world.structure.structures.bridge.pieces.TowerPiece;
+import com.greffgreff.modfiddle.world.util.Jigsaws;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -35,10 +36,10 @@ public class BridgeGeneration {
         tower.createPiece();
         deck.createPiece();
 
-        AbstractBridgePiece.joinJigsaws(tower, deck, templateManager, random);
+        Jigsaws.joinJigsaws(tower, deck, templateManager, random);
 
-//        structurePieces.addAll(tower.getPiece());
-//        structurePieces.addAll(deck.getPiece());
+        structurePieces.addAll(tower.getPiece());
+        structurePieces.addAll(deck.getPiece());
 
         ModFiddle.LOGGER.debug("=== GENERATION FINISHED ===");
     }

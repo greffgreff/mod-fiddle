@@ -81,6 +81,16 @@ public abstract class AbstractBridgePiece extends JigsawPiece {
     }
 
     @Override
+    public boolean func_230378_a_(TemplateManager templateManager, ISeedReader iSeedReader, StructureManager structureManager, ChunkGenerator chunkGenerator, BlockPos blockPos, BlockPos blockPos1, Rotation rotation, MutableBoundingBox mutableBoundingBox, Random random, boolean b) {
+        return true;
+    }
+
+    @Override
+    public IJigsawDeserializer<?> getType() {
+        return IJigsawDeserializer.LIST_POOL_ELEMENT;
+    }
+
+    @Override
     public MutableBoundingBox getBoundingBox(TemplateManager templateManager, BlockPos blockPos, Rotation rotation) {
         MutableBoundingBox mutableboundingbox = MutableBoundingBox.getNewBoundingBox();
         for(AbstractVillagePiece structurePiece : placedStructurePieces)
@@ -90,16 +100,6 @@ public abstract class AbstractBridgePiece extends JigsawPiece {
 
     public MutableBoundingBox getBoundingBox() {
         return getBoundingBox(templateManager, BlockPos.ZERO, rotation);
-    }
-
-    @Override
-    public boolean func_230378_a_(TemplateManager templateManager, ISeedReader iSeedReader, StructureManager structureManager, ChunkGenerator chunkGenerator, BlockPos blockPos, BlockPos blockPos1, Rotation rotation, MutableBoundingBox mutableBoundingBox, Random random, boolean b) {
-        return true;
-    }
-
-    @Override
-    public IJigsawDeserializer<?> getType() {
-        return IJigsawDeserializer.LIST_POOL_ELEMENT;
     }
 
     public AbstractBridgePiece offset(int x, int y, int z) {
@@ -112,10 +112,6 @@ public abstract class AbstractBridgePiece extends JigsawPiece {
             }
         }
         return this;
-    }
-
-    public BlockPos getPosition() {
-        return this.position;
     }
 
     public void joinJigsaws(AbstractVillagePiece parentPiece, AbstractVillagePiece childPiece) {
@@ -140,27 +136,7 @@ public abstract class AbstractBridgePiece extends JigsawPiece {
         }
     }
 
-    public static void joinJigsaws(AbstractBridgePiece parentPiece, AbstractBridgePiece childPiece, TemplateManager templateManager, Random random) {
-        matching:
-        for (Rotation rotation: Rotation.shuffledRotations(random)) {
-            for (Template.BlockInfo parentJigsaw : parentPiece.getJigsawBlocks(templateManager, BlockPos.ZERO, Rotation.NONE, random)) {
-                for (Template.BlockInfo childJigsaw : childPiece.getJigsawBlocks(templateManager, BlockPos.ZERO, rotation, random)) {
-                    if (JigsawBlock.hasJigsawMatch(parentJigsaw, childJigsaw)) {
-                        Vector3i parentDirection = JigsawBlock.getConnectingDirection(parentJigsaw.state).getDirectionVec();
-                        int xDelta = parentJigsaw.pos.getX() - childJigsaw.pos.getX() + parentDirection.getX();
-                        int yDelta = parentJigsaw.pos.getY() - childJigsaw.pos.getY() + parentDirection.getY();
-                        int zDelta = parentJigsaw.pos.getZ() - childJigsaw.pos.getZ() + parentDirection.getZ();
-
-                        MutableBoundingBox BB = childPiece.getBoundingBox();
-                        MutableBoundingBox theoreticalBB = MutableBoundingBox.createProper(BB.minX + xDelta, BB.minY + yDelta, BB.minZ + zDelta, BB.maxX + xDelta, BB.maxY + yDelta, BB.maxZ + zDelta);
-
-                        if (!parentPiece.getBoundingBox().intersectsWith(theoreticalBB)) {
-                            childPiece.offset(xDelta, yDelta, zDelta);
-                            break matching;
-                        }
-                    }
-                }
-            }
-        }
+    public List<AbstractVillagePiece> getPiece() {
+        return this.placedStructurePieces;
     }
 }
