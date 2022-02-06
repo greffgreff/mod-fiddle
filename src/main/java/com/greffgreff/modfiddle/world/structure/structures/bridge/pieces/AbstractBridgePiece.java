@@ -30,16 +30,16 @@ import java.util.Random;
 import java.util.function.Supplier;
 
 public abstract class AbstractBridgePiece extends JigsawPiece {
+    protected final WeightedItems<JigsawPiece> weightedPieces = new WeightedItems<>();
+    protected final JigsawPattern piecePool;
+    protected List<AbstractVillagePiece> structurePieces;
     public final DynamicRegistries dynamicRegistries;
     public final MutableRegistry<JigsawPattern> jigsawPoolRegistry;
     public final ChunkGenerator chunkGenerator;
     public final TemplateManager templateManager;
-    protected List<AbstractVillagePiece> structurePieces;
+    public final Random random;
     public BlockPos position;
     public Rotation rotation;
-    public final Random random;
-    protected final WeightedItems<JigsawPiece> weightedPieces = new WeightedItems<>();
-    protected final JigsawPattern piecePool;
 
     public AbstractBridgePiece(DynamicRegistries dynamicRegistries, ChunkGenerator chunkGenerator, TemplateManager templateManager, BlockPos position, Rotation rotation, Random random, ResourceLocation poolLocation) {
         super(JigsawPattern.PlacementBehaviour.RIGID);
