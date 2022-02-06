@@ -33,7 +33,7 @@ public class DeckPiece extends AbstractBridgePiece {
             }
             else {
                 AbstractVillagePiece deckPiecePlaced = createAbstractPiece(deckPiece, position, rotation, templateManager);
-                joinJigsaws((AbstractVillagePiece) structurePieces.get(i-1), deckPiecePlaced);
+                joinJigsaws(structurePieces.get(i-1), deckPiecePlaced);
                 structurePieces.add(deckPiecePlaced);
             }
         }
