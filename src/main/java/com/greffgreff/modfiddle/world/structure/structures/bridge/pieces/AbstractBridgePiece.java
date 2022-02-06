@@ -127,9 +127,7 @@ public abstract class AbstractBridgePiece extends JigsawPiece {
     }
 
     public AbstractBridgePiece offset(int x, int y, int z) {
-//        for (AbstractVillagePiece structurePiece: structurePieces)
-//            structurePiece.offset(x, y, z);
-        this.position.add(x, y, z);
+        this.position = this.position.add(x, y, z);
         return this;
     }
 
