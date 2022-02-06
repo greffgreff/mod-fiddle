@@ -53,13 +53,6 @@ public class Jigsaws {
                         MutableBoundingBox theoreticalBB = MutableBoundingBox.createProper(BB.minX + xDelta, BB.minY + yDelta, BB.minZ + zDelta, BB.maxX + xDelta, BB.maxY + yDelta, BB.maxZ + zDelta);
                         MutableBoundingBox rotatedBB = Jigsaws.rotateBB(theoreticalBB, rotation);
 
-                        BlockPos pos = childJigsaw.pos.add(xDelta, yDelta, zDelta);
-                        ModFiddle.LOGGER.debug("Direction:      " + parentDirection);
-                        ModFiddle.LOGGER.debug("Child BB:       " + BB.minX + " " + BB.minY + " " + BB.minZ + "    " + BB.maxX + " " + BB.maxY + " " + BB.maxZ);
-                        ModFiddle.LOGGER.debug("Computed BB:    " + rotatedBB.minX + " " + rotatedBB.minY + " " + rotatedBB.minZ + "    " + rotatedBB.maxX + " " + rotatedBB.maxY + " " + rotatedBB.maxZ);
-                        ModFiddle.LOGGER.debug("Child jig pos:  " + pos.getX() + " " + pos.getY() + " " + pos.getZ());
-                        ModFiddle.LOGGER.debug("Parent jig pos: " + parentJigsaw.pos.getX() + " " + parentJigsaw.pos.getY() + " " + parentJigsaw.pos.getZ());
-
                         if (!parentPiece.getBoundingBox().intersectsWith(rotatedBB)) {
                             childPiece.offset(xDelta, yDelta, zDelta).rotate(rotation).createPiece();
                             break matching;

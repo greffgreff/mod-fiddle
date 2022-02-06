@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="removed static methods">
+    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="made child jigsaw direction work, added constructor with no rotation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/gen/BridgeGeneration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/gen/BridgeGeneration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/AbstractBridgePiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/AbstractBridgePiece.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/DeckPiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/DeckPiece.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/TowerPiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/TowerPiece.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/util/Jigsaws.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/util/Jigsaws.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -146,13 +143,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1641992804058</updated>
-    </task>
-    <task id="LOCAL-00108" summary="added tower piece class">
-      <created>1643746050970</created>
-      <option name="number" value="00108" />
-      <option name="presentableId" value="LOCAL-00108" />
-      <option name="project" value="LOCAL" />
-      <updated>1643746050970</updated>
     </task>
     <task id="LOCAL-00109" summary="added deck piece class">
       <created>1643746185637</created>
@@ -490,7 +480,14 @@
       <option name="project" value="LOCAL" />
       <updated>1644151950383</updated>
     </task>
-    <option name="localTasksCounter" value="157" />
+    <task id="LOCAL-00157" summary="made child jigsaw direction work, added constructor with no rotation">
+      <created>1644163672268</created>
+      <option name="number" value="00157" />
+      <option name="presentableId" value="LOCAL-00157" />
+      <option name="project" value="LOCAL" />
+      <updated>1644163672268</updated>
+    </task>
+    <option name="localTasksCounter" value="158" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -506,7 +503,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="renamed position var" />
     <MESSAGE value="added offset method" />
     <MESSAGE value="moved joinjigsaw method" />
     <MESSAGE value="added required offset on joinJigsaw" />
@@ -531,6 +527,7 @@
     <MESSAGE value="moved helper methods to Jigsaws util, added fetchPieces()" />
     <MESSAGE value="removed error" />
     <MESSAGE value="removed static methods" />
-    <option name="LAST_COMMIT_MESSAGE" value="removed static methods" />
+    <MESSAGE value="made child jigsaw direction work, added constructor with no rotation" />
+    <option name="LAST_COMMIT_MESSAGE" value="made child jigsaw direction work, added constructor with no rotation" />
   </component>
 </project>
