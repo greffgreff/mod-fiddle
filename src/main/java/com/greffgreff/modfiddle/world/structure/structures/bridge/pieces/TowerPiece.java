@@ -26,7 +26,7 @@ public class TowerPiece extends AbstractBridgePiece {
     }
 
     @Override
-    public AbstractBridgePiece createPiece() {
+    public AbstractBridgePiece buildPiece() {
         structurePieces = new ArrayList<>();
         JigsawPiece towerSpine = getRandomPillarSpinePiece();
         JigsawPiece towerHead = getRandomPillarHeadPiece();

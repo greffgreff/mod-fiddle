@@ -1,6 +1,5 @@
 package com.greffgreff.modfiddle.world.structure.structures.bridge.pieces;
 
-import com.greffgreff.modfiddle.ModFiddle;
 import com.greffgreff.modfiddle.world.util.Jigsaws;
 import com.greffgreff.modfiddle.world.util.WeightedItems;
 import net.minecraft.block.JigsawBlock;
@@ -17,7 +16,6 @@ import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.feature.jigsaw.IJigsawDeserializer;
 import net.minecraft.world.gen.feature.jigsaw.JigsawPattern;
 import net.minecraft.world.gen.feature.jigsaw.JigsawPiece;
-import net.minecraft.world.gen.feature.jigsaw.SingleJigsawPiece;
 import net.minecraft.world.gen.feature.structure.AbstractVillagePiece;
 import net.minecraft.world.gen.feature.structure.StructureManager;
 import net.minecraft.world.gen.feature.template.Template;
@@ -27,7 +25,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
-import java.util.function.Supplier;
 
 public abstract class AbstractBridgePiece extends JigsawPiece {
     protected final WeightedItems<JigsawPiece> weightedPieces = new WeightedItems<>();
@@ -52,10 +49,10 @@ public abstract class AbstractBridgePiece extends JigsawPiece {
         jigsawPoolRegistry = dynamicRegistries.getRegistry(Registry.JIGSAW_POOL_KEY);
         piecePool = Jigsaws.getPool(poolLocation, dynamicRegistries);
         piecePool.rawTemplates.forEach(p -> weightedPieces.add(p.getSecond().doubleValue(), p.getFirst()));
-        createPiece();
+        buildPiece();
     }
 
-    public abstract AbstractBridgePiece createPiece();
+    public abstract AbstractBridgePiece buildPiece();
 
     @Override
     public List<Template.BlockInfo> getJigsawBlocks(TemplateManager templateManager, BlockPos blockPos, Rotation rotation, Random random) {
@@ -131,7 +128,7 @@ public abstract class AbstractBridgePiece extends JigsawPiece {
         return this;
     }
 
-    public AbstractBridgePiece rotate(Rotation rotation) {
+    public AbstractBridgePiece setRotation(Rotation rotation) {
         this.rotation = rotation;
         return this;
     }

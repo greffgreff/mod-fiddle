@@ -1,5 +1,6 @@
 package com.greffgreff.modfiddle.world.structure.structures.bridge.pieces;
 
+import com.greffgreff.modfiddle.ModFiddle;
 import com.greffgreff.modfiddle.world.util.Jigsaws;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
@@ -26,7 +27,7 @@ public class DeckPiece extends AbstractBridgePiece {
     }
 
     @Override
-    public AbstractBridgePiece createPiece() {
+    public AbstractBridgePiece buildPiece() {
         deckLength=3; // fix this
 
         structurePieces = new ArrayList<>();
@@ -41,6 +42,7 @@ public class DeckPiece extends AbstractBridgePiece {
                 structurePieces.add(deckPiecePlaced);
             }
         }
+        ModFiddle.LOGGER.debug("Actual BB:       " + this.getBoundingBox().minX + " " + this.getBoundingBox().minY + " " + this.getBoundingBox().minZ + "    " + this.getBoundingBox().maxX + " " + this.getBoundingBox().maxY + " " + this.getBoundingBox().maxZ);
         return this;
     }
 

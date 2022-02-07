@@ -4,8 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="changed constru">
+    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="fixed rotation issue on CLOCKWISE_180">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/AbstractBridgePiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/AbstractBridgePiece.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/DeckPiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/DeckPiece.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/TowerPiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/TowerPiece.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/util/Jigsaws.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/util/Jigsaws.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -142,13 +145,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1641992804058</updated>
-    </task>
-    <task id="LOCAL-00118" summary="removed unused methods">
-      <created>1643880775152</created>
-      <option name="number" value="00118" />
-      <option name="presentableId" value="LOCAL-00118" />
-      <option name="project" value="LOCAL" />
-      <updated>1643880775152</updated>
     </task>
     <task id="LOCAL-00119" summary="fiddled with climate stuff">
       <created>1643880793066</created>
@@ -486,7 +482,14 @@
       <option name="project" value="LOCAL" />
       <updated>1644248860377</updated>
     </task>
-    <option name="localTasksCounter" value="167" />
+    <task id="LOCAL-00167" summary="fixed rotation issue on CLOCKWISE_180">
+      <created>1644255792990</created>
+      <option name="number" value="00167" />
+      <option name="presentableId" value="LOCAL-00167" />
+      <option name="project" value="LOCAL" />
+      <updated>1644255792990</updated>
+    </task>
+    <option name="localTasksCounter" value="168" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -502,7 +505,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="added bridge direction to joinjigsaw" />
     <MESSAGE value="passed rotation to super" />
     <MESSAGE value="made use of super joinJigsaw" />
     <MESSAGE value="fixed direction issue on join jigsaw" />
@@ -527,6 +529,7 @@
     <MESSAGE value="added offset in Z for rotation" />
     <MESSAGE value="replaced if statements with switch" />
     <MESSAGE value="changed constru" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed constru" />
+    <MESSAGE value="fixed rotation issue on CLOCKWISE_180" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed rotation issue on CLOCKWISE_180" />
   </component>
 </project>
