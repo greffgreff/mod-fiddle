@@ -30,8 +30,8 @@ public class BridgeGeneration {
 //        VoxelShapes.compare(pieceVoxelShape.getValue(), VoxelShapes.create(AxisAlignedBB.toImmutable(adjustedCandidateBoundingBox).shrink(0.25D)), IBooleanFunction.ONLY_SECOND)
 
         ResourceLocation loc = new ResourceLocation(ModFiddle.MOD_ID, "bridge/bridge");
-        TowerPiece tower = new TowerPiece(dynamicRegistries, chunkGenerator, templateManager, startingPos.add(0, 30, 0), random, loc);
-        DeckPiece deck = new DeckPiece(dynamicRegistries, chunkGenerator, templateManager, startingPos.add(0, 30, 0), random, loc);
+        TowerPiece tower = new TowerPiece(dynamicRegistries, chunkGenerator, templateManager, startingPos, random, loc);
+        DeckPiece deck = new DeckPiece(dynamicRegistries, chunkGenerator, templateManager, startingPos, random, loc);
 
         Jigsaws.joinJigsaws(tower, deck, templateManager, random);
 
