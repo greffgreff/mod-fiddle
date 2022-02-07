@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="added offset in Z for rotation">
+    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="changed constru">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/AbstractBridgePiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/AbstractBridgePiece.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/DeckPiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/DeckPiece.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/util/Jigsaws.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/util/Jigsaws.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -144,20 +142,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1641992804058</updated>
-    </task>
-    <task id="LOCAL-00116" summary="added bridge generation class">
-      <created>1643880714654</created>
-      <option name="number" value="00116" />
-      <option name="presentableId" value="LOCAL-00116" />
-      <option name="project" value="LOCAL" />
-      <updated>1643880714654</updated>
-    </task>
-    <task id="LOCAL-00117" summary="optimised imports">
-      <created>1643880743421</created>
-      <option name="number" value="00117" />
-      <option name="presentableId" value="LOCAL-00117" />
-      <option name="project" value="LOCAL" />
-      <updated>1643880743421</updated>
     </task>
     <task id="LOCAL-00118" summary="removed unused methods">
       <created>1643880775152</created>
@@ -488,7 +472,21 @@
       <option name="project" value="LOCAL" />
       <updated>1644247240864</updated>
     </task>
-    <option name="localTasksCounter" value="165" />
+    <task id="LOCAL-00165" summary="replaced if statements with switch">
+      <created>1644248835946</created>
+      <option name="number" value="00165" />
+      <option name="presentableId" value="LOCAL-00165" />
+      <option name="project" value="LOCAL" />
+      <updated>1644248835946</updated>
+    </task>
+    <task id="LOCAL-00166" summary="changed constru">
+      <created>1644248860377</created>
+      <option name="number" value="00166" />
+      <option name="presentableId" value="LOCAL-00166" />
+      <option name="project" value="LOCAL" />
+      <updated>1644248860377</updated>
+    </task>
+    <option name="localTasksCounter" value="167" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -504,8 +502,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="added getPiece method" />
-    <MESSAGE value="added break" />
     <MESSAGE value="added bridge direction to joinjigsaw" />
     <MESSAGE value="passed rotation to super" />
     <MESSAGE value="made use of super joinJigsaw" />
@@ -529,6 +525,8 @@
     <MESSAGE value="worked on structure rotation" />
     <MESSAGE value="removed offset" />
     <MESSAGE value="added offset in Z for rotation" />
-    <option name="LAST_COMMIT_MESSAGE" value="added offset in Z for rotation" />
+    <MESSAGE value="replaced if statements with switch" />
+    <MESSAGE value="changed constru" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed constru" />
   </component>
 </project>

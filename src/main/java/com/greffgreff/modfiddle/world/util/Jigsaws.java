@@ -84,8 +84,8 @@ public class Jigsaws {
                 maxZ = boundingBox.maxZ - boundingBox.getXSize() - 1;
                 return MutableBoundingBox.createProper(boundingBox.minX, boundingBox.minY, boundingBox.minZ, maxX, boundingBox.maxY, maxZ);
             case CLOCKWISE_180:
-                maxX = boundingBox.minX + boundingBox.getZSize() - 1;
-                maxZ = boundingBox.maxZ - boundingBox.getXSize() - 1;
+                maxX = boundingBox.maxX - boundingBox.getXSize()*2 + 2;
+                maxZ = boundingBox.maxZ - boundingBox.getZSize()*2 + 2;
                 return MutableBoundingBox.createProper(boundingBox.minX, boundingBox.minY, boundingBox.minZ, maxX, boundingBox.maxY, maxZ);
             default:
                 return boundingBox;
