@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="code cleanups">
+    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="removed offset">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/gen/BridgeGeneration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/gen/BridgeGeneration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/AbstractBridgePiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/AbstractBridgePiece.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/DeckPiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/DeckPiece.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/util/Jigsaws.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/util/Jigsaws.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -145,20 +142,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1641992804058</updated>
-    </task>
-    <task id="LOCAL-00113" summary="removed unused ATs">
-      <created>1643766229108</created>
-      <option name="number" value="00113" />
-      <option name="presentableId" value="LOCAL-00113" />
-      <option name="project" value="LOCAL" />
-      <updated>1643766229108</updated>
-    </task>
-    <task id="LOCAL-00114" summary="removed generateBridge method">
-      <created>1643766252369</created>
-      <option name="number" value="00114" />
-      <option name="presentableId" value="LOCAL-00114" />
-      <option name="project" value="LOCAL" />
-      <updated>1643766252369</updated>
     </task>
     <task id="LOCAL-00115" summary="made AbstractBridgePiece inherit from jigsawpiece">
       <created>1643880701080</created>
@@ -489,7 +472,21 @@
       <option name="project" value="LOCAL" />
       <updated>1644166765045</updated>
     </task>
-    <option name="localTasksCounter" value="162" />
+    <task id="LOCAL-00162" summary="worked on structure rotation">
+      <created>1644246470941</created>
+      <option name="number" value="00162" />
+      <option name="presentableId" value="LOCAL-00162" />
+      <option name="project" value="LOCAL" />
+      <updated>1644246470948</updated>
+    </task>
+    <task id="LOCAL-00163" summary="removed offset">
+      <created>1644246518746</created>
+      <option name="number" value="00163" />
+      <option name="presentableId" value="LOCAL-00163" />
+      <option name="project" value="LOCAL" />
+      <updated>1644246518746</updated>
+    </task>
+    <option name="localTasksCounter" value="164" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -505,8 +502,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="added joinJigsaw overloads" />
-    <MESSAGE value="made use of statis joinJigsaw" />
     <MESSAGE value="made use of static joinJigsaw" />
     <MESSAGE value="added getPiece method" />
     <MESSAGE value="added break" />
@@ -530,6 +525,8 @@
     <MESSAGE value="fixed offset" />
     <MESSAGE value="removed jigsaw config" />
     <MESSAGE value="code cleanups" />
-    <option name="LAST_COMMIT_MESSAGE" value="code cleanups" />
+    <MESSAGE value="worked on structure rotation" />
+    <MESSAGE value="removed offset" />
+    <option name="LAST_COMMIT_MESSAGE" value="removed offset" />
   </component>
 </project>

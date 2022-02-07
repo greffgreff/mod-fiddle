@@ -84,34 +84,17 @@ public class Jigsaws {
     }
 
     public static MutableBoundingBox rotateBB(MutableBoundingBox boundingBox, Rotation rotation) {
+        boundingBox = boundingBox.func_215127_b(0, 0, -1);
         if (rotation == Rotation.COUNTERCLOCKWISE_90) {
-//             boundingBox.func_215127_b(0, 0, 1);
-            // just requires a shift
             int maxX = boundingBox.minX + boundingBox.getZSize() - 1;
             int maxZ = boundingBox.maxZ - boundingBox.getXSize() - 1;
             return MutableBoundingBox.createProper(boundingBox.minX, boundingBox.minY, boundingBox.minZ, maxX, boundingBox.maxY, maxZ);
         }
         else if (rotation == Rotation.CLOCKWISE_90) {
-            // requires shift in x + z size
-//            boundingBox.func_215127_b(1, 0, 0);
             int maxX = boundingBox.minX - boundingBox.getZSize() + 1;
             int maxZ = boundingBox.maxZ - boundingBox.getXSize() - 1;
             return MutableBoundingBox.createProper(boundingBox.minX, boundingBox.minY, boundingBox.minZ, maxX, boundingBox.maxY, maxZ);
         }
         return boundingBox;
     }
-
-//    public static MutableBoundingBox rotateBB(MutableBoundingBox boundingBox, Rotation rotation) {
-//        if (rotation == Rotation.COUNTERCLOCKWISE_90) {
-//            int maxX = boundingBox.maxX + (boundingBox.getZSize() - boundingBox.getXSize());
-//            int maxZ = boundingBox.maxZ + (boundingBox.getXSize()) - boundingBox.getZSize();
-//            return MutableBoundingBox.createProper(boundingBox.minX, boundingBox.minY, boundingBox.minZ, maxX, boundingBox.maxY, maxZ);
-//        }
-//        else if (rotation == Rotation.CLOCKWISE_90) {
-//            int maxX = boundingBox.maxX - (boundingBox.getZSize() - boundingBox.getXSize());
-//            int maxZ = boundingBox.maxZ - (boundingBox.getXSize()) - boundingBox.getZSize();
-//            return MutableBoundingBox.createProper(boundingBox.minX, boundingBox.minY, boundingBox.minZ, maxX, boundingBox.maxY, maxZ);
-//        }
-//        return boundingBox;
-//    }
 }
