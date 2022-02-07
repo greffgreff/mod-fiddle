@@ -49,12 +49,32 @@ public class Jigsaws {
                         int yDelta = parentJigsaw.pos.getY() - childJigsaw.pos.getY() + parentDirection.getY();
                         int zDelta = parentJigsaw.pos.getZ() - childJigsaw.pos.getZ() + parentDirection.getZ();
 
+                        // FIXME: 06/02/2022 rotate before offset
                         MutableBoundingBox BB = childPiece.getBoundingBox();
-                        MutableBoundingBox theoreticalBB = MutableBoundingBox.createProper(BB.minX + xDelta, BB.minY + yDelta, BB.minZ + zDelta, BB.maxX + xDelta, BB.maxY + yDelta, BB.maxZ + zDelta);
-                        MutableBoundingBox rotatedBB = Jigsaws.rotateBB(theoreticalBB, rotation);
+                        MutableBoundingBox offsetBB = MutableBoundingBox.createProper(BB.minX + xDelta, BB.minY + yDelta, BB.minZ + zDelta, BB.maxX + xDelta, BB.maxY + yDelta, BB.maxZ + zDelta);
+                        MutableBoundingBox rotatedBB = Jigsaws.rotateBB(offsetBB, rotation);
+
+//                        ModFiddle.LOGGER.debug("Rotation:        " + rotation);
+//                        ModFiddle.LOGGER.debug("Child BB:        " + BB.minX + " " + BB.minY + " " + BB.minZ + "    " + BB.maxX + " " + BB.maxY + " " + BB.maxZ);
+//                        ModFiddle.LOGGER.debug("Offset BB:       " + offsetBB.minX + " " + offsetBB.minY + " " + offsetBB.minZ + "    " + offsetBB.maxX + " " + offsetBB.maxY + " " + offsetBB.maxZ);
+//                        ModFiddle.LOGGER.debug("Expected BB:     " + rotatedBB.minX + " " + rotatedBB.minY + " " + rotatedBB.minZ + "    " + rotatedBB.maxX + " " + rotatedBB.maxY + " " + rotatedBB.maxZ);
+//                        ModFiddle.LOGGER.debug("Expected Origin: " + new BlockPos(childPiece.position.getX() + xDelta, childPiece.position.getY() + yDelta, childPiece.position.getZ() + zDelta));
+//                        ModFiddle.LOGGER.debug("Parent origin:   " + parentPiece.position);
+//                        ModFiddle.LOGGER.debug("Child origin:    " + childPiece.position);
 
                         if (!parentPiece.getBoundingBox().intersectsWith(rotatedBB)) {
-                            childPiece.offset(xDelta, yDelta, zDelta).rotate(rotation).createPiece();
+                            ModFiddle.LOGGER.debug("Rotation:        " + rotation);
+                            ModFiddle.LOGGER.debug("Offset:          " + childPiece.position.add(xDelta, yDelta, zDelta));
+
+                            ModFiddle.LOGGER.debug("===SUCCESS===");
+                            ModFiddle.LOGGER.debug("Rotation:        " + rotation);
+                            ModFiddle.LOGGER.debug("Child BB:        " + BB.minX + " " + BB.minY + " " + BB.minZ + "    " + BB.maxX + " " + BB.maxY + " " + BB.maxZ);
+                            ModFiddle.LOGGER.debug("Offset BB:       " + offsetBB.minX + " " + offsetBB.minY + " " + offsetBB.minZ + "    " + offsetBB.maxX + " " + offsetBB.maxY + " " + offsetBB.maxZ);
+                            ModFiddle.LOGGER.debug("Expected BB:     " + rotatedBB.minX + " " + rotatedBB.minY + " " + rotatedBB.minZ + "    " + rotatedBB.maxX + " " + rotatedBB.maxY + " " + rotatedBB.maxZ);
+                            ModFiddle.LOGGER.debug("Expected Origin: " + new BlockPos(childPiece.position.getX() + xDelta, childPiece.position.getY() + yDelta, childPiece.position.getZ() + zDelta));
+
+                            childPiece.rotate(rotation).offset(xDelta, yDelta, zDelta).createPiece();
+                            ModFiddle.LOGGER.debug("===END===");
                             break matching;
                         }
                     }
@@ -64,9 +84,34 @@ public class Jigsaws {
     }
 
     public static MutableBoundingBox rotateBB(MutableBoundingBox boundingBox, Rotation rotation) {
-        if (rotation == Rotation.COUNTERCLOCKWISE_90 || rotation == Rotation.CLOCKWISE_90)
-            return MutableBoundingBox.createProper(boundingBox.minZ, boundingBox.minY, boundingBox.minX, boundingBox.maxZ, boundingBox.maxY, boundingBox.maxX);
-//            return MutableBoundingBox.createProper(boundingBox.minX, boundingBox.minY, boundingBox.maxX, boundingBox.minZ, boundingBox.maxY, boundingBox.maxZ);
+        if (rotation == Rotation.COUNTERCLOCKWISE_90) {
+//             boundingBox.func_215127_b(0, 0, 1);
+            // just requires a shift
+            int maxX = boundingBox.minX + boundingBox.getZSize() - 1;
+            int maxZ = boundingBox.maxZ - boundingBox.getXSize() - 1;
+            return MutableBoundingBox.createProper(boundingBox.minX, boundingBox.minY, boundingBox.minZ, maxX, boundingBox.maxY, maxZ);
+        }
+        else if (rotation == Rotation.CLOCKWISE_90) {
+            // requires shift in x + z size
+//            boundingBox.func_215127_b(1, 0, 0);
+            int maxX = boundingBox.minX - boundingBox.getZSize() + 1;
+            int maxZ = boundingBox.maxZ - boundingBox.getXSize() - 1;
+            return MutableBoundingBox.createProper(boundingBox.minX, boundingBox.minY, boundingBox.minZ, maxX, boundingBox.maxY, maxZ);
+        }
         return boundingBox;
     }
+
+//    public static MutableBoundingBox rotateBB(MutableBoundingBox boundingBox, Rotation rotation) {
+//        if (rotation == Rotation.COUNTERCLOCKWISE_90) {
+//            int maxX = boundingBox.maxX + (boundingBox.getZSize() - boundingBox.getXSize());
+//            int maxZ = boundingBox.maxZ + (boundingBox.getXSize()) - boundingBox.getZSize();
+//            return MutableBoundingBox.createProper(boundingBox.minX, boundingBox.minY, boundingBox.minZ, maxX, boundingBox.maxY, maxZ);
+//        }
+//        else if (rotation == Rotation.CLOCKWISE_90) {
+//            int maxX = boundingBox.maxX - (boundingBox.getZSize() - boundingBox.getXSize());
+//            int maxZ = boundingBox.maxZ - (boundingBox.getXSize()) - boundingBox.getZSize();
+//            return MutableBoundingBox.createProper(boundingBox.minX, boundingBox.minY, boundingBox.minZ, maxX, boundingBox.maxY, maxZ);
+//        }
+//        return boundingBox;
+//    }
 }

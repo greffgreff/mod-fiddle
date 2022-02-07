@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="fixed offset">
+    <list default="true" id="bb326371-da0a-4aab-9564-751ecabbdc38" name="Changes" comment="code cleanups">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/gen/BridgeGeneration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/gen/BridgeGeneration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/AbstractBridgePiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/AbstractBridgePiece.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/DeckPiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/structure/structures/bridge/pieces/DeckPiece.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/util/Jigsaws.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/greffgreff/modfiddle/world/util/Jigsaws.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -91,11 +93,11 @@
       <recent name="$PROJECT_DIR$/src/main/resources/data/modfiddle/structures" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/run/mods" />
       <recent name="$PROJECT_DIR$/src/main/resources/data/modfiddle/structures" />
       <recent name="$PROJECT_DIR$/src/main/resources/data/modfiddle/worldgen/template_pool/bridge" />
       <recent name="$PROJECT_DIR$/src/main/resources/assets/modfiddle/textures" />
       <recent name="$PROJECT_DIR$/src/main/resources/assets/modfiddle/models" />
-      <recent name="$PROJECT_DIR$/src/main/resources/assets/modfiddle" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.greffgreff.modfiddle.world.structure" />
@@ -108,11 +110,6 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="Application" factoryName="Application">
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="source [runClient]" type="GradleRunConfiguration" factoryName="Gradle" nameIsGenerated="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -134,6 +131,11 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
+    <configuration default="true" type="NimRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="nim.task.build.to.cache" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -143,20 +145,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1641992804058</updated>
-    </task>
-    <task id="LOCAL-00111" summary="added getSeaLvl to structure offset pos">
-      <created>1643766183914</created>
-      <option name="number" value="00111" />
-      <option name="presentableId" value="LOCAL-00111" />
-      <option name="project" value="LOCAL" />
-      <updated>1643766183914</updated>
-    </task>
-    <task id="LOCAL-00112" summary="removed bridge strcuture json config">
-      <created>1643766208157</created>
-      <option name="number" value="00112" />
-      <option name="presentableId" value="LOCAL-00112" />
-      <option name="project" value="LOCAL" />
-      <updated>1643766208158</updated>
     </task>
     <task id="LOCAL-00113" summary="removed unused ATs">
       <created>1643766229108</created>
@@ -487,7 +475,21 @@
       <option name="project" value="LOCAL" />
       <updated>1644165878274</updated>
     </task>
-    <option name="localTasksCounter" value="160" />
+    <task id="LOCAL-00160" summary="removed jigsaw config">
+      <created>1644166739518</created>
+      <option name="number" value="00160" />
+      <option name="presentableId" value="LOCAL-00160" />
+      <option name="project" value="LOCAL" />
+      <updated>1644166739518</updated>
+    </task>
+    <task id="LOCAL-00161" summary="code cleanups">
+      <created>1644166765045</created>
+      <option name="number" value="00161" />
+      <option name="presentableId" value="LOCAL-00161" />
+      <option name="project" value="LOCAL" />
+      <updated>1644166765045</updated>
+    </task>
+    <option name="localTasksCounter" value="162" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -503,7 +505,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="added required offset on joinJigsaw" />
     <MESSAGE value="added joinJigsaw overloads" />
     <MESSAGE value="made use of statis joinJigsaw" />
     <MESSAGE value="made use of static joinJigsaw" />
@@ -512,7 +513,6 @@
     <MESSAGE value="added bridge direction to joinjigsaw" />
     <MESSAGE value="passed rotation to super" />
     <MESSAGE value="made use of super joinJigsaw" />
-    <MESSAGE value="code cleanups" />
     <MESSAGE value="fixed direction issue on join jigsaw" />
     <MESSAGE value="simplified join jigs methods" />
     <MESSAGE value="moved brdigeGeneration class" />
@@ -528,6 +528,8 @@
     <MESSAGE value="made child jigsaw direction work, added constructor with no rotation" />
     <MESSAGE value="fixed offset positioning" />
     <MESSAGE value="fixed offset" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed offset" />
+    <MESSAGE value="removed jigsaw config" />
+    <MESSAGE value="code cleanups" />
+    <option name="LAST_COMMIT_MESSAGE" value="code cleanups" />
   </component>
 </project>
