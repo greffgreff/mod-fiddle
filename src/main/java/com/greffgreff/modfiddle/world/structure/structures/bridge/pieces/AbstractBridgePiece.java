@@ -44,12 +44,12 @@ public abstract class AbstractBridgePiece extends JigsawPiece {
     public AbstractBridgePiece(DynamicRegistries dynamicRegistries, ChunkGenerator chunkGenerator, TemplateManager templateManager, BlockPos position, Rotation rotation, Random random, ResourceLocation poolLocation) {
         super(JigsawPattern.PlacementBehaviour.RIGID);
         this.dynamicRegistries = dynamicRegistries;
-        this.jigsawPoolRegistry = dynamicRegistries.getRegistry(Registry.JIGSAW_POOL_KEY);
         this.chunkGenerator = chunkGenerator;
         this.templateManager = templateManager;
         this.position = position;
         this.rotation = rotation;
         this.random = random;
+        jigsawPoolRegistry = dynamicRegistries.getRegistry(Registry.JIGSAW_POOL_KEY);
         piecePool = Jigsaws.getPool(poolLocation, dynamicRegistries);
         piecePool.rawTemplates.forEach(p -> weightedPieces.add(p.getSecond().doubleValue(), p.getFirst()));
         createPiece();
